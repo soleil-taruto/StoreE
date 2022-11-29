@@ -201,6 +201,8 @@ function* <generatorForTask> @@_PlayerTurnMain()
 		AddDelay(GameTasks, 5 + 10 * index, () => SetTrumpDest(@@_PlayerCards[index], @@_CARD_X + @@_CARD_X_STEP * index, @@_PLAYER_CARD_Y + @@_CARD_Y_STEP * index));
 	}
 
+	// HACK: 大幅に遅延して(或いはめっちゃ素早く操作されて)カード退場後に実行されるとヤバい。
+	//
 	AddDelay(GameTasks, 30, () => SetTrumpReversed(@@_DealerCards[0], false));
 	AddDelay(GameTasks, 50, () => SetTrumpReversed(@@_PlayerCards[0], false));
 	AddDelay(GameTasks, 70, () => SetTrumpReversed(@@_PlayerCards[1], false));
