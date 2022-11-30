@@ -1,9 +1,17 @@
+#pragma comment(lib, "user32.lib") // for MessageBox
+
 #include <stdio.h>
 #include <conio.h>
 #include <windows.h>
+#include <winuser.h> // for MessageBox
+
+static void ShowErrorDialog(void)
+{
+	MessageBox(NULL, "ERROR !", __argv[0], MB_OK | MB_ICONSTOP | MB_TOPMOST);
+}
 
 #define error() \
-	{ printf("ERROR %d\n", __LINE__); exit(2); }
+	{ printf("ERROR %d 0x%x\n", __LINE__, GetLastError()); ShowErrorDialog(); exit(2); }
 
 #define errorCase(status) \
 	{ if ((status)) error(); }
