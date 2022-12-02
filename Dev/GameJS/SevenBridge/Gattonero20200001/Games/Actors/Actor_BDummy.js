@@ -32,7 +32,7 @@ function* <generatorForTask> @@_Draw(<Actor_t> actor)
 	{
 		actor.Y += 2.0;
 
-		if (Screen_H < actor.Y)
+		if (Screen_H < actor.Y - Camera.Y)
 		{
 			break;
 		}

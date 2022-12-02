@@ -35,7 +35,7 @@ function <void> ExecuteAllActor()
 	{
 		var<Actor_t> actor = @@_Actors[index];
 
-		if (actor.Killed || !NextVal(actor.Draw))
+		if (!DrawActor(actor))
 		{
 			@@_Actors[index] = null;
 		}

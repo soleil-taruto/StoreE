@@ -225,6 +225,8 @@ C:\Dev\GameJS\Adventure\Gattonero20200001\GameCommons\TaskManager.js(48) : AddTa
 C:\Dev\GameJS\Adventure\Gattonero20200001\GameCommons\TaskManager.js(55) : GetTaskCount // ŠÖ”
 C:\Dev\GameJS\Adventure\Gattonero20200001\GameCommons\TaskManager.js(62) : ClearAllTask // ŠÖ”
 C:\Dev\GameJS\Adventure\Gattonero20200001\GameCommons\TaskManager.js(69) : ExecuteAllTask // ŠÖ”
+C:\Dev\GameJS\Adventure\Gattonero20200001\GameCommons\TaskManager.js(93) : AddDelay // ŠÖ”
+C:\Dev\GameJS\Adventure\Gattonero20200001\GameCommons\TaskManager.js(102) : AddKeep // ŠÖ”
 C:\Dev\GameJS\Adventure\Gattonero20200001\GameCommons_Resource\Music.js(19) : M_Title // •Ï”
 C:\Dev\GameJS\Adventure\Gattonero20200001\GameCommons_Resource\Picture.js(15) : P_Dummy // •Ï”
 C:\Dev\GameJS\Adventure\Gattonero20200001\GameCommons_Resource\Picture.js(16) : P_WhiteBox // •Ï”
