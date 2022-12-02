@@ -56,33 +56,6 @@ function <void> ProcMain(<generatorForTask> appMain)
 	@@_Anime();
 }
 
-function <void> @@_Resized()
-{
-	var sw = window.innerWidth;
-	var sh = window.innerHeight;
-
-	var w = sw;
-	var h = ToInt((Canvas_H * sw) / Canvas_W);
-
-	if (sh < h)
-	{
-		h = sh;
-		w = ToInt((Canvas_W * sh) / Canvas_H);
-	}
-	var<int> l = ToInt((sw - w) / 2);
-	var<int> t = ToInt((sh - h) / 2);
-
-	Canvas.style.left   = l + "px";
-	Canvas.style.top    = t + "px";
-	Canvas.style.width  = w + "px";
-	Canvas.style.height = h + "px";
-
-	CanvasBox.style.left   = l + "px";
-	CanvasBox.style.top    = t + "px";
-	CanvasBox.style.width  = w + "px";
-	CanvasBox.style.height = h + "px";
-}
-
 // リフレッシュレート高過ぎ検知用時間
 var<int> @@_HzChaserTime = 0;
 

@@ -76,6 +76,8 @@ C:\Dev\GameJS\Puzzle2048\Gattonero20200001\Commons\String.js(42) : RevStr // ŠÖ
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\Commons\Types.js(7) : P4Poly_t // ’è‹`
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\00_Consts.js(6) : Screen_W // •Ï”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\00_Consts.js(9) : Screen_H // •Ï”
+C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\00_Consts.js(12) : Canvas_W // •Ï”
+C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\00_Consts.js(15) : Canvas_H // •Ï”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Draw.js(6) : GetPicture_W // ŠÖ”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Draw.js(12) : GetPicture_H // ŠÖ”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Draw.js(18) : ClearScreen // ŠÖ”
@@ -85,8 +87,8 @@ C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Effect.js(18) : @ // ŠÖ”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Engine.js(24) : ProcMain // ŠÖ”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Engine.js(16) : Canvas // •Ï”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Engine.js(19) : CanvasBox // •Ï”
-C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Engine.js(90) : ProcFrame // •Ï”
-C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Engine.js(93) : Context // •Ï”
+C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Engine.js(63) : ProcFrame // •Ï”
+C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Engine.js(66) : Context // •Ï”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Mouse.js(65) : @ // ŠÖ”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Mouse.js(84) : @ // ŠÖ”
 C:\Dev\GameJS\Puzzle2048\Gattonero20200001\GameCommons\Mouse.js(118) : GetMouseDown // ŠÖ”
