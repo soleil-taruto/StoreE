@@ -109,11 +109,6 @@ var<Picture_t> P_TrumpJoker = @@_Load(RESOURCE_Trump__Joker_png);
 var<Picture_t> P_ButtonBetUp    = @@_Load(RESOURCE_Picture__BetUp_png);
 var<Picture_t> P_ButtonBetDown  = @@_Load(RESOURCE_Picture__BetDown_png);
 var<Picture_t> P_ButtonStart    = @@_Load(RESOURCE_Picture__Start_png);
-var<Picture_t> P_ButtonStand    = @@_Load(RESOURCE_Picture__Stand_png);
-var<Picture_t> P_ButtonHit      = @@_Load(RESOURCE_Picture__Hit_png);
-var<Picture_t> P_ButtonContinue = @@_Load(RESOURCE_Picture__Continue_png);
-var<Picture_t> P_ButtonNext     = @@_Load(RESOURCE_Picture__Next_png);
-var<Picture_t> P_ButtonX        = @@_Load(RESOURCE_Picture__XButton_png);
 
 var<Picture_t> P_Bunny      = @@_Load(RESOURCE_Picture__bunny_top300_png);
 var<Picture_t> P_Bunny_H_01 = @@_Load(RESOURCE_Picture__bunny_h_01_png);
