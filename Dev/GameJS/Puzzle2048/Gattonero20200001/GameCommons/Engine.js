@@ -34,13 +34,13 @@ function <void> ProcMain(<generatorForTask> appMain)
 	Canvas = document.createElement("canvas");
 	Canvas.width  = Screen_W;
 	Canvas.height = Screen_H;
-	Canvas.style.width  = "calc(min(" + Screen_W + "px, 100%))";
-//	Canvas.style.height = Screen_H + "px";
+	Canvas.style.width  = "calc(min(" + Canvas_W + "px, 100%))";
+//	Canvas.style.height = Canvas_H + "px";
 	Canvas.style.height = "";
 
 	CanvasBox = document.getElementById("Gattonero20200001-CanvasBox");
-	CanvasBox.style.width  = "calc(min(" + Screen_W + "px, 100%))";
-//	CanvasBox.style.height = Screen_H + "px";
+	CanvasBox.style.width  = "calc(min(" + Canvas_W + "px, 100%))";
+//	CanvasBox.style.height = Canvas_H + "px";
 	CanvasBox.style.height = "";
 	CanvasBox.innerHTML = "";
 	CanvasBox.appendChild(Canvas);
@@ -62,12 +62,12 @@ function <void> @@_Resized()
 	var sh = window.innerHeight;
 
 	var w = sw;
-	var h = ToInt((Screen_H * sw) / Screen_W);
+	var h = ToInt((Canvas_H * sw) / Canvas_W);
 
 	if (sh < h)
 	{
 		h = sh;
-		w = ToInt((Screen_W * sh) / Screen_H);
+		w = ToInt((Canvas_W * sh) / Canvas_H);
 	}
 	var<int> l = ToInt((sw - w) / 2);
 	var<int> t = ToInt((sh - h) / 2);
