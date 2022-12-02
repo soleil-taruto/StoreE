@@ -42,3 +42,26 @@ function <void> ExecuteAllActor()
 	}
 	RemoveFalse(@@_Actors);
 }
+
+function <void> @(UNQN)_EACH()
+{
+	NextRun(@@_EachTask);
+}
+
+function* <generatorForTask> @@_EachTaskMain()
+{
+	for (; ; )
+	{
+		for (var<int> index = 1; index < @@_Actors.length; index++)
+		{
+			if (@@_Actors[index - 1].X > @@_Actors[index].X)
+			{
+				SwapElement(@@_Actors, index - 1, index);
+			}
+			yield 1;
+		}
+		yield 1;
+	}
+}
+
+var<generatorForTask> @@_EachTask = @@_EachTaskMain();

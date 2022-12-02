@@ -1,10 +1,16 @@
 /*
-	アクター - トランプのジョーカー
+	アクター - Trump (トランプのカード)
 */
 
 var<int> ActorKind_Trump = @(AUTO);
 
-function <Actor_t> CreateActor_Trump(<double> x, <double> y, <boolean> reversed)
+/*
+	(x, y): 初期位置
+	suit: 絵柄のスート
+	number: 絵柄の数字 (1～13)
+	reversed: 裏返っているか
+*/
+function <Actor_t> CreateActor_Trump(<double> x, <double> y, <Suit_e> suit, <int> number, <boolean> reversed)
 {
 	var ret =
 	{
@@ -19,8 +25,12 @@ function <Actor_t> CreateActor_Trump(<double> x, <double> y, <boolean> reversed)
 		<double> Dest_X: x,
 		<double> Dest_Y: y,
 
+		<Suit_e> Suit: suit,  // 絵柄のスート
+		<int> Number: number, // 絵柄の数字 (1～13)
 		<boolean> Reversed: reversed,
 		<generatorForTask> SpecialDraw: ToGenerator([]),
+
+		<double> Rot: 0.0,
 	};
 
 	ret.Draw = @@_Draw(ret);
@@ -28,33 +38,41 @@ function <Actor_t> CreateActor_Trump(<double> x, <double> y, <boolean> reversed)
 	return ret;
 }
 
+var<double> @@_PICTURE_Z = 1.0;
+
 function* <generatorForTask> @@_Draw(<Actor_t> actor)
 {
 	for (; ; )
 	{
-		actor.X = Approach(actor.X, actor.Dest_X, 0.97);
-		actor.Y = Approach(actor.Y, actor.Dest_Y, 0.97);
+		actor.X = Approach(actor.X, actor.Dest_X, 0.93);
+		actor.Y = Approach(actor.Y, actor.Dest_Y, 0.93);
+
+		actor.Rot = Approach(actor.Rot, 0.0, 0.9);
 
 		if (!NextVal(actor.SpecialDraw))
 		{
-			var<Picture_t> picture_01 = P_TrumpFrame;
-			var<Picture_t> picture_02;
+			Draw(P_TrumpFrame, actor.X, actor.Y, 1.0, actor.Rot, @@_PICTURE_Z);
 
 			if (!actor.Reversed)
 			{
-				picture_02 = P_TrumpJoker;
+				Draw(P_Trump[actor.Suit][actor.Number], actor.X, actor.Y, 1.0, actor.Rot, @@_PICTURE_Z);
 			}
 			else
 			{
-				picture_02 = P_TrumpBack;
+				Draw(P_TrumpBack, actor.X, actor.Y, 1.0, actor.Rot, @@_PICTURE_Z);
 			}
-
-			Draw(picture_01, actor.X, actor.Y, 1.0, 0.0, 1.0);
-			Draw(picture_02, actor.X, actor.Y, 1.0, 0.0, 1.0);
 		}
 
 		yield 1;
 	}
+}
+
+function <void> SetTrumpPos(<Actor_t> actor, <double> x, <double> y)
+{
+	actor.X = x;
+	actor.Y = y;
+	actor.Dest_X = x;
+	actor.Dest_Y = y;
 }
 
 function <void> SetTrumpDest(<Actor_t> actor, <double> x, <double> y)
@@ -79,7 +97,7 @@ function <void> SetTrumpReversed(<Actor_t> actor, <boolean> reversed)
 
 function* <generatorForTask> @@_Turn(<Actor_t> actor, <boolean> reversed)
 {
-	for (var<Scene_t> scene of CreateScene(60))
+	for (var<Scene_t> scene of CreateScene(30))
 	{
 		var<double> wRate = Math.cos(scene.Rate * Math.PI);
 		var<boolean> b = reversed;
@@ -92,22 +110,28 @@ function* <generatorForTask> @@_Turn(<Actor_t> actor, <boolean> reversed)
 
 		if (MICRO < wRate)
 		{
-			var<Picture_t> picture_01 = P_TrumpFrame;
-			var<Picture_t> picture_02;
+			Draw2(P_TrumpFrame, actor.X, actor.Y, 1.0, actor.Rot, wRate, @@_PICTURE_Z);
 
 			if (b)
 			{
-				picture_02 = P_TrumpJoker;
+				Draw2(P_Trump[actor.Suit][actor.Number], actor.X, actor.Y, 1.0, actor.Rot, wRate, @@_PICTURE_Z);
 			}
 			else
 			{
-				picture_02 = P_TrumpBack;
+				Draw2(P_TrumpBack, actor.X, actor.Y, 1.0, actor.Rot, wRate, @@_PICTURE_Z);
 			}
-
-			Draw2(picture_01, actor.X, actor.Y, 1.0, 0.0, wRate, 1.0);
-			Draw2(picture_02, actor.X, actor.Y, 1.0, 0.0, wRate, 1.0);
 		}
 
 		yield 1;
 	}
+}
+
+function <void> SetTrumpAutoStRot(<Actor_t> actor) // 回転開始をセットする。
+{
+	SetTrumpStRot(actor, GetRand2() * 200.0);
+}
+
+function <void> SetTrumpStRot(<Actor_t> actor, <double> rot)
+{
+	actor.Rot = rot;
 }
