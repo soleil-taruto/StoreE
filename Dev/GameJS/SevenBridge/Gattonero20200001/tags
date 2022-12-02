@@ -1,5 +1,7 @@
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\00_Consts.js(6) : Screen_W // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\00_Consts.js(9) : Screen_H // •Ï”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\00_Consts.js(12) : Canvas_W // •Ï”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\00_Consts.js(15) : Canvas_H // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Entrance.js(5) : EntranceMain // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Loading.js(7) : PrintGameLoading // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Loading.js(23) : PrintGameLoaded // ŠÖ”
@@ -203,6 +205,7 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Print.js(67) : SetFont /
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Print.js(76) : SetFSize // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Print.js(91) : SetPrint // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Print.js(102) : PrintLine // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Print.js(113) : GetPrintLineWidth // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Resource.js(6) : Loading // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Resource_LoadPicture.js(7) : Picture_t // ’è‹`
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Resource_LoadPicture.js(14) : LoadPicture // ŠÖ”
@@ -220,6 +223,8 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\TaskManager.js(48) : Add
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\TaskManager.js(55) : GetTaskCount // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\TaskManager.js(62) : ClearAllTask // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\TaskManager.js(69) : ExecuteAllTask // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\TaskManager.js(93) : AddDelay // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\TaskManager.js(102) : AddKeep // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons_Resource\Music.js(19) : M_Title // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons_Resource\Picture.js(15) : P_Dummy // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons_Resource\Picture.js(16) : P_WhiteBox // •Ï”

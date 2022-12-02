@@ -11,7 +11,7 @@ General\muon.mp3
 Picture
 	-> Directory
 Picture\GameStartButton.png
-	-> File 2022/12/03 (土) 01:26:49 / 2022/08/15 (月) 02:35:52 / 12,864
+	-> File 2022/12/03 (土) 01:26:49 / 2022/10/02 (日) 05:41:53 / 24,483
 Picture\光る星20.png
 	-> File 2022/12/03 (土) 01:26:49 / 2022/06/17 (金) 11:56:31 / 170
 _memo.txt
