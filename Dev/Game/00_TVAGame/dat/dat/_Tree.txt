@@ -134,7 +134,7 @@ Novel\魔王魂\bgm_maoudamashii_piano39.mp3
 	-> File 2022/11/07 (月) 15:33:31 / 2021/02/18 (木) 15:07:03 / 3,114,774
 Picture
 	-> Directory
-Picture\Actor83_1.png
+Picture\TitleString.png
 	-> File 2022/06/09 (木) 03:12:44 / 2013/09/21 (土) 22:17:58 / 47,909
 Picture\TrumpBack.png
 	-> File 2022/09/12 (月) 23:37:43 / 2022/09/12 (月) 22:58:48 / 6,163

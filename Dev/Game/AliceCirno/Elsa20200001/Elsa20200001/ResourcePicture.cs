@@ -19,7 +19,7 @@ namespace Charlotte
 		public DDPicture Copyright = DDPictureLoaders.Standard(@"dat\Logo\Copyright.png");
 
 		public DDPicture TitleWall = DDPictureLoaders.Standard(@"dat\k-after\BG23a_80.jpg");
-		public DDPicture Title = DDPictureLoaders.Standard(@"dat\Picture\Actor83_1.png");
+		public DDPicture Title = DDPictureLoaders.Standard(@"dat\Picture\TitleString.png");
 		public DDPicture[] TitleMenuItems = new DDPicture[]
 		{
 			DDPictureLoaders.Standard(@"dat\Title\ゲームスタート.png"),
