@@ -6,15 +6,15 @@ using Charlotte.Commons;
 
 namespace Charlotte
 {
-	static class Program
-	{
-		/// <summary>
-		/// アプリケーションのメイン エントリ ポイントです。
-		/// </summary>
-		[STAThread]
-		static void Main()
-		{
-			ProcMain.GUIMain(() => new MainWin());
-		}
-	}
+    static class Program
+    {
+        /// <summary>
+        /// アプリケーションのメイン エントリ ポイントです。
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            ProcMain.GUIMain(() => new MainWin());
+        }
+    }
 }
