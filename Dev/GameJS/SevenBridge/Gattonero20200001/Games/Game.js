@@ -60,14 +60,12 @@ function* <generatorForTask> @@_E_DrawBackground()
 	{
 		if (@@_BattleNow)
 		{
-			rotAdd = Approach(rotAdd, 0.0003, 0.999);
-//			maskColor.B = Approach(maskColor.B, 0.0, 0.98);
+			rotAdd = Approach(rotAdd, 0.0003, 0.991);
 			maskColor.A = Approach(maskColor.A, 0.7, 0.95);
 		}
 		else
 		{
-			rotAdd = Approach(rotAdd, 0.0, 0.99);
-//			maskColor.B = Approach(maskColor.B, 0.3, 0.96);
+			rotAdd = Approach(rotAdd, 0.0, 0.993);
 			maskColor.A = Approach(maskColor.A, 0.9, 0.95);
 		}
 		rot += rotAdd;

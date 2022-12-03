@@ -51,16 +51,19 @@ function* <generatorForTask> @@_Draw(<Actor_t> actor)
 
 		if (!NextVal(actor.SpecialDraw))
 		{
-			Draw(P_TrumpFrame, actor.X, actor.Y, 1.0, actor.Rot, @@_PICTURE_Z);
+			var<Picture_t> surface;
 
-			if (!actor.Reversed)
+			if (actor.Reversed)
 			{
-				Draw(P_Trump[actor.Suit][actor.Number], actor.X, actor.Y, 1.0, actor.Rot, @@_PICTURE_Z);
+				surface = P_TrumpBack;
 			}
 			else
 			{
-				Draw(P_TrumpBack, actor.X, actor.Y, 1.0, actor.Rot, @@_PICTURE_Z);
+				surface = P_Trump[actor.Suit][actor.Number];
 			}
+
+			Draw(P_TrumpFrame, actor.X, actor.Y, 1.0, actor.Rot, @@_PICTURE_Z);
+			Draw(surface,      actor.X, actor.Y, 1.0, actor.Rot, @@_PICTURE_Z);
 		}
 
 		yield 1;
@@ -68,14 +71,6 @@ function* <generatorForTask> @@_Draw(<Actor_t> actor)
 }
 
 function <void> SetTrumpPos(<Actor_t> actor, <double> x, <double> y)
-{
-	actor.X = x;
-	actor.Y = y;
-	actor.Dest_X = x;
-	actor.Dest_Y = y;
-}
-
-function <void> SetTrumpDest(<Actor_t> actor, <double> x, <double> y)
 {
 	actor.Dest_X = x;
 	actor.Dest_Y = y;
@@ -100,7 +95,7 @@ function* <generatorForTask> @@_Turn(<Actor_t> actor, <boolean> reversed)
 	for (var<Scene_t> scene of CreateScene(30))
 	{
 		var<double> wRate = Math.cos(scene.Rate * Math.PI);
-		var<boolean> b = reversed;
+		var<boolean> b = !reversed;
 
 		if (wRate < 0.0)
 		{
@@ -110,16 +105,19 @@ function* <generatorForTask> @@_Turn(<Actor_t> actor, <boolean> reversed)
 
 		if (MICRO < wRate)
 		{
-			Draw2(P_TrumpFrame, actor.X, actor.Y, 1.0, actor.Rot, wRate, @@_PICTURE_Z);
+			var<Picture_t> surface;
 
 			if (b)
 			{
-				Draw2(P_Trump[actor.Suit][actor.Number], actor.X, actor.Y, 1.0, actor.Rot, wRate, @@_PICTURE_Z);
+				surface = P_TrumpBack;
 			}
 			else
 			{
-				Draw2(P_TrumpBack, actor.X, actor.Y, 1.0, actor.Rot, wRate, @@_PICTURE_Z);
+				surface = P_Trump[actor.Suit][actor.Number];
 			}
+
+			Draw2(P_TrumpFrame, actor.X, actor.Y, 1.0, actor.Rot, wRate, @@_PICTURE_Z);
+			Draw2(surface,      actor.X, actor.Y, 1.0, actor.Rot, wRate, @@_PICTURE_Z);
 		}
 
 		yield 1;
@@ -129,9 +127,4 @@ function* <generatorForTask> @@_Turn(<Actor_t> actor, <boolean> reversed)
 function <void> SetTrumpAutoStRot(<Actor_t> actor) // 回転開始をセットする。
 {
 	SetTrumpStRot(actor, GetRand2() * 200.0);
-}
-
-function <void> SetTrumpStRot(<Actor_t> actor, <double> rot)
-{
-	actor.Rot = rot;
 }

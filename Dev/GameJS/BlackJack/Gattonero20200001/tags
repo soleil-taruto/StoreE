@@ -242,11 +242,11 @@ C:\Dev\GameJS\BlackJack\Gattonero20200001\GameCommons_Resource\Picture.js(114) :
 C:\Dev\GameJS\BlackJack\Gattonero20200001\GameCommons_Resource\Picture.js(115) : P_Bunny_H_02 // 変数
 C:\Dev\GameJS\BlackJack\Gattonero20200001\GameCommons_Resource\SoundEffect.js(19) : S_テスト用 // 変数
 C:\Dev\GameJS\BlackJack\Gattonero20200001\GameCommons_Resource\SoundEffect.js(26) : S_SaveDataRemoved // 変数
-C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(7) : Suit_e // 定義
-C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(9) : Suit_e_SPADE // 変数
-C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(10) : Suit_e_HEART // 変数
-C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(11) : Suit_e_DIA // 変数
-C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(12) : Suit_e_CLUB // 変数
+C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(5) : Suit_e // 定義
+C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(7) : Suit_e_SPADE // 変数
+C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(8) : Suit_e_HEART // 変数
+C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(9) : Suit_e_DIA // 変数
+C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\00_Consts.js(10) : Suit_e_CLUB // 変数
 C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\Effect.js(13) : Effect_Dummy // 関数
 C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\Effect.js(23) : AddEffect_Explode // 関数
 C:\Dev\GameJS\BlackJack\Gattonero20200001\Games\Game.js(21) : GameMain // 関数
