@@ -30,7 +30,6 @@ namespace Charlotte.Novels.Surfaces
 			{
 				DDUtils.Approach(ref this.SlideRate, this.DestSlideRate, 0.9999);
 
-#if true
 				DDPicture picture = DDCCResource.GetPicture(this.ImageFile);
 
 				DDDraw.SetAlpha(this.A);
@@ -39,20 +38,6 @@ namespace Charlotte.Novels.Surfaces
 					DDUtils.AdjustRectExterior(picture.GetSize().ToD2Size(), new D4Rect(0, 0, DDConsts.Screen_W, DDConsts.Screen_H), 1.0 - this.SlideRate, 1.0 - this.SlideRate)
 					);
 				DDDraw.Reset();
-#else // old
-				DDPicture picture = DDCCResource.GetPicture(this.ImageFile);
-				D2Size size = DDUtils.AdjustRectExterior(picture.GetSize().ToD2Size(), new D4Rect(0, 0, DDConsts.Screen_W, DDConsts.Screen_H)).Size;
-
-				DDDraw.SetAlpha(this.A);
-				DDDraw.DrawRect(
-					picture,
-					(DDConsts.Screen_W - size.W) * this.SlideRate,
-					(DDConsts.Screen_H - size.H) * this.SlideRate,
-					size.W,
-					size.H
-					);
-				DDDraw.Reset();
-#endif
 			}
 		}
 
