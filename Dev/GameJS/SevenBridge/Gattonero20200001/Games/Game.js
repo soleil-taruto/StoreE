@@ -164,16 +164,16 @@ var<Deck_t> PlayerDeck;
 var<Actor_t[]> RCards; // 取り出す方のカードの山
 var<Actor_t[]> WCards; // 捨てる方のカードの山
 
-var<double> RCards_X = Screen_W - 100;
-var<double> RCards_Y = 500;
+var<double> RCards_X = Screen_W - 150;
+var<double> RCards_Y = 790;
 
-var<double> WCards_X = Screen_W - 100;
-var<double> WCards_Y = 700;
+var<double> WCards_X = Screen_W - 150;
+var<double> WCards_Y = 1210;
 
 function* <generatorForTask> @@_BattleMain()
 {
-	DealerDeck = CreateDeck(200,  550);
-	PlayerDeck = CreateDeck(900, 1250);
+	DealerDeck = CreateDeck( 170,  650);
+	PlayerDeck = CreateDeck(1430, 1000);
 
 	RCards = [];
 	WCards = [];
@@ -184,6 +184,8 @@ function* <generatorForTask> @@_BattleMain()
 		RCards.push(CreateActor_Trump(RCards_X, RCards_Y, suit, number, true));
 	}
 	Shuffle(RCards);
+
+WCards.push(RCards.pop()); // test test test test test
 
 	for (var<int> c = 0; c < 7; c++)
 	{
@@ -245,5 +247,23 @@ function <void> @@_DrawBattleWall()
 	PrintLine("CREDIT 付与まで");
 	PrintLine(mm + " : " + ss);
 
-	// TODO: カードの山の矩形領域とか
+	SetColor("#00ffff60");
+	PrintRect_XYWH(RCards_X, RCards_Y, GetPicture_W(P_TrumpFrame) + 20, GetPicture_H(P_TrumpFrame) + 20);
+
+	SetColor("#ff800060");
+	PrintRect_XYWH(WCards_X, WCards_Y, GetPicture_W(P_TrumpFrame) + 20, GetPicture_H(P_TrumpFrame) + 20);
+
+	if (1 <= RCards.length)
+	{
+		Draw(P_TrumpFrame, RCards_X, RCards_Y, 1.0, 0.0, 1.0);
+		Draw(P_TrumpBack,  RCards_X, RCards_Y, 1.0, 0.0, 1.0);
+	}
+	if (1 <= WCards.length)
+	{
+		var<Actor_t> card = WCards[WCards.length - 1];
+		var<Picture_t> surface = P_Trump[card.Suit][card.Number];
+
+		Draw(P_TrumpFrame, WCards_X, WCards_Y, 1.0, 0.0, 1.0);
+		Draw(surface,      WCards_X, WCards_Y, 1.0, 0.0, 1.0);
+	}
 }
