@@ -22,6 +22,11 @@ function <Meld_t> CreateMeld(<Actor_t[]> cards)
 	return ret;
 }
 
+function <Actor_t[]> GetMeldCards(<Meld_t> meld)
+{
+	return meld.Cards;
+}
+
 function <MeldType_e> GetMeldType(<Meld_t> meld)
 {
 	if (meld.Cards[0].Number == meld.Cards[1].Number)

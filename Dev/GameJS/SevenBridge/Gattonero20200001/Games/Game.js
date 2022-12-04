@@ -153,8 +153,14 @@ var<int> @@_DEALER_DAMAGE_MAX = 7;
 */
 var<int> @@_DealerDamage = 0;
 
+var<Deck_t> DealerDeck;
+var<Deck_t> PlayerDeck;
+
 function* <generatorForTask> @@_BattleMain()
 {
+	DealerDeck = CreateDeck();
+	PlayerDeck = CreateDeck();
+
 	FreezeInput();
 
 	for (; ; )
@@ -167,8 +173,28 @@ function* <generatorForTask> @@_BattleMain()
 		}
 
 		@@_DrawBackground();
+		@@_DrawBattleWall();
 
 		yield 1;
 	}
 	FreezeInput();
+
+	DealerDeck = null;
+	PlayerDeck = null;
+}
+
+function <void> @@_DrawBattleWall()
+{
+	SetColor("#00000080");
+	PrintRect_LTRB(10, 10, Screen_W - 10, 160);
+
+	SetColor("#ffffff");
+	SetFSize(50);
+	SetPrint(30, 70, 70);
+	PrintLine("CREDIT: " + 10);
+	PrintLine("HP: " + "Å°Å†Å†Å†Å†Å†Å†");
+
+	SetPrint(700, 70, 70);
+	PrintLine("CREDIT ïtó^Ç‹Ç≈");
+	PrintLine("00 : 00");
 }
