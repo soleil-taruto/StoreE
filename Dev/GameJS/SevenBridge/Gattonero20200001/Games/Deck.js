@@ -53,3 +53,24 @@ function <Meld_t[]> GetDeckMelds(<Deck_t> deck)
 {
 	return deck.Melds;
 }
+
+function <void> SetDeckCardsAutoPos(<Deck_t> deck)
+{
+	{
+		var<double> l = deck.CardsDraw_L + GetPicture_W(P_TrumpFrame) / 2 + 10;
+		var<double> t = deck.CardsDraw_T + GetPicture_H(P_TrumpFrame) / 2;
+		var<double> w = Screen_W - GetPicture_W(P_TrumpFrame) - 20;
+
+		for (var<int> c = 0; c < deck.Cards.length; c++)
+		{
+			var<Actor_t> card = deck.Cards[c];
+
+			var<double> x = l + (c / (deck.Cards.length - 1)) * w;
+			var<double> y = t;
+
+			SetTrumpPos(card, x, y);
+		}
+	}
+
+	// TODO: Meld
+}

@@ -161,10 +161,42 @@ var<int> @@_DealerDamage = 0;
 var<Deck_t> DealerDeck;
 var<Deck_t> PlayerDeck;
 
+var<Actor_t[]> RCards; // 取り出す方のカードの山
+var<Actor_t[]> WCards; // 捨てる方のカードの山
+
+var<double> RCards_X = Screen_W - 100;
+var<double> RCards_Y = 500;
+
+var<double> WCards_X = Screen_W - 100;
+var<double> WCards_Y = 700;
+
 function* <generatorForTask> @@_BattleMain()
 {
-	DealerDeck = CreateDeck();
-	PlayerDeck = CreateDeck();
+	DealerDeck = CreateDeck(200,  550);
+	PlayerDeck = CreateDeck(900, 1250);
+
+	RCards = [];
+	WCards = [];
+
+	for (var<Suit_e> suit = 1; suit <= 4; suit++)
+	for (var<int> number = 1; number <= 13; number++)
+	{
+		RCards.push(CreateActor_Trump(RCards_X, RCards_Y, suit, number, true));
+	}
+	Shuffle(RCards);
+
+	for (var<int> c = 0; c < 7; c++)
+	{
+		GetDeckCards(DealerDeck).push(RCards.pop());
+		GetDeckCards(PlayerDeck).push(RCards.pop());
+
+		SetTrumpReversed(GetDeckCards(PlayerDeck)[c], false);
+
+		AddActor(GetDeckCards(DealerDeck)[c]);
+		AddActor(GetDeckCards(PlayerDeck)[c]);
+	}
+	SetDeckCardsAutoPos(DealerDeck);
+	SetDeckCardsAutoPos(PlayerDeck);
 
 	FreezeInput();
 
@@ -180,12 +212,17 @@ function* <generatorForTask> @@_BattleMain()
 		@@_DrawBackground();
 		@@_DrawBattleWall();
 
+		ExecuteAllActor();
+		ExecuteAllTask(GameTasks);
 		yield 1;
 	}
 	FreezeInput();
 
 	DealerDeck = null;
 	PlayerDeck = null;
+
+	RCards = null;
+	WCards = null;
 }
 
 function <void> @@_DrawBattleWall()
@@ -207,4 +244,6 @@ function <void> @@_DrawBattleWall()
 	SetPrint(700, 70, 70);
 	PrintLine("CREDIT 付与まで");
 	PrintLine(mm + " : " + ss);
+
+	// TODO: カードの山の矩形領域とか
 }

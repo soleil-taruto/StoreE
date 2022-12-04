@@ -44,10 +44,10 @@ function* <generatorForTask> @@_Draw(<Actor_t> actor)
 {
 	for (; ; )
 	{
-		actor.X = Approach(actor.X, actor.Dest_X, 0.93);
-		actor.Y = Approach(actor.Y, actor.Dest_Y, 0.93);
+		actor.X = Approach(actor.X, actor.Dest_X, 0.9);
+		actor.Y = Approach(actor.Y, actor.Dest_Y, 0.9);
 
-		actor.Rot = Approach(actor.Rot, 0.0, 0.9);
+		actor.Rot = Approach(actor.Rot, 0.0, 0.85);
 
 		if (!NextVal(actor.SpecialDraw))
 		{
