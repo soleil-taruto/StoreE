@@ -11,6 +11,11 @@ var<TaskManager_t> GameTasks = CreateTaskManager();
 var<int> @@_Credit = 1000;
 var<int> @@_Bet = 0;
 
+function <void> AddGameCredit(<int> value)
+{
+	@@_Credit += value;
+}
+
 function* <generatorForTask> GameMain()
 {
 	FreezeInput();
@@ -194,7 +199,12 @@ function <void> @@_DrawBattleWall()
 	PrintLine("CREDIT: " + 10);
 	PrintLine("HP: " + "Å°Å†Å†Å†Å†Å†Å†");
 
+	var<int> remSec = ToFix(GetAddGameCreditRemFrame() / 60.0) + 1;
+
+	var<string> mm = ZPad(ToFix(remSec / 60), 2, "0");
+	var<string> ss = ZPad(      remSec % 60,  2, "0");
+
 	SetPrint(700, 70, 70);
 	PrintLine("CREDIT ïtó^Ç‹Ç≈");
-	PrintLine("00 : 00");
+	PrintLine(mm + " : " + ss);
 }
