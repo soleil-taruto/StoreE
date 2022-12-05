@@ -206,8 +206,6 @@ WCards.push(RCards.pop()); // test test test test test
 	{
 		if (GetMouseDown() == -1)
 		{
-			@@_DealerDamage = -1;
-
 			break;
 		}
 
@@ -218,6 +216,32 @@ WCards.push(RCards.pop()); // test test test test test
 		ExecuteAllTask(GameTasks);
 		yield 1;
 	}
+
+
+
+	SortDeck(PlayerDeck);
+	SetDeckCardsAutoPos(PlayerDeck);
+
+	FreezeInput();
+
+	// test test test test test
+	for (; ; )
+	{
+		if (GetMouseDown() == -1)
+		{
+			break;
+		}
+
+		@@_DrawBackground();
+		@@_DrawBattleWall();
+
+		ExecuteAllActor();
+		ExecuteAllTask(GameTasks);
+		yield 1;
+	}
+
+
+
 	FreezeInput();
 
 	DealerDeck = null;
@@ -225,6 +249,14 @@ WCards.push(RCards.pop()); // test test test test test
 
 	RCards = null;
 	WCards = null;
+
+	for (var<Actor_t> actor of GetAllActor())
+	{
+		if (actor.Kind == ActorKind_Trump)
+		{
+			KillActor(actor); // test
+		}
+	}
 }
 
 function <void> @@_DrawBattleWall()

@@ -74,3 +74,8 @@ function <void> SetDeckCardsAutoPos(<Deck_t> deck)
 
 	// TODO: Meld
 }
+
+function <void> SortDeck(<Deck_t> deck)
+{
+	deck.Cards.sort((a, b) => a.Number - b.Number); // test test test test test
+}

@@ -24,6 +24,11 @@ function <void> KillActor(<Actor_t> actor)
 	actor.Killed = true;
 }
 
+function <Actor_t[]> GetAllActor()
+{
+	return @@_Actors;
+}
+
 function <void> ClearAllActor()
 {
 	@@_Actors = [];
@@ -45,7 +50,10 @@ function <void> ExecuteAllActor()
 
 function <void> @(UNQN)_EACH()
 {
-	NextRun(@@_EachTask);
+	for (var<int> c = 0; c < 7; c++)
+	{
+		NextRun(@@_EachTask);
+	}
 }
 
 function* <generatorForTask> @@_EachTaskMain()
