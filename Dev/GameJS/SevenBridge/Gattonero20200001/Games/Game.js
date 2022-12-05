@@ -205,12 +205,14 @@ WCards.push(RCards.pop()); // test test test test test
 
 	FreezeInput();
 
-	for (; ; )
+	for (var<Scene_t> scene of CreateScene(50))
 	{
+		/*
 		if (GetMouseDown() == -1)
 		{
 			break;
 		}
+		*/
 
 		@@_DrawBackground();
 		@@_DrawBattleWall();
@@ -225,7 +227,7 @@ WCards.push(RCards.pop()); // test test test test test
 	SortDeck(DealerDeck);
 	SortDeck(PlayerDeck);
 	SetDeckCardsAutoPos(PlayerDeck, true);
-	AddDelay(GameTasks, 10, () => SetDeckCardsAutoPos(DealerDeck, true));
+	AddDelay(GameTasks, 30, () => SetDeckCardsAutoPos(DealerDeck, true));
 
 	FreezeInput();
 
