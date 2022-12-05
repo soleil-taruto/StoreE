@@ -54,8 +54,10 @@ function <Meld_t[]> GetDeckMelds(<Deck_t> deck)
 	return deck.Melds;
 }
 
-function <void> SetDeckCardsAutoPos(<Deck_t> deck)
+function <void> SetDeckCardsAutoPos(<Deck_t> deck, <boolean> àÍèuÇ≈)
 {
+	var<int> delayFrame = 0;
+
 	{
 		var<double> l = deck.CardsDraw_L + GetPicture_W(P_TrumpFrame) / 2 + 10;
 		var<double> t = deck.CardsDraw_T + GetPicture_H(P_TrumpFrame) / 2;
@@ -68,7 +70,15 @@ function <void> SetDeckCardsAutoPos(<Deck_t> deck)
 			var<double> x = l + (c / (deck.Cards.length - 1)) * w;
 			var<double> y = t;
 
-			SetTrumpPos(card, x, y);
+			if (àÍèuÇ≈)
+			{
+				SetTrumpPos(card, x, y);
+			}
+			else
+			{
+				AddDelay(GameTasks, delayFrame, () => SetTrumpPos(card, x, y));
+				delayFrame += 5;
+			}
 		}
 	}
 

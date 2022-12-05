@@ -187,6 +187,8 @@ function* <generatorForTask> @@_BattleMain()
 
 WCards.push(RCards.pop()); // test test test test test
 
+	var<int> delayFrame = 0;
+
 	for (var<int> c = 0; c < 7; c++)
 	{
 		GetDeckCards(DealerDeck).push(RCards.pop());
@@ -197,8 +199,9 @@ WCards.push(RCards.pop()); // test test test test test
 		AddActor(GetDeckCards(DealerDeck)[c]);
 		AddActor(GetDeckCards(PlayerDeck)[c]);
 	}
-	SetDeckCardsAutoPos(DealerDeck);
-	SetDeckCardsAutoPos(PlayerDeck);
+
+	SetDeckCardsAutoPos(DealerDeck, false);
+	SetDeckCardsAutoPos(PlayerDeck, false);
 
 	FreezeInput();
 
@@ -219,8 +222,10 @@ WCards.push(RCards.pop()); // test test test test test
 
 
 
+	SortDeck(DealerDeck);
 	SortDeck(PlayerDeck);
-	SetDeckCardsAutoPos(PlayerDeck);
+	SetDeckCardsAutoPos(PlayerDeck, true);
+	AddDelay(GameTasks, 10, () => SetDeckCardsAutoPos(DealerDeck, true));
 
 	FreezeInput();
 
