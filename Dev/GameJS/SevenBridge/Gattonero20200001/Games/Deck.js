@@ -87,5 +87,18 @@ function <void> SetDeckCardsAutoPos(<Deck_t> deck, <boolean> ˆêu‚Å)
 
 function <void> SortDeck(<Deck_t> deck)
 {
-	deck.Cards.sort((a, b) => a.Number - b.Number); // test test test test test
+	deck.Cards.sort((a, b) =>
+	{
+		var<int> ret = a.Suit - b.Suit;
+
+		if (ret != 0)
+			return ret;
+
+		ret = a.Number - b.Number;
+
+		if (ret != 0)
+			return ret;
+
+		error(); // never
+	});
 }

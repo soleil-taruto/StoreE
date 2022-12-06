@@ -187,14 +187,12 @@ function* <generatorForTask> @@_BattleMain()
 
 WCards.push(RCards.pop()); // test test test test test
 
-	var<int> delayFrame = 0;
-
 	for (var<int> c = 0; c < 7; c++)
 	{
 		GetDeckCards(DealerDeck).push(RCards.pop());
 		GetDeckCards(PlayerDeck).push(RCards.pop());
 
-		SetTrumpReversed(GetDeckCards(PlayerDeck)[c], false);
+		AddDelay(GameTasks, c * 3, () => SetTrumpReversed(GetDeckCards(PlayerDeck)[c], false));
 
 		AddActor(GetDeckCards(DealerDeck)[c]);
 		AddActor(GetDeckCards(PlayerDeck)[c]);
