@@ -54,7 +54,7 @@ function <Meld_t[]> GetDeckMelds(<Deck_t> deck)
 	return deck.Melds;
 }
 
-function <void> SetDeckCardsAutoPos(<Deck_t> deck, <boolean> ˆêu‚Å)
+function <void> SetDeckCardsAutoPos(<Deck_t> deck, <boolean> ˆêu‚Å, <boolean> ‰ñ“]‚·‚é)
 {
 	var<int> delayFrame = 0;
 
@@ -73,10 +73,24 @@ function <void> SetDeckCardsAutoPos(<Deck_t> deck, <boolean> ˆêu‚Å)
 			if (ˆêu‚Å)
 			{
 				SetTrumpPos(card, x, y);
+
+				if (‰ñ“]‚·‚é)
+				{
+					SetTrumpAutoStRot(card);
+				}
 			}
 			else
 			{
-				AddDelay(GameTasks, delayFrame, () => SetTrumpPos(card, x, y));
+				AddDelay(GameTasks, delayFrame, () =>
+				{
+					SetTrumpPos(card, x, y);
+
+					if (‰ñ“]‚·‚é)
+					{
+						SetTrumpAutoStRot(card);
+					}
+				});
+
 				delayFrame += 5;
 			}
 		}
@@ -89,12 +103,12 @@ function <void> SortDeck(<Deck_t> deck)
 {
 	deck.Cards.sort((a, b) =>
 	{
-		var<int> ret = a.Suit - b.Suit;
+		var<int> ret = a.Number - b.Number;
 
 		if (ret != 0)
 			return ret;
 
-		ret = a.Number - b.Number;
+		ret = a.Suit - b.Suit;
 
 		if (ret != 0)
 			return ret;

@@ -198,8 +198,8 @@ WCards.push(RCards.pop()); // test test test test test
 		AddActor(GetDeckCards(PlayerDeck)[c]);
 	}
 
-	SetDeckCardsAutoPos(DealerDeck, false);
-	SetDeckCardsAutoPos(PlayerDeck, false);
+	SetDeckCardsAutoPos(DealerDeck, false, true);
+	SetDeckCardsAutoPos(PlayerDeck, false, true);
 
 	FreezeInput();
 
@@ -224,8 +224,8 @@ WCards.push(RCards.pop()); // test test test test test
 
 	SortDeck(DealerDeck);
 	SortDeck(PlayerDeck);
-	SetDeckCardsAutoPos(PlayerDeck, true);
-	AddDelay(GameTasks, 30, () => SetDeckCardsAutoPos(DealerDeck, true));
+	SetDeckCardsAutoPos(PlayerDeck, true, false);
+	AddDelay(GameTasks, 30, () => SetDeckCardsAutoPos(DealerDeck, true, false));
 
 	FreezeInput();
 

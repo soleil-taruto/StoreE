@@ -126,5 +126,10 @@ function* <generatorForTask> @@_Turn(<Actor_t> actor, <boolean> reversed)
 
 function <void> SetTrumpAutoStRot(<Actor_t> actor) // 回転開始をセットする。
 {
-	SetTrumpStRot(actor, GetRand2() * 200.0);
+	SetTrumpStRot(actor, GetRand2() * 20.0);
+}
+
+function <void> SetTrumpStRot(<Actor_t> actor, <double> rot)
+{
+	actor.Rot = rot;
 }

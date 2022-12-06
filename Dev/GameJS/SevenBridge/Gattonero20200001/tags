@@ -258,7 +258,7 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(30) : CreateDeck // ä÷
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(47) : GetDeckCards // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(52) : GetDeckMelds // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(57) : SetDeckCardsAutoPos // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(88) : SortDeck // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(102) : SortDeck // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Effect.js(13) : Effect_Dummy // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Effect.js(23) : AddEffect_Explode // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(14) : AddGameCredit // ä÷êî
@@ -286,6 +286,7 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(73) : Se
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(79) : IsTrumpReversed // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(84) : SetTrumpReversed // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(127) : SetTrumpAutoStRot // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(132) : SetTrumpStRot // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(5) : ActorKind_Trump // ïœêî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(7) : AddActor // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(17) : KillActor // ä÷êî
