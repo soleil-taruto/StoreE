@@ -30,7 +30,11 @@ namespace Charlotte.Tests
 
 		public void Test02()
 		{
-			foreach (string file in Directory.GetFiles(@"C:\home\HPGame\Sword\Thumbs"))
+			foreach (string file in Directory.GetFiles(
+				//@"C:\home\HPGame\Sword\Thumbs"
+				//@"C:\home\HPGame\Shield\Thumbs"
+				@"C:\home\HPGame\Soleil\Thumbs"
+				))
 			{
 				Canvas canvas = Canvas.LoadFromFile(file);
 
