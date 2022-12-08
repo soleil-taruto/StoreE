@@ -70,8 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
-    <Compile Include="Commons\CsvFileReader.cs" />
-    <Compile Include="Commons\CsvFileWriter.cs" />
+    <Compile Include="Utilities\CsvFileReader.cs" />
+    <Compile Include="Utilities\CsvFileWriter.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="GameCommons\DDActionList.cs" />
     <Compile Include="GameCommons\DDHash.cs" />
