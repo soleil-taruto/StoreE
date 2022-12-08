@@ -48,7 +48,7 @@ namespace Charlotte.Tests
 
 						if (c == 1)
 						{
-							FoundFiles.Add(file);
+							//FoundFiles.Add(file);
 						}
 					}
 				}
