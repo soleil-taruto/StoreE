@@ -13,12 +13,9 @@ namespace Charlotte.Tests
 
 		public void Test01()
 		{
-			//Test01_a(@"C:\Factory", file => Path.GetExtension(file).ToLower() == ".c", SCommon.ENCODING_SJIS);
-			//Test01_a(@"C:\Factory", file => Path.GetExtension(file).ToLower() == ".h", SCommon.ENCODING_SJIS);
-			//Test01_a(@"C:\Dev", file => Path.GetExtension(file).ToLower() == ".cs" && !file.ToLower().EndsWith(".designer.cs"), Encoding.UTF8);
-			Test01_a(@"C:\develop", file => Path.GetExtension(file).ToLower() == ".cs", Encoding.UTF8);
-			Test01_a(@"C:\develop", file => Path.GetExtension(file).ToLower() == ".cpp", Encoding.UTF8);
-			Test01_a(@"C:\develop", file => Path.GetExtension(file).ToLower() == ".vb", Encoding.UTF8);
+			Test01_a(@"C:\Factory", file => Path.GetExtension(file).ToLower() == ".c", SCommon.ENCODING_SJIS);
+			Test01_a(@"C:\Factory", file => Path.GetExtension(file).ToLower() == ".h", SCommon.ENCODING_SJIS);
+			Test01_a(@"C:\Dev", file => Path.GetExtension(file).ToLower() == ".cs" && !file.ToLower().EndsWith(".designer.cs"), Encoding.UTF8);
 
 			// ====
 
@@ -51,7 +48,7 @@ namespace Charlotte.Tests
 
 						if (c == 1)
 						{
-							//FoundFiles.Add(file);
+							FoundFiles.Add(file);
 						}
 					}
 				}
