@@ -11,5 +11,6 @@ var Suit_e_CLUB  = 4;
 
 /// MeldType_e
 //
-var MeldType_e_PONG = @(AUTO);
 var MeldType_e_CHOW = @(AUTO);
+var MeldType_e_KONG = @(AUTO);
+var MeldType_e_PONG = @(AUTO);

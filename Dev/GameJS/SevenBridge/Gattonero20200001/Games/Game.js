@@ -185,7 +185,7 @@ function* <generatorForTask> @@_BattleMain()
 	}
 	Shuffle(RCards);
 
-WCards.push(RCards.pop()); // test test test test test
+//WCards.push(RCards.pop()); // test
 
 	for (var<int> c = 0; c < 7; c++)
 	{
@@ -201,17 +201,10 @@ WCards.push(RCards.pop()); // test test test test test
 	SetDeckCardsAutoPos(DealerDeck, false, true);
 	SetDeckCardsAutoPos(PlayerDeck, false, true);
 
-	FreezeInput();
+//	FreezeInput();
 
 	for (var<Scene_t> scene of CreateScene(50))
 	{
-		/*
-		if (GetMouseDown() == -1)
-		{
-			break;
-		}
-		*/
-
 		@@_DrawBackground();
 		@@_DrawBattleWall();
 
@@ -220,8 +213,6 @@ WCards.push(RCards.pop()); // test test test test test
 		yield 1;
 	}
 
-
-
 	SortDeck(DealerDeck);
 	SortDeck(PlayerDeck);
 	SetDeckCardsAutoPos(PlayerDeck, true, false);
@@ -229,7 +220,16 @@ WCards.push(RCards.pop()); // test test test test test
 
 	FreezeInput();
 
-	// test test test test test
+	var<int[]> idxsChow  = WCards.length == 0 ? null  : GetChowIndexes(PlayerDeck, WCards[WCards.length - 1]);
+	var<int[]> idxsPong  = WCards.length == 0 ? null  : GetPongIndexes(PlayerDeck, WCards[WCards.length - 1]);
+	var<boolean> ronFlag = WCards.length == 0 ? false : IsCanRon(PlayerDeck,       WCards[WCards.length - 1]);
+
+	{
+
+
+
+	}
+
 	for (; ; )
 	{
 		if (GetMouseDown() == -1)
@@ -244,8 +244,6 @@ WCards.push(RCards.pop()); // test test test test test
 		ExecuteAllTask(GameTasks);
 		yield 1;
 	}
-
-
 
 	FreezeInput();
 

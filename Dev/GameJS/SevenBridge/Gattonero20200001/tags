@@ -248,8 +248,9 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\00_Consts.js(7) : Suit_e_SPADE
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\00_Consts.js(8) : Suit_e_HEART // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\00_Consts.js(9) : Suit_e_DIA // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\00_Consts.js(10) : Suit_e_CLUB // •Ï”
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\00_Consts.js(14) : MeldType_e_PONG // •Ï”
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\00_Consts.js(15) : MeldType_e_CHOW // •Ï”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\00_Consts.js(14) : MeldType_e_CHOW // •Ï”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\00_Consts.js(15) : MeldType_e_KONG // •Ï”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\00_Consts.js(16) : MeldType_e_PONG // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Credit.js(14) : @ // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Credit.js(25) : GetAddGameCreditRemFrame // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(7) : Deck_t // ’è‹`
@@ -272,6 +273,11 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(167) : RCards_X // •Ï
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(168) : RCards_Y // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(170) : WCards_X // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(171) : WCards_Y // •Ï”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(11) : GetChowIndexes // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(23) : GetPongIndexes // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(33) : IsCanRon // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(49) : IsCanAgari // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(61) : GetKongIndexes // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Meld.js(7) : Meld_t // ’è‹`
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Meld.js(15) : CreateMeld // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Meld.js(25) : GetMeldCards // ŠÖ”
