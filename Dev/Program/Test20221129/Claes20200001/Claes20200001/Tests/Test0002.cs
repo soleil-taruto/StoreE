@@ -9,16 +9,25 @@ namespace Charlotte.Tests
 {
 	public class Test0002
 	{
+		private List<string> FoundFiles = new List<string>();
+
 		public void Test01()
 		{
-			Test01_a(@"C:\Factory", "*.c", SCommon.ENCODING_SJIS);
-			Test01_a(@"C:\Factory", "*.h", SCommon.ENCODING_SJIS);
-			Test01_a(@"C:\Dev", "*.cs", Encoding.UTF8);
+			Test01_a(@"C:\Factory", file => Path.GetExtension(file).ToLower() == ".c", SCommon.ENCODING_SJIS);
+			Test01_a(@"C:\Factory", file => Path.GetExtension(file).ToLower() == ".h", SCommon.ENCODING_SJIS);
+			Test01_a(@"C:\Dev", file => Path.GetExtension(file).ToLower() == ".cs" && !file.ToLower().EndsWith(".designer.cs"), Encoding.UTF8);
+
+			// ====
+
+			foreach (string file in FoundFiles.Distinct())
+				Console.WriteLine(file);
 		}
 
-		private void Test01_a(string rootDir, string wildCard, Encoding encoding)
+		private void Test01_a(string rootDir, Predicate<string> fileMatch, Encoding encoding)
 		{
-			string[] files = Directory.GetFiles(rootDir, wildCard, SearchOption.AllDirectories);
+			string[] files = Directory.GetFiles(rootDir, "*", SearchOption.AllDirectories)
+				.Where(v => fileMatch(v))
+				.ToArray();
 
 			foreach (string file in files)
 			{
@@ -39,16 +48,14 @@ namespace Charlotte.Tests
 
 						if (c == 1)
 						{
-							Console.WriteLine(file);
+							FoundFiles.Add(file);
 						}
 					}
 				}
 
-				/*
 				foreach (string line in lines)
-					if (line.EndsWith("\t") || line.EndsWith(" "))
-						Console.WriteLine(file);
-				 * */
+					if (line != "" && line[line.Length - 1] <= ' ')
+						FoundFiles.Add(file);
 			}
 		}
 	}
