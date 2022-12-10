@@ -29,6 +29,13 @@ namespace Charlotte.Games
 				{
 					this.MapNameTableRows = reader.ReadToEnd();
 				}
+				if (ProcMain.DEBUG)
+				{
+					using (CsvFileWriter writer = new CsvFileWriter(@"C:\temp\GameLog_World.csv"))
+					{
+						writer.WriteRows(this.MapNameTableRows);
+					}
+				}
 			}
 			this.CurrPoint = this.GetPoint(startMapName);
 		}
