@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="ActionServer.cs" />
     <Compile Include="Actions\Action_AccessCounter.cs" />
+    <Compile Include="Actions\Action_Download.cs" />
     <Compile Include="Actions\Action_RemoteEndPoint.cs" />
     <Compile Include="Actions\Action_BatchService.cs" />
     <Compile Include="Common.cs" />
