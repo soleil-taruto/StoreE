@@ -8,7 +8,7 @@
 	ret: できない場合 null
 		できる場合、対応するデッキのカードのインデックス配列を返す。長さ=2
 */
-function <int[]> GetChowIndexes(<Deck_t> deck, <Actor_t> lastWastedCard)
+function <int[]> GetChowIndexes(<Deck_t> deck, <Trump_t> lastWastedCard)
 {
 	// HACK: 複数マッチする場合を考慮していない。
 
@@ -46,7 +46,7 @@ function <int[]> GetChowIndexes(<Deck_t> deck, <Actor_t> lastWastedCard)
 		できない場合 null
 		できる場合、対応するデッキのカードのインデックス配列を返す。長さ=2
 */
-function <int[]> GetPongIndexes(<Deck_t> deck, <Actor_t> lastWastedCard)
+function <int[]> GetPongIndexes(<Deck_t> deck, <Trump_t> lastWastedCard)
 {
 	// HACK: 複数マッチする場合を考慮していない。
 
@@ -54,7 +54,7 @@ function <int[]> GetPongIndexes(<Deck_t> deck, <Actor_t> lastWastedCard)
 
 	for (var<int> i = 0; i < deck.Cards.length; i++)
 	{
-		var<Actor_t> card = deck.Cards[i];
+		var<Trump_t> card = deck.Cards[i];
 
 		if (card.Number == lastWastedCard.Number)
 		{
@@ -74,9 +74,9 @@ function <int[]> GetPongIndexes(<Deck_t> deck, <Actor_t> lastWastedCard)
 
 	ret: ロン可能であるか
 */
-function <boolean> IsCanRon(<Deck_t> deck, <Actor_t> lastWastedCard)
+function <boolean> IsCanRon(<Deck_t> deck, <Trump_t> lastWastedCard)
 {
-	var<Actor_t> cards = [];
+	var<Trump_t> cards = [];
 
 	AddElements(cards, deck.Cards);
 	AddElement(cards, lastWastedCard);
@@ -107,7 +107,7 @@ function <int[]> GetKongIndexes(<Deck_t> deck)
 
 		for (var<int> i = 0; i < deck.Cards.length; i++)
 		{
-			var<Actor_t> card = deck.Cards[i];
+			var<Trump_t> card = deck.Cards[i];
 
 			if (card.Number == n)
 			{
@@ -133,12 +133,12 @@ function <boolean> IsCanAgari(<Deck_t> deck)
 	return @@_IsCanAgari_Cards(deck.Cards);
 }
 
-function <boolean> @@_IsCanAgari_Cards(<Actor_t[]> cards)
+function <boolean> @@_IsCanAgari_Cards(<Trump_t[]> cards)
 {
 	return @@_IsCanAgari_Nest(cards, []);
 }
 
-function <boolean> @@_IsCanAgari_Nest(<Actor_t[]> cards, <int[]> rmIdxs)
+function <boolean> @@_IsCanAgari_Nest(<Trump_t[]> cards, <int[]> rmIdxs)
 {
 	cards = CloneArray(cards);
 

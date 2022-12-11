@@ -7,12 +7,12 @@
 /// Meld_t
 {
 	// メルドしたカード・リスト
-	<Actor_t[]> Cards
+	<Trump_t[]> Cards
 }
 
 @(ASTR)/
 
-function <Meld_t> CreateMeld(<Actor_t[]> cards)
+function <Meld_t> CreateMeld(<Trump_t[]> cards)
 {
 	var<Meld_t> ret =
 	{
@@ -22,7 +22,7 @@ function <Meld_t> CreateMeld(<Actor_t[]> cards)
 	return ret;
 }
 
-function <Actor_t[]> GetMeldCards(<Meld_t> meld)
+function <Trump_t[]> GetMeldCards(<Meld_t> meld)
 {
 	return meld.Cards;
 }

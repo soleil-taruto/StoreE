@@ -7,7 +7,7 @@
 /// Deck_t
 {
 	// è‚¿‚ÌƒJ[ƒhEƒŠƒXƒg
-	<Actor_t[]> Cards
+	<Trump_t[]> Cards
 
 	// ƒƒ‹ƒhEƒŠƒXƒg
 	<Meld_t[]> Melds
@@ -44,7 +44,7 @@ function <Deck_t> CreateDeck(<double> cardsDrawTop, <double> meldsDrawTop)
 	return ret;
 }
 
-function <Actor_t[]> GetDeckCards(<Deck_t> deck)
+function <Trump_t[]> GetDeckCards(<Deck_t> deck)
 {
 	return deck.Cards;
 }
@@ -65,7 +65,7 @@ function <void> SetDeckCardsAutoPos(<Deck_t> deck, <boolean> ˆêu‚Å, <boolean> ‰
 
 		for (var<int> c = 0; c < deck.Cards.length; c++)
 		{
-			var<Actor_t> card = deck.Cards[c];
+			var<Trump_t> card = deck.Cards[c];
 
 			var<double> x = l + (c / (deck.Cards.length - 1)) * w;
 			var<double> y = t;

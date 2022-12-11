@@ -161,8 +161,8 @@ var<int> @@_DealerDamage = 0;
 var<Deck_t> DealerDeck;
 var<Deck_t> PlayerDeck;
 
-var<Actor_t[]> RCards; // 取り出す方のカードの山
-var<Actor_t[]> WCards; // 捨てる方のカードの山
+var<Trump_t[]> RCards; // 取り出す方のカードの山
+var<Trump_t[]> WCards; // 捨てる方のカードの山
 
 var<double> RCards_X = Screen_W - 150;
 var<double> RCards_Y = 790;
@@ -271,7 +271,7 @@ function* <generatorForTask> @@_BattleMain()
 	RCards = null;
 	WCards = null;
 
-	for (var<Actor_t> actor of GetAllActor())
+	for (var<Trump_t> actor of GetAllActor())
 	{
 		if (actor.Kind == ActorKind_Trump)
 		{
@@ -313,7 +313,7 @@ function <void> @@_DrawBattleWall()
 	}
 	if (1 <= WCards.length)
 	{
-		var<Actor_t> card = WCards[WCards.length - 1];
+		var<Trump_t> card = WCards[WCards.length - 1];
 		var<Picture_t> surface = P_Trump[card.Suit][card.Number];
 
 		Draw(P_TrumpFrame, WCards_X, WCards_Y, 1.0, 0.0, 1.0);

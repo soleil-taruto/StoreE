@@ -4,7 +4,7 @@
 
 var<int> ActorKind_BDummy = @(AUTO);
 
-function <Actor_t> CreateActor_BDummy(<double> x, <double> y)
+function <Actor_BDummy_t> CreateActor_BDummy(<double> x, <double> y)
 {
 	var ret =
 	{
@@ -26,7 +26,7 @@ function <Actor_t> CreateActor_BDummy(<double> x, <double> y)
 	return ret;
 }
 
-function* <generatorForTask> @@_Draw(<Actor_t> actor)
+function* <generatorForTask> @@_Draw(<Actor_BDummy_t> actor)
 {
 	for (; ; )
 	{
