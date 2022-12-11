@@ -12,6 +12,7 @@ var<int> ActorKind_Trump = @(AUTO);
 */
 function <Actor_t> CreateActor_Trump(<double> x, <double> y, <Suit_e> suit, <int> number, <boolean> reversed)
 {
+	/// Trump_t : Actor_t
 	var ret =
 	{
 		Kind: ActorKind_Trump,

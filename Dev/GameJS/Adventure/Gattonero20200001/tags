@@ -260,12 +260,14 @@ C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Game.js(9) : GameTasks // •Ï”
 C:\Dev\GameJS\Adventure\Gattonero20200001\Games\GameProgressMaster.js(5) : GameProgressMaster // ŠÖ”
 C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor.js(7) : Actor_t // ’è‹`
 C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor.js(31) : DrawActor // ŠÖ”
+C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_BDummy.js(9) : ActorBDummy_t // ’è‹`
 C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_BDummy.js(7) : CreateActor_BDummy // ŠÖ”
 C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_BDummy.js(5) : ActorKind_BDummy // •Ï”
+C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_Trump.js(9) : Trump_t // ’è‹`
 C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_Trump.js(7) : CreateActor_Trump // ŠÖ”
-C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_Trump.js(60) : SetTrumpDest // ŠÖ”
-C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_Trump.js(66) : IsTrumpReversed // ŠÖ”
-C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_Trump.js(71) : SetTrumpReversed // ŠÖ”
+C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_Trump.js(61) : SetTrumpDest // ŠÖ”
+C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_Trump.js(67) : IsTrumpReversed // ŠÖ”
+C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_Trump.js(72) : SetTrumpReversed // ŠÖ”
 C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\Actor_Trump.js(5) : ActorKind_Trump // •Ï”
 C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\ActorCommon.js(7) : AddActor // ŠÖ”
 C:\Dev\GameJS\Adventure\Gattonero20200001\Games\Actors\ActorCommon.js(17) : KillActor // ŠÖ”
