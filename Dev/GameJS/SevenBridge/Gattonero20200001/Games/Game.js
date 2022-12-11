@@ -220,14 +220,32 @@ function* <generatorForTask> @@_BattleMain()
 
 	FreezeInput();
 
-	var<int[]> idxsChow  = WCards.length == 0 ? null  : GetChowIndexes(PlayerDeck, WCards[WCards.length - 1]);
-	var<int[]> idxsPong  = WCards.length == 0 ? null  : GetPongIndexes(PlayerDeck, WCards[WCards.length - 1]);
-	var<boolean> ronFlag = WCards.length == 0 ? false : IsCanRon(PlayerDeck,       WCards[WCards.length - 1]);
+	var<int[]> idxsChow  = WCards.length == 0 ? null  : GetChowIndexes( PlayerDeck, WCards[WCards.length - 1]);
+	var<int[]> idxsPong  = WCards.length == 0 ? null  : GetPongIndexes( PlayerDeck, WCards[WCards.length - 1]);
+	var<boolean> ronFlag = WCards.length == 0 ? false : IsCanRon(       PlayerDeck, WCards[WCards.length - 1]);
 
 	{
+		var<string> items = [];
 
+		if (idxsChow != null)
+		{
+			items.push("É`Å[");
+		}
+		if (idxsPong != null)
+		{
+			items.push("É|Éì");
+		}
+		if (ronFlag)
+		{
+			items.push("ÉçÉì");
+		}
 
-
+		if (1 <= items.length)
+		{
+			// TODO
+			// TODO
+			// TODO
+		}
 	}
 
 	for (; ; )
