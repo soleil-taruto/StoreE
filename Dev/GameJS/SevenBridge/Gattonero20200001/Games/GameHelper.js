@@ -152,6 +152,8 @@ function <boolean> @@_IsCanAgari_Nest(<Actor_t[]> cards, <int[]> rmIdxs)
 	for (var<int> c = 0; c < cards.length; c++)
 	if (a != b && b != c && c != a)
 	{
+		var<boolean> triple = false;
+
 		if (
 			cards[a].Suit == cards[b].Suit &&
 			cards[a].Suit == cards[c].Suit &&
@@ -159,21 +161,17 @@ function <boolean> @@_IsCanAgari_Nest(<Actor_t[]> cards, <int[]> rmIdxs)
 			cards[a].Number + 2 == cards[c].Number
 			)
 		{
-			if (@@_IsCanAgari_Nest(cards, [ a, b, c ]))
-			{
-				return true;
-			}
+			triple = true;
 		}
-	}
-
-	for (var<int> c = 2; c < cards.length; c++)
-	for (var<int> b = 1; b < c; b++)
-	for (var<int> a = 0; a < b; a++)
-	{
-		if (
+		else if (
 			cards[a].Number == cards[b].Number &&
 			cards[a].Number == cards[c].Number
 			)
+		{
+			triple = true;
+		}
+
+		if (triple)
 		{
 			if (@@_IsCanAgari_Nest(cards, [ a, b, c ]))
 			{
