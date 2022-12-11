@@ -227,24 +227,38 @@ function* <generatorForTask> @@_BattleMain()
 	{
 		var<string> items = [];
 
+		var<string> ITEM_CHOW = "チー";
+		var<string> ITEM_PONG = "ポン";
+		var<string> ITEM_RON  = "ロン";
+		var<string> ITEM_NOOP = "しない";
+
 		if (idxsChow != null)
 		{
-			items.push("チー");
+			items.push(ITEM_CHOW);
 		}
 		if (idxsPong != null)
 		{
-			items.push("ポン");
+			items.push(ITEM_PONG);
 		}
 		if (ronFlag)
 		{
-			items.push("ロン");
+			items.push(ITEM_RON);
 		}
 
 		if (1 <= items.length)
 		{
+			items.push(ITEM_NOOP);
+
+			var<string> selItem = @@_Menu(items);
+
+
+
 			// TODO
 			// TODO
 			// TODO
+
+
+
 		}
 	}
 
@@ -319,4 +333,12 @@ function <void> @@_DrawBattleWall()
 		Draw(P_TrumpFrame, WCards_X, WCards_Y, 1.0, 0.0, 1.0);
 		Draw(surface,      WCards_X, WCards_Y, 1.0, 0.0, 1.0);
 	}
+}
+
+function <string> @@_Menu(<string[]> items)
+{
+
+
+
+	return items[0]; // TODO
 }
