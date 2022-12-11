@@ -83,21 +83,6 @@ function <boolean> IsCanRon(<Deck_t> deck, <Actor_t> lastWastedCard)
 // - - -
 
 /*
-	ツモ上がり可能であるか判定する。
-
-	ret: ツモ上がり可能であるか
-*/
-function <boolean> IsCanAgari(<Deck_t> deck)
-{
-	return @@_IsCanAgari_Cards(deck.Cards);
-}
-
-function <boolean> @@_IsCanAgari_Cards(<Actor_t[]> cards)
-{
-	return false; // TODO
-}
-
-/*
 	「カン」可能であるか判定する。
 
 	ret:
@@ -128,4 +113,72 @@ function <int[]> GetKongIndexes(<Deck_t> deck)
 		}
 	}
 	return null;
+}
+
+/*
+	ツモ上がり可能であるか判定する。
+
+	ret: ツモ上がり可能であるか
+*/
+function <boolean> IsCanAgari(<Deck_t> deck)
+{
+	return @@_IsCanAgari_Cards(deck.Cards);
+}
+
+function <boolean> @@_IsCanAgari_Cards(<Actor_t[]> cards)
+{
+	return @@_IsCanAgari_Nest(cards, []);
+}
+
+function <boolean> @@_IsCanAgari_Nest(<Actor_t[]> cards, <int[]> rmIdxs)
+{
+	cards = CloneArray(cards);
+
+	for (var<int> rmIdx of rmIdxs)
+	{
+		cards[rmIdx] = null;
+	}
+	removeFalse(cards);
+
+	// ----
+
+	if (cards.length == 2)
+	{
+		return cards[0].Number == cards[1].Number;
+	}
+
+	for (var<int> a = 0; a < cards.length; a++)
+	for (var<int> b = 0; b < cards.length; b++)
+	for (var<int> c = 0; c < cards.length; c++)
+	if (a != b && b != c && c != a)
+	{
+		if (
+			cards[a].Suit == cards[b].Suit &&
+			cards[a].Suit == cards[c].Suit &&
+			cards[a].Number + 1 == cards[b].Number &&
+			cards[a].Number + 2 == cards[c].Number
+			)
+		{
+			if (@@_IsCanAgari_Nest(cards, [ a, b, c ]))
+			{
+				return true;
+			}
+		}
+	}
+
+	for (var<int> c = 2; c < cards.length; c++)
+	for (var<int> b = 1; b < c; b++)
+	for (var<int> a = 0; a < b; a++)
+	{
+		if (
+			cards[a].Number == cards[b].Number &&
+			cards[a].Number == cards[c].Number
+			)
+		{
+			if (@@_IsCanAgari_Nest(cards, [ a, b, c ]))
+			{
+				return true;
+			}
+		}
+	}
 }

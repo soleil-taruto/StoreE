@@ -278,8 +278,8 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(171) : WCards_Y // •Ï
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(11) : GetChowIndexes // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(41) : GetPongIndexes // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(69) : IsCanRon // ŠÖ”
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(90) : IsCanAgari // ŠÖ”
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(107) : GetKongIndexes // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(92) : GetKongIndexes // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(123) : IsCanAgari // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Meld.js(7) : Meld_t // ’è‹`
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Meld.js(15) : CreateMeld // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Meld.js(25) : GetMeldCards // ŠÖ”
