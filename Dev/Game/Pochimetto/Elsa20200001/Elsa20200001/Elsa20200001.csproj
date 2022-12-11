@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Common.cs" />
+    <Compile Include="Commons\P4Poly.cs" />
     <Compile Include="Utilities\CsvFileReader.cs" />
     <Compile Include="Utilities\CsvFileWriter.cs" />
     <Compile Include="Consts.cs" />

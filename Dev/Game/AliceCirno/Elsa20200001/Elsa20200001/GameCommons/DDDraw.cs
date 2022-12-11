@@ -352,6 +352,11 @@ namespace Charlotte.GameCommons
 			DrawFree(picture, lt.X, lt.Y, rt.X, rt.Y, rb.X, rb.Y, lb.X, lb.Y);
 		}
 
+		public static void DrawFree(DDPicture picture, P4Poly poly)
+		{
+			DrawFree(picture, poly.LT, poly.RT, poly.RB, poly.LB);
+		}
+
 		public static void DrawRect_LTRB(DDPicture picture, double l, double t, double r, double b)
 		{
 			if (
