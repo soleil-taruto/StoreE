@@ -5,6 +5,7 @@
 /*
 	プリミティブな型
 */
+/// boolean
 /// int
 /// double
 /// string

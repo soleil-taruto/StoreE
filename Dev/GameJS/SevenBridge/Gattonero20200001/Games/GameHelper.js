@@ -10,7 +10,25 @@
 */
 function <int[]> GetChowIndexes(<Deck_t> deck, <Actor_t> lastWastedCard)
 {
-	return null; // TODO
+	// HACK: 複数マッチする場合を考慮していない。
+
+	var<int> i = IndexOf(deck.Cards, card => card.Suit == lastWastedCard.Suit && card.Number == lastWastedCard.Nuber + 1);
+	var<int> j = IndexOf(deck.Cards, card => card.Suit == lastWastedCard.Suit && card.Number == lastWastedCard.Nuber + 2);
+
+	if (i != -1 && j != -1)
+	{
+		return [ i, j ];
+	}
+
+	i = IndexOf(deck.Cards, card => card.Suit == lastWastedCard.Suit && card.Number == lastWastedCard.Nuber - 1);
+	j = IndexOf(deck.Cards, card => card.Suit == lastWastedCard.Suit && card.Number == lastWastedCard.Nuber - 2);
+
+	if (i != -1 && j != -1)
+	{
+		return [ i, j ];
+	}
+
+	return null;
 }
 
 /*
@@ -22,7 +40,25 @@ function <int[]> GetChowIndexes(<Deck_t> deck, <Actor_t> lastWastedCard)
 */
 function <int[]> GetPongIndexes(<Deck_t> deck, <Actor_t> lastWastedCard)
 {
-	return null; // TODO
+	// HACK: 複数マッチする場合を考慮していない。
+
+	var<int[]> ret = [];
+
+	for (var<int> i = 0; i < deck.Cards.length; i++)
+	{
+		var<Actor_t> card = deck.Cards[i];
+
+		if (card.Number == lastWastedCard.Number)
+		{
+			ret.push(i);
+
+			if (ret.length == 2)
+			{
+				return ret;
+			}
+		}
+	}
+	return null;
 }
 
 /*
@@ -32,7 +68,12 @@ function <int[]> GetPongIndexes(<Deck_t> deck, <Actor_t> lastWastedCard)
 */
 function <boolean> IsCanRon(<Deck_t> deck, <Actor_t> lastWastedCard)
 {
-	return false; // TODO
+	var<Actor_t> cards = [];
+
+	AddElements(cards, deck.Cards);
+	AddElement(cards, lastWastedCard);
+
+	return @@_IsCanAgari_Cards(cards);
 }
 
 
@@ -48,6 +89,11 @@ function <boolean> IsCanRon(<Deck_t> deck, <Actor_t> lastWastedCard)
 */
 function <boolean> IsCanAgari(<Deck_t> deck)
 {
+	return @@_IsCanAgari_Cards(deck.Cards);
+}
+
+function <boolean> @@_IsCanAgari_Cards(<Actor_t[]> cards)
+{
 	return false; // TODO
 }
 
@@ -60,5 +106,26 @@ function <boolean> IsCanAgari(<Deck_t> deck)
 */
 function <int[]> GetKongIndexes(<Deck_t> deck)
 {
-	return null; // TODO
+	// HACK: 複数マッチする場合を考慮していない。
+
+	for (var<int> n = 1; n <= 13; n++)
+	{
+		var<int[]> ret = [];
+
+		for (var<int> i = 0; i < deck.Cards.length; i++)
+		{
+			var<Actor_t> card = deck.Cards[i];
+
+			if (card.Number == n)
+			{
+				ret.push(i);
+
+				if (ret.length == 4)
+				{
+					return ret;
+				}
+			}
+		}
+	}
+	return null;
 }
