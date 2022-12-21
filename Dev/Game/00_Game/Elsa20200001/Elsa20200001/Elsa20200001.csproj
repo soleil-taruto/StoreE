@@ -73,118 +73,6 @@
     <Compile Include="Common.cs" />
     <Compile Include="Commons\ArgsReader.cs" />
     <Compile Include="Commons\P4Poly.cs" />
-    <Compile Include="Shootings\SHConfirm.cs" />
-    <Compile Include="Shootings\SHEffects.cs" />
-    <Compile Include="Shootings\SHEnemies\SHEnemy.cs" />
-    <Compile Include="Shootings\SHEnemies\SHEnemyCatalog.cs" />
-    <Compile Include="Shootings\SHEnemies\SHEnemyCommon.cs" />
-    <Compile Include="Shootings\SHEnemies\Tests\SHEnemyCommon_Tests.cs" />
-    <Compile Include="Shootings\SHEnemies\Tests\SHEnemy_Test0001.cs" />
-    <Compile Include="Shootings\SHEnemies\Tests\SHEnemy_Test0002.cs" />
-    <Compile Include="Shootings\SHEnemies\Tests\SHEnemy_TestItem.cs" />
-    <Compile Include="Shootings\SHEnemies\Tests\SHEnemy_TestTama0001.cs" />
-    <Compile Include="Shootings\SHEnemies\Tests\SHEnemy_Testボス0001.cs" />
-    <Compile Include="Shootings\SHEnemies\Tests\SHEnemy_Testボス0002.cs" />
-    <Compile Include="Shootings\SHEnemies\Tests\SHEnemy_Testボス0003.cs" />
-    <Compile Include="Shootings\Shooting.cs" />
-    <Compile Include="Shootings\ShootingCommon.cs" />
-    <Compile Include="Shootings\ShootingConsts.cs" />
-    <Compile Include="Shootings\SHPlayer.cs" />
-    <Compile Include="Shootings\SHScripts\SHScript.cs" />
-    <Compile Include="Shootings\SHScripts\SHScriptCatalog.cs" />
-    <Compile Include="Shootings\SHScripts\SHScriptCommon.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Test0001.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Test0002.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Test0003.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Test0004.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Testステージ0001.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Testステージ0002.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Testステージ0003.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Testボス0001テスト.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Test何もなし0001.cs" />
-    <Compile Include="Shootings\SHScripts\Tests\SHScript_Test壁紙0001.cs" />
-    <Compile Include="Shootings\SHShots\SHShot.cs" />
-    <Compile Include="Shootings\SHShots\SHShotCatalog.cs" />
-    <Compile Include="Shootings\SHShots\SHShotCommon.cs" />
-    <Compile Include="Shootings\SHShots\Tests\SHShot_Test0001.cs" />
-    <Compile Include="Shootings\SHShots\Tests\SHShot_Testボム0001.cs" />
-    <Compile Include="Shootings\SHWalls\SHWall.cs" />
-    <Compile Include="Shootings\SHWalls\SHWallCatalog.cs" />
-    <Compile Include="Shootings\SHWalls\SHWallCommon.cs" />
-    <Compile Include="Shootings\SHWalls\SHWall_Dark.cs" />
-    <Compile Include="Shootings\SHWalls\Tests\SHWall_Test0001.cs" />
-    <Compile Include="Shootings\SHWalls\Tests\SHWall_Test0002.cs" />
-    <Compile Include="Shootings\SHWalls\Tests\SHWall_Test0003.cs" />
-    <Compile Include="Shootings\SHWalls\Tests\SHWall_Test0004.cs" />
-    <Compile Include="Shootings\ぼかし効果.cs" />
-    <Compile Include="TopViews\TopView.cs" />
-    <Compile Include="TopViews\TopViewCommon.cs" />
-    <Compile Include="TopViews\TopViewConsts.cs" />
-    <Compile Include="TopViews\TVAround.cs" />
-    <Compile Include="TopViews\TVAttacks\Tests\TVAttack_B0001.cs" />
-    <Compile Include="TopViews\TVAttacks\TVAttack.cs" />
-    <Compile Include="TopViews\TVAttacks\TVAttackCommon.cs" />
-    <Compile Include="TopViews\TVConfirm.cs" />
-    <Compile Include="TopViews\TVEffects.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\TVEnemy_B0001.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\TVEnemy_B0002.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\TVEnemy_B1001.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\TVEnemy_B1002.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\TVEnemy_BTrump.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\TVEnemy_Bアイテム.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\TVEnemy_Bイベント0001.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\TVEnemy_Bセーブ地点.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\TVEnemy_Bハック0001.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\神奈子s\EnemyCommon_B神奈子.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\神奈子s\Enemy_B神奈子.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\神奈子s\Enemy_B神奈子0001.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\神奈子s\Enemy_B神奈子9901.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\神奈子s\Enemy_B神奈子9902.cs" />
-    <Compile Include="TopViews\TVEnemies\Tests\神奈子s\Enemy_B神奈子_Tama.cs" />
-    <Compile Include="TopViews\TVEnemies\TVEnemy.cs" />
-    <Compile Include="TopViews\TVEnemies\TVEnemyCatalog.cs" />
-    <Compile Include="TopViews\TVEnemies\TVEnemyCommon.cs" />
-    <Compile Include="TopViews\TVEnemies\TVEnemy_スタート地点.cs" />
-    <Compile Include="TopViews\TVLevelEditors\TVLevelEditor.cs" />
-    <Compile Include="TopViews\TVLevelEditors\TVLevelEditorDlg.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TopViews\TVLevelEditors\TVLevelEditorDlg.Designer.cs">
-      <DependentUpon>TVLevelEditorDlg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="TopViews\TVMap.cs" />
-    <Compile Include="TopViews\TVMapCell.cs" />
-    <Compile Include="TopViews\TVMusicCollection.cs" />
-    <Compile Include="TopViews\TVPlayer.cs" />
-    <Compile Include="TopViews\TVShots\Tests\TVShot_B0001.cs" />
-    <Compile Include="TopViews\TVShots\Tests\TVShot_BBounce.cs" />
-    <Compile Include="TopViews\TVShots\Tests\TVShot_BNormal.cs" />
-    <Compile Include="TopViews\TVShots\Tests\TVShot_BSpread.cs" />
-    <Compile Include="TopViews\TVShots\Tests\TVShot_BWave.cs" />
-    <Compile Include="TopViews\TVShots\TVShot.cs" />
-    <Compile Include="TopViews\TVShots\TVShotCatalog.cs" />
-    <Compile Include="TopViews\TVShots\TVShotCommon.cs" />
-    <Compile Include="TopViews\TVShots\TVShot_Normal.cs" />
-    <Compile Include="TopViews\TVTiles\Tests\TVTile_Bボス部屋Shutter.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile.cs" />
-    <Compile Include="TopViews\TVTiles\TVTileCatalog.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_None.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_River.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_Space.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_Wall.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_大森林.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_大森林系.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_森林.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_森林系.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_水辺.cs" />
-    <Compile Include="TopViews\TVTiles\TVTile_水辺系.cs" />
-    <Compile Include="TopViews\TVWalls\TVWall.cs" />
-    <Compile Include="TopViews\TVWalls\TVWallCatalog.cs" />
-    <Compile Include="TopViews\TVWalls\TVWall_Dark.cs" />
-    <Compile Include="TopViews\TVWorld.cs" />
-    <Compile Include="TopViews\TVWorldGameMaster.cs" />
-    <Compile Include="TopViews\ぼかし効果.cs" />
-    <Compile Include="TopViews\壁キャラ処理.cs" />
     <Compile Include="Utilities\CsvFileReader.cs" />
     <Compile Include="Utilities\CsvFileWriter.cs" />
     <Compile Include="Commons\D2Point.cs" />
@@ -413,9 +301,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TopViews\TVLevelEditors\TVLevelEditorDlg.resx">
-      <DependentUpon>TVLevelEditorDlg.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

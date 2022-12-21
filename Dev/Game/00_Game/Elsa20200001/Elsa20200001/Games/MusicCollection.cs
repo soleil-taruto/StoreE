@@ -17,7 +17,7 @@ namespace Charlotte.Games
 
 			switch (name)
 			{
-				case "Field_01": music = Ground.I.Music.XXXField_01; break;
+				case "Field_01": music = Ground.I.Music.Field_01; break;
 				//case "Field_02": music = Ground.I.Music.Field_02; break;
 
 				// 新しい曲をここへ追加..

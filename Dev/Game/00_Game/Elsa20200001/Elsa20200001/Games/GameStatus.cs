@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using Charlotte.Commons;
 using Charlotte.Utilities;
-using Charlotte.Shootings;
-using Charlotte.TopViews.TVShots;
 
 namespace Charlotte.Games
 {
@@ -104,66 +102,6 @@ namespace Charlotte.Games
 		/// game_進行・インベントリ
 		/// </summary>
 		public S_InventoryFlags InventoryFlags = new S_InventoryFlags();
-
-		public int SHZanki = ShootingConsts.DEFAULT_ZANKI;
-		public int SHZanBomb = ShootingConsts.DEFAULT_ZAN_BOMB;
-
-		// 攻撃レベル
-		// 初期値：0
-		// 値域：0 ～ GameConsts.ATTACK_LEVEL_MAX
-		//
-		public int SHAttackLevel = 0;
-
-		private const int TV_MAX_HP = 10;
-
-		/// <summary>
-		/// プレイヤーの最大HP
-		/// </summary>
-		public int TVMaxHP = TV_MAX_HP;
-
-		/// <summary>
-		/// プレイヤーのHP
-		/// </summary>
-		public int TVStartHP = TV_MAX_HP;
-
-		/// <summary>
-		/// スタート地点の Direction 値
-		/// 5 == 中央(デフォルト) == ゲームスタート時
-		/// 2 == 下から入場
-		/// 4 == 左から入場
-		/// 6 == 右から入場
-		/// 8 == 上から入場
-		/// 101 == ロード地点
-		/// </summary>
-		public int TVStartPointDirection = 5;
-
-		/// <summary>
-		/// プレイヤーが向いている方向
-		/// テンキー方式(8方向)
-		/// 2 == 下
-		/// 4 == 左
-		/// 6 == 右
-		/// 8 == 上
-		/// 1 == 左下
-		/// 3 == 右下
-		/// 7 == 左上
-		/// 9 == 右上
-		/// </summary>
-		public int TVStartFaceDirection = 2;
-
-		/// <summary>
-		/// 最後のマップを退場した方向
-		/// 5 == 中央(デフォルト) == メニュー操作によりゲーム終了
-		/// 2 == 下から退場
-		/// 4 == 左から退場
-		/// 6 == 右から退場
-		/// 8 == 上から退場
-		/// 901 == 死亡によりゲーム終了
-		/// </summary>
-		public int TVExitDirection = 5;
-
-		public TVShotCatalog.武器_e TVStart選択武器 = TVShotCatalog.武器_e.NORMAL;
-		public ResourcePicture2.Player_e TVChara = ResourcePicture2.Player_e.Cirno;
 
 		// <---- prm
 
