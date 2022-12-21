@@ -63,11 +63,7 @@ namespace Charlotte.Games
 			this.Player.X = DDConsts.Screen_W / 4;
 			this.Player.Y = DDConsts.Screen_H / 2;
 
-			// ★★★★★ *****PSH (<-このパターンで検索できるようにしておく)
-			// プレイヤー・ステータス反映(ステージ開始時)
-			{
-				// none
-			}
+			GameStatusCopier.ステージ開始時();
 
 			this.Player.RebornFrame = 1;
 
@@ -428,11 +424,7 @@ namespace Charlotte.Games
 				DDEngine.EachFrame();
 			}
 
-			// ★★★★★ *****PSH (<-このパターンで検索できるようにしておく)
-			// プレイヤー・ステータス反映(ステージ終了時)
-			{
-				// none
-			}
+			GameStatusCopier.ステージ終了時();
 
 			// ★★★ end of Perform() ★★★
 		}
