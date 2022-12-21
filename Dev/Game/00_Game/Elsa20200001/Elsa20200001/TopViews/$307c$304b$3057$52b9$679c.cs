@@ -6,7 +6,7 @@ using DxLibDLL;
 using Charlotte.Commons;
 using Charlotte.GameCommons;
 
-namespace Charlotte.Games
+namespace Charlotte.TopViews
 {
 	public static class ぼかし効果
 	{

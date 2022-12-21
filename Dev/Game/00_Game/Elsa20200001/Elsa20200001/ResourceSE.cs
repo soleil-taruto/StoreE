@@ -23,6 +23,11 @@ namespace Charlotte
 		public DDSE EnemyDamaged = new DDSE(@"dat\小森平\hit04.mp3");
 		public DDSE EnemyKilled = new DDSE(@"dat\小森平\explosion06.mp3");
 
+		public DDSE SHEnemyDamaged = new DDSE(@"dat\出処不明\EnemyDamaged.mp3");
+		public DDSE SHPlayerShoot = new DDSE(@"dat\出処不明\PlayerShoot.mp3");
+		public DDSE SHEnemyDead = new DDSE(@"dat\小森平\explosion01.mp3");
+		public DDSE SHPowerUp = new DDSE(@"dat\小森平\powerup03.mp3");
+
 		public ResourceSE()
 		{
 			// none

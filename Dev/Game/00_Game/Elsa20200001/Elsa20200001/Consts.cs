@@ -7,6 +7,6 @@ namespace Charlotte
 {
 	public static class Consts
 	{
-		// none
+		public static readonly double ROOT_2 = 1.41421356237;
 	}
 }

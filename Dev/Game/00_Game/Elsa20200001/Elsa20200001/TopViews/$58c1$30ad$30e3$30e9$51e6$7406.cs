@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using Charlotte.Commons;
 using Charlotte.GameCommons;
-using Charlotte.Games.Tiles;
+using Charlotte.TopViews.TVTiles;
 
-namespace Charlotte.Games
+namespace Charlotte.TopViews
 {
 	public static class 壁キャラ処理
 	{
-		private static Predicate<Tile> IsWall;
+		private static Predicate<TVTile> IsWall;
 		private static int IX;
 		private static int IY;
-		private static Around A2;
-		private static Around A3;
+		private static TVAround A2;
+		private static TVAround A3;
 
-		public static void Perform(ref double x, ref double y, Predicate<Tile> isWall)
+		public static void Perform(ref double x, ref double y, Predicate<TVTile> isWall)
 		{
 			IsWall = isWall;
 
@@ -24,8 +24,8 @@ namespace Charlotte.Games
 			IX = SCommon.ToInt(x);
 			IY = SCommon.ToInt(y);
 
-			A2 = new Around(IX, IY, 2);
-			A3 = new Around(IX, IY, 3);
+			A2 = new TVAround(IX, IY, 2);
+			A3 = new TVAround(IX, IY, 3);
 
 			I2Point a2RelPtBk = A2.RelativePoint;
 
@@ -58,7 +58,7 @@ namespace Charlotte.Games
 					{
 						for (int y = 0; y < 3; y++)
 						{
-							if (A3.Table[x, y].Tile.GetKind() == Tile.Kind_e.SPACE)
+							if (A3.Table[x, y].Tile.GetKind() == TVTile.Kind_e.SPACE)
 							{
 								A2.RelativePoint.X += (x - 1) * 10;
 								A2.RelativePoint.Y += (y - 1) * 10;

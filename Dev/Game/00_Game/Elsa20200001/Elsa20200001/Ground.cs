@@ -72,5 +72,16 @@ namespace Charlotte
 		}
 
 		public P_SaveDataSlot[] SaveDataSlots = Enumerable.Range(0, GameConsts.SAVE_DATA_SLOT_NUM).Select(v => new P_SaveDataSlot()).ToArray();
+
+		/// <summary>
+		/// コンテニュー可能な最大ステージ番号
+		/// 値：
+		/// -- 1 == 1 ～ 1 ステージからコンテニュー可能
+		/// -- 2 == 1 ～ 2 ステージからコンテニュー可能
+		/// -- 3 == 1 ～ 3 ステージからコンテニュー可能
+		/// -- ...
+		/// </summary>
+		public int SHCanContinueStageNumber = 1;
+		public bool FastReverseMode;
 	}
 }
