@@ -252,14 +252,24 @@ function* <generatorForTask> @@_BattleMain()
 					var<string> selItem;
 					yield* @@_Menu(items, item => selItem = item);
 
-
-
-					// TODO
-					// TODO
-					// TODO
-
-
-
+					if (selItem == ITEM_CHOW) // ? チー選択
+					{
+						// TODO
+						// TODO
+						// TODO
+					}
+					if (selItem == ITEM_PONG) // ? ポン選択
+					{
+						// TODO
+						// TODO
+						// TODO
+					}
+					if (selItem == ITEM_RON) // ? ロン選択
+					{
+						// TODO
+						// TODO
+						// TODO
+					}
 				}
 				else
 				{
@@ -304,14 +314,18 @@ function* <generatorForTask> @@_BattleMain()
 					var<string> selItem;
 					yield* @@_Menu(items, item => selItem = item);
 
-
-
-					// TODO
-					// TODO
-					// TODO
-
-
-
+					if (selItem == ITEM_KONG) // ? カン選択
+					{
+						// TODO
+						// TODO
+						// TODO
+					}
+					if (selItem == ITEM_AGARI) // ? ツモ(アガリ)選択
+					{
+						// TODO
+						// TODO
+						// TODO
+					}
 				}
 			}
 
@@ -368,11 +382,35 @@ function* <generatorForTask> @@_BattleMain()
 				yield 1;
 			}
 		}
+		// End_プレイヤーのターン
 
 		// ==================
 		// ディーラーのターン
 		// ==================
 		{
+			var<int[]> idxsChow  = WCards.length == 0 ? null  : GetChowIndexes( DealerDeck, WCards[WCards.length - 1]);
+			var<int[]> idxsPong  = WCards.length == 0 ? null  : GetPongIndexes( DealerDeck, WCards[WCards.length - 1]);
+			var<boolean> ronFlag = WCards.length == 0 ? false : IsCanRon(       DealerDeck, WCards[WCards.length - 1]);
+
+			if (idxsChow != null) // ? チー可能
+			{
+				// TODO
+				// TODO
+				// TODO
+			}
+			if (idxsPong != null) // ? ポン可能
+			{
+				// TODO
+				// TODO
+				// TODO
+			}
+			if (ronFlag) // ? ロン可能
+			{
+				// TODO
+				// TODO
+				// TODO
+			}
+
 			{
 				var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
 
@@ -394,7 +432,23 @@ function* <generatorForTask> @@_BattleMain()
 				yield 1;
 			}
 
-			wasteCardIndex = GetRand(DealerDeck.Cards.length); // test test test test test
+			var<int[]> idxsKong    = GetKongIndexes( DealerDeck);
+			var<boolean> agariFlag = IsCanAgari(     DealerDeck);
+
+			if (idxsKong != null) // ? カン可能
+			{
+				// TODO
+				// TODO
+				// TODO
+			}
+			if (agariFlag != null) // ? ツモ(アガリ)可能
+			{
+				// TODO
+				// TODO
+				// TODO
+			}
+
+			var<int> wasteCardIndex = GetWasteIndex(DealerDeck);
 
 			{
 				var<Trump_t> card = DesertElement(DealerDeck.Cards, wasteCardIndex);
@@ -420,6 +474,7 @@ function* <generatorForTask> @@_BattleMain()
 				yield 1;
 			}
 		}
+		// End_ディーラーのターン
 	}
 
 	DealerDeck = null;
