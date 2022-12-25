@@ -114,3 +114,12 @@ var<Picture_t> P_Bunny      = @@_Load(RESOURCE_Picture__bunny_top300_png);
 var<Picture_t> P_Bunny_H_01 = @@_Load(RESOURCE_Picture__bunny_h_01_png);
 
 var<Picture_t> P_Background = @@_Load(RESOURCE_Picture__IMG_20160000_001374_jpg);
+
+var<Picture_t> P_YouWin  = @@_Load(RESOURCE_Picture__Game__YouWin_png);
+var<Picture_t> P_YouLose = @@_Load(RESOURCE_Picture__Game__YouLose_png);
+
+var<Picture_t> P_Balloon_ツモ = @@_Load(RESOURCE_Picture__Game__ツモ_png);
+var<Picture_t> P_Balloon_ロン = @@_Load(RESOURCE_Picture__Game__ロン_png);
+var<Picture_t> P_Balloon_ポン = @@_Load(RESOURCE_Picture__Game__ポン_png);
+var<Picture_t> P_Balloon_チー = @@_Load(RESOURCE_Picture__Game__チー_png);
+var<Picture_t> P_Balloon_カン = @@_Load(RESOURCE_Picture__Game__カン_png);

@@ -60,9 +60,42 @@ namespace Charlotte
 			//Main_20210421();
 			//Main_20210422();
 			//Main_20221001();
-			MaskPictures_01();
+			//MaskPictures_01();
+			Main_20221226();
 
 			// --
+		}
+
+		private void Main_20221226()
+		{
+			int scale = 4;
+			int w = scale * 1200;
+			int h = scale * 200;
+			I4Color color;
+			int fontSize = 360;
+
+			color = new I4Color(255, 255, 0, 255);
+			MakePictures.MakeButton(scale, w, h, color, fontSize, "YouWin:YOU WIN", 780);
+			color = new I4Color(0, 160, 255, 255);
+			MakePictures.MakeButton(scale, w, h, color, fontSize, "YouLose:YOU LOSE", 640);
+
+			// ----
+
+			w = scale * 400;
+			h = scale * 100;
+			fontSize = 140;
+			int text_x = 370;
+
+			color = new I4Color(255, 160, 0, 255);
+			MakePictures.MakeButton(scale, w, h, color, fontSize, "ツモ", text_x);
+			color = new I4Color(255, 120, 40, 255);
+			MakePictures.MakeButton(scale, w, h, color, fontSize, "ロン", text_x);
+			color = new I4Color(255, 80, 80, 255);
+			MakePictures.MakeButton(scale, w, h, color, fontSize, "ポン", text_x);
+			color = new I4Color(255, 40, 120, 255);
+			MakePictures.MakeButton(scale, w, h, color, fontSize, "チー", text_x);
+			color = new I4Color(255, 0, 160, 255);
+			MakePictures.MakeButton(scale, w, h, color, fontSize, "カン", text_x);
 		}
 
 		private void MaskPictures_01()
