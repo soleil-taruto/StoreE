@@ -218,8 +218,6 @@ function* <generatorForTask> @@_BattleMain()
 	SetDeckCardsAutoPos(PlayerDeck, true, false);
 	AddDelay(GameTasks, 30, () => SetDeckCardsAutoPos(DealerDeck, true, false));
 
-	FreezeInput();
-
 	var<int[]> idxsChow  = WCards.length == 0 ? null  : GetChowIndexes( PlayerDeck, WCards[WCards.length - 1]);
 	var<int[]> idxsPong  = WCards.length == 0 ? null  : GetPongIndexes( PlayerDeck, WCards[WCards.length - 1]);
 	var<boolean> ronFlag = WCards.length == 0 ? false : IsCanRon(       PlayerDeck, WCards[WCards.length - 1]);
@@ -232,15 +230,15 @@ function* <generatorForTask> @@_BattleMain()
 		var<string> ITEM_RON  = "ÉçÉì";
 		var<string> ITEM_NOOP = "ÇµÇ»Ç¢";
 
-//		if (idxsChow != null)
+		if (idxsChow != null)
 		{
 			items.push(ITEM_CHOW);
 		}
-//		if (idxsPong != null)
+		if (idxsPong != null)
 		{
 			items.push(ITEM_PONG);
 		}
-//		if (ronFlag)
+		if (ronFlag)
 		{
 			items.push(ITEM_RON);
 		}
@@ -261,9 +259,61 @@ function* <generatorForTask> @@_BattleMain()
 
 
 		}
+		else
+		{
+			yield* @@_WaitToTouch();
+		}
 	}
 
-	for (; ; )
+	{
+		var<Trump_t> card = RCards.pop();
+
+		PlayerDeck.Cards.push(card);
+		AddActor(card);
+
+		SetTrumpReversed(card, false);
+		SetTrumpAutoStRot(card);
+		SetDeckCardsAutoPos(PlayerDeck, true, false);
+	}
+
+	var<int[]> idxsKong    = GetKongIndexes( PlayerDeck);
+	var<boolean> agariFlag = IsCanAgari(     PlayerDeck);
+
+	{
+		var<string> items = [];
+
+		var<string> ITEM_KONG  = "ÉJÉì";
+		var<string> ITEM_AGARI = "ÉcÉÇ";
+		var<string> ITEM_NOOP  = "ÇµÇ»Ç¢";
+
+		if (idxsKong != null)
+		{
+			items.push(ITEM_KONG);
+		}
+		if (agariFlag)
+		{
+			items.push(ITEM_AGARI);
+		}
+
+		if (1 <= items.length)
+		{
+			items.push(ITEM_NOOP);
+
+			var<string> selItem;
+			yield* @@_Menu(items, item => selItem = item);
+
+
+
+			// TODO
+			// TODO
+			// TODO
+
+
+
+		}
+	}
+
+	for (; ; ) // test
 	{
 		if (GetMouseDown() == -1)
 		{
@@ -286,11 +336,11 @@ function* <generatorForTask> @@_BattleMain()
 	RCards = null;
 	WCards = null;
 
-	for (var<Trump_t> actor of GetAllActor())
+	for (var<Actor_t> actor of GetAllActor())
 	{
 		if (actor.Kind == ActorKind_Trump)
 		{
-			KillActor(actor); // test
+			KillActor(actor);
 		}
 	}
 }
@@ -336,6 +386,27 @@ function <void> @@_DrawBattleWall()
 	}
 }
 
+function* <generatorForTask> @@_WaitToTouch()
+{
+	FreezeInput();
+
+	for (; ; )
+	{
+		if (GetMouseDown() == -1)
+		{
+			break;
+		}
+
+		@@_DrawBackground();
+		@@_DrawBattleWall();
+
+		ExecuteAllActor();
+		ExecuteAllTask(GameTasks);
+		yield 1;
+	}
+	FreezeInput();
+}
+
 var<boolean> @@_MenuBackOn = false;
 
 function* <generatorForTask> @@_E_MenuBack()
@@ -345,7 +416,7 @@ function* <generatorForTask> @@_E_MenuBack()
 
 	while (@@_MenuBackOn)
 	{
-		w = Approach(w, Screen_W * 0.75, 0.87);
+		w = Approach(w, 900, 0.87);
 
 		SetColor(BACK_COLOR);
 		PrintRect_LTRB(0.0, 0.0, w, Screen_H);
@@ -368,8 +439,10 @@ function* <generatorForTask> @@_Menu(<string[]> items, <Action string> setReturn
 	var<double> ITEMS_L = 100;
 	var<double> ITEMS_T = 300;
 	var<double> ITEMS_Y_STEP = 350;
-	var<double> ITEM_W = 500;
+	var<double> ITEM_W = 700;
 	var<double> ITEM_H = 200;
+
+	FreezeInput();
 
 	@@_MenuBackOn = true;
 	AddTask(GameTasks, @@_E_MenuBack());
@@ -412,6 +485,7 @@ mainLoop:
 
 		yield 1;
 	}
+	FreezeInput();
 
 	@@_MenuBackOn = false;
 

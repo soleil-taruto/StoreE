@@ -84,12 +84,6 @@ function <boolean> IsCanRon(<Deck_t> deck, <Trump_t> lastWastedCard)
 	return @@_IsCanAgari_Cards(cards);
 }
 
-
-
-// - - -
-// - - -
-// - - -
-
 /*
 	「カン」可能であるか判定する。
 
@@ -146,7 +140,7 @@ function <boolean> @@_IsCanAgari_Nest(<Trump_t[]> cards, <int[]> rmIdxs)
 	{
 		cards[rmIdx] = null;
 	}
-	removeFalse(cards);
+	RemoveFalse(cards);
 
 	// ----
 
