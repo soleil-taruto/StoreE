@@ -255,9 +255,9 @@ C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\Actor_Trump.js(66) : IsTru
 C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\Actor_Trump.js(71) : SetTrumpReversed // ä÷êî
 C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\Actor_Trump.js(5) : ActorKind_Trump // ïœêî
 C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\ActorCommon.js(7) : AddActor // ä÷êî
-C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\ActorCommon.js(17) : KillActor // ä÷êî
-C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\ActorCommon.js(27) : ClearAllActor // ä÷êî
-C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\ActorCommon.js(32) : ExecuteAllActor // ä÷êî
+C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\ActorCommon.js(19) : KillActor // ä÷êî
+C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\ActorCommon.js(29) : ClearAllActor // ä÷êî
+C:\Dev\GameJS\00_Plain\Gattonero20200001\Games\Actors\ActorCommon.js(34) : ExecuteAllActor // ä÷êî
 C:\Dev\GameJS\00_Plain\Gattonero20200001\GameTools\LocalStorage.js(5) : LoadLocalStorage // ä÷êî
 C:\Dev\GameJS\00_Plain\Gattonero20200001\GameTools\LocalStorage.js(44) : SaveLocalStorage // ä÷êî
 C:\Dev\GameJS\00_Plain\Gattonero20200001\GameTools\SimpleMenu.js(25) : DrawSimpleMenu // ä÷êî

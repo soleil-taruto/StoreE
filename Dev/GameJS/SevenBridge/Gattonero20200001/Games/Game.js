@@ -472,9 +472,9 @@ function <void> @@_DrawBattleWall()
 	}
 	if (1 <= WCards.length)
 	{
-		@@_DBW_TopWCard_X   = Approach(@@_DBW_TopWCard_X, WCards_X, 0.8);
-		@@_DBW_TopWCard_Y   = Approach(@@_DBW_TopWCard_Y, WCards_Y, 0.7);
-		@@_DBW_TopWCard_Rot = Approach(@@_DBW_TopWCard_Rot, 0.0, 0.75);
+		@@_DBW_TopWCard_X   = Approach(@@_DBW_TopWCard_X, WCards_X, 0.85);
+		@@_DBW_TopWCard_Y   = Approach(@@_DBW_TopWCard_Y, WCards_Y, 0.8);
+		@@_DBW_TopWCard_Rot = Approach(@@_DBW_TopWCard_Rot, 0.0, 0.9);
 
 		if (
 			Math.abs(@@_DBW_TopWCard_X - WCards_X) < 1.0 &&
