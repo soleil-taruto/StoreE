@@ -11,6 +11,8 @@ function <void> AddActor(<Actor_t> actor)
 		error();
 	}
 
+	actor.Killed = false;
+
 	@@_Actors.push(actor);
 }
 

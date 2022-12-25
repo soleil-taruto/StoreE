@@ -297,11 +297,11 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(128) : S
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(133) : SetTrumpStRot // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(5) : ActorKind_Trump // ïœêî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(7) : AddActor // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(17) : KillActor // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(27) : GetAllActor // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(32) : ClearAllActor // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(37) : ExecuteAllActor // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(51) : @ // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(19) : KillActor // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(29) : GetAllActor // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(34) : ClearAllActor // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(39) : ExecuteAllActor // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(53) : @ // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameTools\LocalStorage.js(5) : LoadLocalStorage // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameTools\LocalStorage.js(44) : SaveLocalStorage // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameTools\SimpleMenu.js(25) : DrawSimpleMenu // ä÷êî

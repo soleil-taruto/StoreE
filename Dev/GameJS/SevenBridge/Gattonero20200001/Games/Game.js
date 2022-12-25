@@ -313,6 +313,49 @@ function* <generatorForTask> @@_BattleMain()
 		}
 	}
 
+	var<int> wasteCardIndex = -1;
+
+	for (; ; )
+	{
+		if (GetMouseDown() == -1)
+		{
+			var<double> x = GetMouseX();
+			var<int> i;
+
+			for (i = PlayerDeck.Cards.length - 1; 0 < i; i--)
+			{
+				if (PlayerDeck.Cards[i].X - GetPicture_W(P_TrumpFrame) / 2 < x)
+				{
+					break;
+				}
+			}
+			wasteCardIndex = i;
+			break;
+		}
+
+		@@_DrawBackground();
+		@@_DrawBattleWall();
+
+		ExecuteAllActor();
+		ExecuteAllTask(GameTasks);
+		yield 1;
+	}
+	FreezeInput();
+
+	{
+		var<Trump_t> card = DesertElement(PlayerDeck.Cards, wasteCardIndex);
+
+		@@_DBW_TopWCard_X   = card.X;
+		@@_DBW_TopWCard_Y   = card.Y;
+		@@_DBW_TopWCard_Rot = GetRand2() * 33.0;
+
+		KillActor(card);
+		WCards.push(card);
+
+		SortDeck(PlayerDeck);
+		SetDeckCardsAutoPos(PlayerDeck, true, false);
+	}
+
 	for (; ; ) // test
 	{
 		if (GetMouseDown() == -1)
@@ -328,7 +371,6 @@ function* <generatorForTask> @@_BattleMain()
 		yield 1;
 	}
 
-	FreezeInput();
 
 	DealerDeck = null;
 	PlayerDeck = null;
@@ -344,6 +386,10 @@ function* <generatorForTask> @@_BattleMain()
 		}
 	}
 }
+
+var<double> @@_DBW_TopWCard_X   = 0.0;
+var<double> @@_DBW_TopWCard_Y   = 0.0;
+var<double> @@_DBW_TopWCard_Rot = 0.0;
 
 function <void> @@_DrawBattleWall()
 {
@@ -378,11 +424,41 @@ function <void> @@_DrawBattleWall()
 	}
 	if (1 <= WCards.length)
 	{
-		var<Trump_t> card = WCards[WCards.length - 1];
-		var<Picture_t> surface = P_Trump[card.Suit][card.Number];
+		@@_DBW_TopWCard_X   = Approach(@@_DBW_TopWCard_X, WCards_X, 0.8);
+		@@_DBW_TopWCard_Y   = Approach(@@_DBW_TopWCard_Y, WCards_Y, 0.7);
+		@@_DBW_TopWCard_Rot = Approach(@@_DBW_TopWCard_Rot, 0.0, 0.75);
 
-		Draw(P_TrumpFrame, WCards_X, WCards_Y, 1.0, 0.0, 1.0);
-		Draw(surface,      WCards_X, WCards_Y, 1.0, 0.0, 1.0);
+		if (
+			Math.abs(@@_DBW_TopWCard_X - WCards_X) < 1.0 &&
+			Math.abs(@@_DBW_TopWCard_Y - WCards_Y) < 1.0 &&
+			Math.abs(@@_DBW_TopWCard_Rot) < 0.001
+			)
+		{
+			var<Trump_t> card = WCards[WCards.length - 1];
+			var<Picture_t> surface = P_Trump[card.Suit][card.Number];
+
+			Draw(P_TrumpFrame, WCards_X, WCards_Y, 1.0, 0.0, 1.0);
+			Draw(surface,      WCards_X, WCards_Y, 1.0, 0.0, 1.0);
+		}
+		else
+		{
+			if (2 <= WCards.length)
+			{
+				var<Trump_t> card = WCards[WCards.length - 2];
+				var<Picture_t> surface = P_Trump[card.Suit][card.Number];
+
+				Draw(P_TrumpFrame, WCards_X, WCards_Y, 1.0, 0.0, 1.0);
+				Draw(surface,      WCards_X, WCards_Y, 1.0, 0.0, 1.0);
+			}
+
+			{
+				var<Trump_t> card = WCards[WCards.length - 1];
+				var<Picture_t> surface = P_Trump[card.Suit][card.Number];
+
+				Draw(P_TrumpFrame, @@_DBW_TopWCard_X, @@_DBW_TopWCard_Y, 1.0, @@_DBW_TopWCard_Rot, 1.0);
+				Draw(surface,      @@_DBW_TopWCard_X, @@_DBW_TopWCard_Y, 1.0, @@_DBW_TopWCard_Rot, 1.0);
+			}
+		}
 	}
 }
 
