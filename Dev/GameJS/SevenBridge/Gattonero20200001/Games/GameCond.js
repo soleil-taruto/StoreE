@@ -144,6 +144,11 @@ function <boolean> @@_IsCanAgari_Nest(<Trump_t[]> cards, <int[]> rmIdxs)
 
 	// ----
 
+	if (cards.length < 2) // 2bs
+	{
+		return false;
+	}
+
 	if (cards.length == 2)
 	{
 		return cards[0].Number == cards[1].Number;
