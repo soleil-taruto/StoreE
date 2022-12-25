@@ -275,11 +275,11 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(167) : RCards_X // •Ï
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(168) : RCards_Y // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(170) : WCards_X // •Ï”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(171) : WCards_Y // •Ï”
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(11) : GetChowIndexes // ŠÖ”
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(49) : GetPongIndexes // ŠÖ”
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(77) : IsCanRon // ŠÖ”
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(94) : GetKongIndexes // ŠÖ”
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameHelper.js(125) : IsCanAgari // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameCond.js(11) : GetChowIndexes // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameCond.js(49) : GetPongIndexes // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameCond.js(77) : IsCanRon // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameCond.js(94) : GetKongIndexes // ŠÖ”
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\GameCond.js(125) : IsCanAgari // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Meld.js(7) : Meld_t // ’è‹`
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Meld.js(15) : CreateMeld // ŠÖ”
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Meld.js(25) : GetMeldCards // ŠÖ”

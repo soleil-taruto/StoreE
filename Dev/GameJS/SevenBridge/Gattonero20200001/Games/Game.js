@@ -261,7 +261,7 @@ function* <generatorForTask> @@_BattleMain()
 		}
 		else
 		{
-			yield* @@_WaitToTouch();
+			yield* @@_WaitToTouch("Tap to TSUMO");
 		}
 	}
 
@@ -386,9 +386,43 @@ function <void> @@_DrawBattleWall()
 	}
 }
 
-function* <generatorForTask> @@_WaitToTouch()
+var<boolean> @@_WTT_BackOn = false;
+
+function* <generatorForTask> @@_E_WTT_Back()
+{
+	var<double> l = Screen_W - 1.0;
+	var<double> r = Screen_W;
+
+	var<Action> a_draw = () =>
+	{
+		SetColor("#ffffffa0");
+		PrintRect_LTRB(l, Screen_H / 2 - 50, r, Screen_H / 2 + 50);
+	};
+
+	while (@@_WTT_BackOn)
+	{
+		l = Approach(l, 0.0, 0.77);
+
+		a_draw();
+
+		yield 1;
+	}
+	while (1.0 < r)
+	{
+		r = Approach(r, 0.0, 0.77);
+
+		a_draw();
+
+		yield 1;
+	}
+}
+
+function* <generatorForTask> @@_WaitToTouch(<string> message)
 {
 	FreezeInput();
+
+	@@_WTT_BackOn = true;
+	AddTask(GameTasks, @@_E_WTT_Back());
 
 	for (; ; )
 	{
@@ -402,24 +436,37 @@ function* <generatorForTask> @@_WaitToTouch()
 
 		ExecuteAllActor();
 		ExecuteAllTask(GameTasks);
+
+		SetColor("#000000a0");
+		SetFSize(60);
+		SetPrint((Screen_W - GetPrintLineWidth(message)) / 2, Screen_H / 2 + 20, 0);
+
+		PrintLine(message);
+
 		yield 1;
 	}
 	FreezeInput();
+
+	@@_WTT_BackOn = false;
 }
 
 var<boolean> @@_MenuBackOn = false;
 
 function* <generatorForTask> @@_E_MenuBack()
 {
-	var<string> BACK_COLOR = "#000040c0";
 	var<double> w = 0.0;
+
+	var<Action> a_draw = () =>
+	{
+		SetColor("#000040c0");
+		PrintRect(0.0, 0.0, w, Screen_H);
+	};
 
 	while (@@_MenuBackOn)
 	{
 		w = Approach(w, 900, 0.87);
 
-		SetColor(BACK_COLOR);
-		PrintRect_LTRB(0.0, 0.0, w, Screen_H);
+		a_draw();
 
 		yield 1;
 	}
@@ -427,8 +474,7 @@ function* <generatorForTask> @@_E_MenuBack()
 	{
 		w = Approach(w, 0.0, 0.93);
 
-		SetColor(BACK_COLOR);
-		PrintRect_LTRB(0.0, 0.0, w, Screen_H);
+		a_draw();
 
 		yield 1;
 	}
