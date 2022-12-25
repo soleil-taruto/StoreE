@@ -232,15 +232,15 @@ function* <generatorForTask> @@_BattleMain()
 		var<string> ITEM_RON  = "ÉçÉì";
 		var<string> ITEM_NOOP = "ÇµÇ»Ç¢";
 
-		if (idxsChow != null)
+//		if (idxsChow != null)
 		{
 			items.push(ITEM_CHOW);
 		}
-		if (idxsPong != null)
+//		if (idxsPong != null)
 		{
 			items.push(ITEM_PONG);
 		}
-		if (ronFlag)
+//		if (ronFlag)
 		{
 			items.push(ITEM_RON);
 		}
@@ -249,7 +249,8 @@ function* <generatorForTask> @@_BattleMain()
 		{
 			items.push(ITEM_NOOP);
 
-			var<string> selItem = @@_Menu(items);
+			var<string> selItem;
+			yield* @@_Menu(items, item => selItem = item);
 
 
 
@@ -335,10 +336,84 @@ function <void> @@_DrawBattleWall()
 	}
 }
 
-function <string> @@_Menu(<string[]> items)
+var<boolean> @@_MenuBackOn = false;
+
+function* <generatorForTask> @@_E_MenuBack()
 {
+	var<string> BACK_COLOR = "#000040c0";
+	var<double> w = 0.0;
 
+	while (@@_MenuBackOn)
+	{
+		w = Approach(w, Screen_W * 0.75, 0.87);
 
+		SetColor(BACK_COLOR);
+		PrintRect_LTRB(0.0, 0.0, w, Screen_H);
 
-	return items[0]; // TODO
+		yield 1;
+	}
+	while (1.0 < w)
+	{
+		w = Approach(w, 0.0, 0.93);
+
+		SetColor(BACK_COLOR);
+		PrintRect_LTRB(0.0, 0.0, w, Screen_H);
+
+		yield 1;
+	}
+}
+
+function* <generatorForTask> @@_Menu(<string[]> items, <Action string> setReturn)
+{
+	var<double> ITEMS_L = 100;
+	var<double> ITEMS_T = 300;
+	var<double> ITEMS_Y_STEP = 350;
+	var<double> ITEM_W = 500;
+	var<double> ITEM_H = 200;
+
+	@@_MenuBackOn = true;
+	AddTask(GameTasks, @@_E_MenuBack());
+
+	var<int> selIndex = -1;
+
+mainLoop:
+	for (; ; )
+	{
+		if (GetMouseDown() == -1)
+		{
+			for (var<int> i = 0; i < items.length; i++)
+			{
+				if (!IsOut(
+					CreateD2Point(GetMouseX(), GetMouseY()),
+					CreateD4Rect(ITEMS_L, ITEMS_T + i * ITEMS_Y_STEP - ITEM_H, ITEM_W, ITEM_H),
+					0.0
+					))
+				{
+					selIndex = i;
+					break mainLoop;
+				}
+			}
+		}
+
+		@@_DrawBackground();
+		@@_DrawBattleWall();
+
+		ExecuteAllActor();
+		ExecuteAllTask(GameTasks);
+
+		SetPrint(ITEMS_L, ITEMS_T, ITEMS_Y_STEP);
+		SetFSize(200);
+		SetColor("#ffffff");
+
+		for (var<int> i = 0; i < items.length; i++)
+		{
+			PrintLine(items[i]);
+		}
+
+		yield 1;
+	}
+
+	@@_MenuBackOn = false;
+
+	setReturn(items[selIndex]);
 }
