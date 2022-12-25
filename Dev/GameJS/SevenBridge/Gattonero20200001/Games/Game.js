@@ -219,204 +219,206 @@ function* <generatorForTask> @@_BattleMain()
 		// ==================
 		// プレイヤーのターン
 		// ==================
-
-		var<int[]> idxsChow  = WCards.length == 0 ? null  : GetChowIndexes( PlayerDeck, WCards[WCards.length - 1]);
-		var<int[]> idxsPong  = WCards.length == 0 ? null  : GetPongIndexes( PlayerDeck, WCards[WCards.length - 1]);
-		var<boolean> ronFlag = WCards.length == 0 ? false : IsCanRon(       PlayerDeck, WCards[WCards.length - 1]);
-
 		{
-			var<string> items = [];
+			var<int[]> idxsChow  = WCards.length == 0 ? null  : GetChowIndexes( PlayerDeck, WCards[WCards.length - 1]);
+			var<int[]> idxsPong  = WCards.length == 0 ? null  : GetPongIndexes( PlayerDeck, WCards[WCards.length - 1]);
+			var<boolean> ronFlag = WCards.length == 0 ? false : IsCanRon(       PlayerDeck, WCards[WCards.length - 1]);
 
-			var<string> ITEM_CHOW = "チー";
-			var<string> ITEM_PONG = "ポン";
-			var<string> ITEM_RON  = "ロン";
-			var<string> ITEM_NOOP = "しない";
-
-			if (idxsChow != null)
 			{
-				items.push(ITEM_CHOW);
-			}
-			if (idxsPong != null)
-			{
-				items.push(ITEM_PONG);
-			}
-			if (ronFlag)
-			{
-				items.push(ITEM_RON);
-			}
+				var<string> items = [];
 
-			if (1 <= items.length)
-			{
-				items.push(ITEM_NOOP);
+				var<string> ITEM_CHOW = "チー";
+				var<string> ITEM_PONG = "ポン";
+				var<string> ITEM_RON  = "ロン";
+				var<string> ITEM_NOOP = "しない";
 
-				var<string> selItem;
-				yield* @@_Menu(items, item => selItem = item);
-
-
-
-				// TODO
-				// TODO
-				// TODO
-
-
-
-			}
-			else
-			{
-				yield* @@_WaitToTouch("Tap to TSUMO");
-			}
-		}
-
-		{
-			var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
-
-			PlayerDeck.Cards.push(card);
-			AddActor(card);
-
-			SetTrumpReversed(card, false);
-			SetTrumpAutoStRot(card);
-			SetDeckCardsAutoPos(PlayerDeck, true, false);
-		}
-
-		var<int[]> idxsKong    = GetKongIndexes( PlayerDeck);
-		var<boolean> agariFlag = IsCanAgari(     PlayerDeck);
-
-		{
-			var<string> items = [];
-
-			var<string> ITEM_KONG  = "カン";
-			var<string> ITEM_AGARI = "ツモ";
-			var<string> ITEM_NOOP  = "しない";
-
-			if (idxsKong != null)
-			{
-				items.push(ITEM_KONG);
-			}
-			if (agariFlag)
-			{
-				items.push(ITEM_AGARI);
-			}
-
-			if (1 <= items.length)
-			{
-				items.push(ITEM_NOOP);
-
-				var<string> selItem;
-				yield* @@_Menu(items, item => selItem = item);
-
-
-
-				// TODO
-				// TODO
-				// TODO
-
-
-
-			}
-		}
-
-		var<int> wasteCardIndex = -1;
-
-		for (; ; )
-		{
-			if (GetMouseDown() == -1)
-			{
-				var<double> x = GetMouseX();
-				var<int> i;
-
-				for (i = PlayerDeck.Cards.length - 1; 0 < i; i--)
+				if (idxsChow != null)
 				{
-					if (PlayerDeck.Cards[i].X - GetPicture_W(P_TrumpFrame) / 2 < x)
-					{
-						break;
-					}
+					items.push(ITEM_CHOW);
 				}
-				wasteCardIndex = i;
-				break;
+				if (idxsPong != null)
+				{
+					items.push(ITEM_PONG);
+				}
+				if (ronFlag)
+				{
+					items.push(ITEM_RON);
+				}
+
+				if (1 <= items.length)
+				{
+					items.push(ITEM_NOOP);
+
+					var<string> selItem;
+					yield* @@_Menu(items, item => selItem = item);
+
+
+
+					// TODO
+					// TODO
+					// TODO
+
+
+
+				}
+				else
+				{
+					yield* @@_WaitToTouch("Tap to TSUMO");
+				}
 			}
 
-			@@_DrawBackground();
-			@@_DrawBattleWall();
+			{
+				var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
 
-			ExecuteAllActor();
-			ExecuteAllTask(GameTasks);
-			yield 1;
-		}
-		FreezeInput();
+				PlayerDeck.Cards.push(card);
+				AddActor(card);
 
-		{
-			var<Trump_t> card = DesertElement(PlayerDeck.Cards, wasteCardIndex);
+				SetTrumpReversed(card, false);
+				SetTrumpAutoStRot(card);
+				SetDeckCardsAutoPos(PlayerDeck, true, false);
+			}
 
-			@@_DBW_TopWCard_X   = card.X;
-			@@_DBW_TopWCard_Y   = card.Y;
-			@@_DBW_TopWCard_Rot = GetRand2() * 33.0;
+			var<int[]> idxsKong    = GetKongIndexes( PlayerDeck);
+			var<boolean> agariFlag = IsCanAgari(     PlayerDeck);
 
-			KillActor(card);
-			WCards.push(card);
+			{
+				var<string> items = [];
 
-			SortDeck(PlayerDeck);
-			SetDeckCardsAutoPos(PlayerDeck, true, false);
-		}
+				var<string> ITEM_KONG  = "カン";
+				var<string> ITEM_AGARI = "ツモ";
+				var<string> ITEM_NOOP  = "しない";
 
-		for (var<Scene_t> scene of CreateScene(30)) // カード捨てモーション待ち
-		{
-			@@_DrawBackground();
-			@@_DrawBattleWall();
+				if (idxsKong != null)
+				{
+					items.push(ITEM_KONG);
+				}
+				if (agariFlag)
+				{
+					items.push(ITEM_AGARI);
+				}
 
-			ExecuteAllActor();
-			ExecuteAllTask(GameTasks);
-			yield 1;
+				if (1 <= items.length)
+				{
+					items.push(ITEM_NOOP);
+
+					var<string> selItem;
+					yield* @@_Menu(items, item => selItem = item);
+
+
+
+					// TODO
+					// TODO
+					// TODO
+
+
+
+				}
+			}
+
+			var<int> wasteCardIndex = -1;
+
+			for (; ; )
+			{
+				if (GetMouseDown() == -1)
+				{
+					var<double> x = GetMouseX();
+					var<int> i;
+
+					for (i = PlayerDeck.Cards.length - 1; 0 < i; i--)
+					{
+						if (PlayerDeck.Cards[i].X - GetPicture_W(P_TrumpFrame) / 2 < x)
+						{
+							break;
+						}
+					}
+					wasteCardIndex = i;
+					break;
+				}
+
+				@@_DrawBackground();
+				@@_DrawBattleWall();
+
+				ExecuteAllActor();
+				ExecuteAllTask(GameTasks);
+				yield 1;
+			}
+			FreezeInput();
+
+			{
+				var<Trump_t> card = DesertElement(PlayerDeck.Cards, wasteCardIndex);
+
+				@@_DBW_TopWCard_X   = card.X;
+				@@_DBW_TopWCard_Y   = card.Y;
+				@@_DBW_TopWCard_Rot = GetRand2() * 33.0;
+
+				KillActor(card);
+				WCards.push(card);
+
+				SortDeck(PlayerDeck);
+				SetDeckCardsAutoPos(PlayerDeck, true, false);
+			}
+
+			for (var<Scene_t> scene of CreateScene(30)) // カード捨てモーション待ち
+			{
+				@@_DrawBackground();
+				@@_DrawBattleWall();
+
+				ExecuteAllActor();
+				ExecuteAllTask(GameTasks);
+				yield 1;
+			}
 		}
 
 		// ==================
 		// ディーラーのターン
 		// ==================
-
 		{
-			var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
+			{
+				var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
 
-			DealerDeck.Cards.push(card);
-			AddActor(card);
+				DealerDeck.Cards.push(card);
+				AddActor(card);
 
-//			SetTrumpReversed(card, false); // 表にしない。
-			SetTrumpAutoStRot(card);
-			SetDeckCardsAutoPos(DealerDeck, true, false);
-		}
+//				SetTrumpReversed(card, false); // 表にしない。
+				SetTrumpAutoStRot(card);
+				SetDeckCardsAutoPos(DealerDeck, true, false);
+			}
 
-		for (var<Scene_t> scene of CreateScene(60)) // ディーラー考えてるフリ
-		{
-			@@_DrawBackground();
-			@@_DrawBattleWall();
+			for (var<Scene_t> scene of CreateScene(60)) // ディーラー考えてるフリ
+			{
+				@@_DrawBackground();
+				@@_DrawBattleWall();
 
-			ExecuteAllActor();
-			ExecuteAllTask(GameTasks);
-			yield 1;
-		}
+				ExecuteAllActor();
+				ExecuteAllTask(GameTasks);
+				yield 1;
+			}
 
-		wasteCardIndex = GetRand(DealerDeck.Cards.length); // test test test test test
+			wasteCardIndex = GetRand(DealerDeck.Cards.length); // test test test test test
 
-		{
-			var<Trump_t> card = DesertElement(DealerDeck.Cards, wasteCardIndex);
+			{
+				var<Trump_t> card = DesertElement(DealerDeck.Cards, wasteCardIndex);
 
-			@@_DBW_TopWCard_X   = card.X;
-			@@_DBW_TopWCard_Y   = card.Y;
-			@@_DBW_TopWCard_Rot = GetRand2() * 33.0;
+				@@_DBW_TopWCard_X   = card.X;
+				@@_DBW_TopWCard_Y   = card.Y;
+				@@_DBW_TopWCard_Rot = GetRand2() * 33.0;
 
-			KillActor(card);
-			WCards.push(card);
+				KillActor(card);
+				WCards.push(card);
 
-			SortDeck(DealerDeck);
-			SetDeckCardsAutoPos(DealerDeck, true, false);
-		}
+				SortDeck(DealerDeck);
+				SetDeckCardsAutoPos(DealerDeck, true, false);
+			}
 
-		for (var<Scene_t> scene of CreateScene(30)) // カード捨てモーション待ち
-		{
-			@@_DrawBackground();
-			@@_DrawBattleWall();
+			for (var<Scene_t> scene of CreateScene(30)) // カード捨てモーション待ち
+			{
+				@@_DrawBackground();
+				@@_DrawBattleWall();
 
-			ExecuteAllActor();
-			ExecuteAllTask(GameTasks);
-			yield 1;
+				ExecuteAllActor();
+				ExecuteAllTask(GameTasks);
+				yield 1;
+			}
 		}
 	}
 
