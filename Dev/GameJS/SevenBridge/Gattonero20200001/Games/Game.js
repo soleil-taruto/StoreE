@@ -214,6 +214,7 @@ function* <generatorForTask> @@_BattleMain()
 	SetDeckCardsAutoPos(PlayerDeck, true, false);
 	AddDelay(GameTasks, 30, () => SetDeckCardsAutoPos(DealerDeck, true, false));
 
+battleLoop:
 	for (; ; )
 	{
 		// ==================
@@ -223,7 +224,9 @@ function* <generatorForTask> @@_BattleMain()
 			var<int[]> idxsChow  = WCards.length == 0 ? null  : GetChowIndexes( PlayerDeck, WCards[WCards.length - 1]);
 			var<int[]> idxsPong  = WCards.length == 0 ? null  : GetPongIndexes( PlayerDeck, WCards[WCards.length - 1]);
 			var<boolean> ronFlag = WCards.length == 0 ? false : IsCanRon(       PlayerDeck, WCards[WCards.length - 1]);
+			var<boolean> doTsumoFlag = true;
 
+		beforeTsumoPhase:
 			{
 				var<string> items = [];
 
@@ -254,79 +257,87 @@ function* <generatorForTask> @@_BattleMain()
 
 					if (selItem == ITEM_CHOW) // ? チー選択
 					{
-						// TODO
-						// TODO
-						// TODO
+						AddEffect(@@_E_MeldEffect(P_Balloon_Chow, "P"));
+						@@_ExecuteMeld(PlayerDeck, idxsChow, [ WCards.pop() ]);
+						doTsumoFlag = false;
+						break beforeTsumoPhase;
 					}
 					if (selItem == ITEM_PONG) // ? ポン選択
 					{
-						// TODO
-						// TODO
-						// TODO
+						AddEffect(@@_E_MeldEffect(P_Balloon_Pong, "P"));
+						@@_ExecuteMeld(PlayerDeck, idxsPong, [ WCards.pop() ]);
+						doTsumoFlag = false;
+						break beforeTsumoPhase;
 					}
 					if (selItem == ITEM_RON) // ? ロン選択
 					{
-						// TODO
-						// TODO
-						// TODO
+						AddEffect(@@_E_MeldEffect(P_Balloon_Ron, "P"));
+						@@_ExecuteAgari(PlayerDeck, [ WCards.pop() ], "P");
+						break battleLoop;
 					}
 				}
-				else
+			}
+
+		tsumoLoop:
+			for (; ; )
+			{
+				if (doTsumoFlag)
 				{
 					yield* @@_WaitToTouch("Tap to TSUMO");
+
+					var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
+
+					PlayerDeck.Cards.push(card);
+					AddActor(card);
+
+					SetTrumpReversed(card, false);
+					SetTrumpAutoStRot(card);
+					SetDeckCardsAutoPos(PlayerDeck, true, false);
 				}
-			}
+				doTsumoFlag = true; // restore
 
-			{
-				var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
+				var<int[]> idxsKong    = GetKongIndexes( PlayerDeck);
+				var<boolean> agariFlag = IsCanAgari(     PlayerDeck);
 
-				PlayerDeck.Cards.push(card);
-				AddActor(card);
-
-				SetTrumpReversed(card, false);
-				SetTrumpAutoStRot(card);
-				SetDeckCardsAutoPos(PlayerDeck, true, false);
-			}
-
-			var<int[]> idxsKong    = GetKongIndexes( PlayerDeck);
-			var<boolean> agariFlag = IsCanAgari(     PlayerDeck);
-
-			{
-				var<string> items = [];
-
-				var<string> ITEM_KONG  = "カン";
-				var<string> ITEM_AGARI = "ツモ";
-				var<string> ITEM_NOOP  = "しない";
-
-				if (idxsKong != null)
 				{
-					items.push(ITEM_KONG);
-				}
-				if (agariFlag)
-				{
-					items.push(ITEM_AGARI);
-				}
+					var<string> items = [];
 
-				if (1 <= items.length)
-				{
-					items.push(ITEM_NOOP);
+					var<string> ITEM_KONG  = "カン";
+					var<string> ITEM_AGARI = "ツモ";
+					var<string> ITEM_NOOP  = "しない";
 
-					var<string> selItem;
-					yield* @@_Menu(items, item => selItem = item);
-
-					if (selItem == ITEM_KONG) // ? カン選択
+					if (idxsKong != null)
 					{
-						// TODO
-						// TODO
-						// TODO
+						items.push(ITEM_KONG);
 					}
-					if (selItem == ITEM_AGARI) // ? ツモ(アガリ)選択
+					if (agariFlag)
 					{
-						// TODO
-						// TODO
-						// TODO
+						items.push(ITEM_AGARI);
+					}
+
+					if (1 <= items.length)
+					{
+						items.push(ITEM_NOOP);
+
+						var<string> selItem;
+						yield* @@_Menu(items, item => selItem = item);
+
+						if (selItem == ITEM_KONG) // ? カン選択
+						{
+							AddEffect(@@_E_MeldEffect(P_Balloon_Kong, "P"));
+							@@_ExecuteMeld(PlayerDeck, idxsKong, []);
+							continue tsumoLoop;
+						}
+						if (selItem == ITEM_AGARI) // ? ツモ(アガリ)選択
+						{
+							AddEffect(@@_E_MeldEffect(P_Balloon_Agari, "P"));
+							@@_ExecuteAgari(PlayerDeck, [], "P");
+							break battleLoop;
+						}
 					}
 				}
+
+				break; // 固定-break
 			}
 
 			var<int> wasteCardIndex = -1;
@@ -391,61 +402,84 @@ function* <generatorForTask> @@_BattleMain()
 			var<int[]> idxsChow  = WCards.length == 0 ? null  : GetChowIndexes( DealerDeck, WCards[WCards.length - 1]);
 			var<int[]> idxsPong  = WCards.length == 0 ? null  : GetPongIndexes( DealerDeck, WCards[WCards.length - 1]);
 			var<boolean> ronFlag = WCards.length == 0 ? false : IsCanRon(       DealerDeck, WCards[WCards.length - 1]);
+			var<boolean> doTsumoFlag = true;
 
-			if (idxsChow != null) // ? チー可能
+		beforeTsumoPhase:
 			{
-				// TODO
-				// TODO
-				// TODO
-			}
-			if (idxsPong != null) // ? ポン可能
-			{
-				// TODO
-				// TODO
-				// TODO
-			}
-			if (ronFlag) // ? ロン可能
-			{
-				// TODO
-				// TODO
-				// TODO
-			}
+				// 注意：ロン優先
 
-			{
-				var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
-
-				DealerDeck.Cards.push(card);
-				AddActor(card);
-
-//				SetTrumpReversed(card, false); // 表にしない。
-				SetTrumpAutoStRot(card);
-				SetDeckCardsAutoPos(DealerDeck, true, false);
-			}
-
-			for (var<Scene_t> scene of CreateScene(60)) // ディーラー考えてるフリ
-			{
-				@@_DrawBackground();
-				@@_DrawBattleWall();
-
-				ExecuteAllActor();
-				ExecuteAllTask(GameTasks);
-				yield 1;
+				if (ronFlag) // ? ロン可能
+				{
+					if (GetRand1() < 0.6) // 確率的に
+					{
+						AddEffect(@@_E_MeldEffect(P_Balloon_Ron, "D"));
+						@@_ExecuteAgari(DealerDeck, [ WCards.pop() ], "D");
+						break battleLoop;
+					}
+				}
+				if (idxsChow != null) // ? チー可能
+				{
+					if (GetRand1() < 0.6) // 確率的に
+					{
+						AddEffect(@@_E_MeldEffect(P_Balloon_Chow, "D"));
+						@@_ExecuteMeld(DealerDeck, idxsChow, [ WCards.pop() ]);
+						doTsumoFlag = false;
+						break beforeTsumoPhase;
+					}
+				}
+				if (idxsPong != null) // ? ポン可能
+				{
+					if (GetRand1() < 0.6) // 確率的に
+					{
+						AddEffect(@@_E_MeldEffect(P_Balloon_Pong, "D"));
+						@@_ExecuteMeld(DealerDeck, idxsPong, [ WCards.pop() ]);
+						doTsumoFlag = false;
+						break beforeTsumoPhase;
+					}
+				}
 			}
 
-			var<int[]> idxsKong    = GetKongIndexes( DealerDeck);
-			var<boolean> agariFlag = IsCanAgari(     DealerDeck);
+		tsumoLoop:
+			for (; ; )
+			{
+				{
+					var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
 
-			if (idxsKong != null) // ? カン可能
-			{
-				// TODO
-				// TODO
-				// TODO
-			}
-			if (agariFlag != null) // ? ツモ(アガリ)可能
-			{
-				// TODO
-				// TODO
-				// TODO
+					DealerDeck.Cards.push(card);
+					AddActor(card);
+
+	//				SetTrumpReversed(card, false); // 表にしない。
+					SetTrumpAutoStRot(card);
+					SetDeckCardsAutoPos(DealerDeck, true, false);
+				}
+
+				for (var<Scene_t> scene of CreateScene(60)) // ディーラー考えてるフリ
+				{
+					@@_DrawBackground();
+					@@_DrawBattleWall();
+
+					ExecuteAllActor();
+					ExecuteAllTask(GameTasks);
+					yield 1;
+				}
+
+				var<int[]> idxsKong    = GetKongIndexes( DealerDeck);
+				var<boolean> agariFlag = IsCanAgari(     DealerDeck);
+
+				if (idxsKong != null) // ? カン可能
+				{
+					AddEffect(@@_E_MeldEffect(P_Balloon_Kong, "D"));
+					@@_ExecuteMeld(DealerDeck, idxsKong, []);
+					continue tsumoLoop;
+				}
+				if (agariFlag != null) // ? ツモ(アガリ)可能
+				{
+					AddEffect(@@_E_MeldEffect(P_Balloon_Agari, "D"));
+					@@_ExecuteAgari(DealerDeck, [], "D");
+					break battleLoop;
+				}
+
+				break; // 固定-break
 			}
 
 			var<int> wasteCardIndex = GetWasteIndex(DealerDeck);
@@ -717,4 +751,19 @@ mainLoop:
 	@@_MenuBackOn = false;
 
 	setReturn(items[selIndex]);
+}
+
+function* <generatorForTask> @@_E_MeldEffect(<Picture_t> balloon, <string> winner)
+{
+	// TODO
+}
+
+function <void> @@_ExecuteMeld(<Deck_t> deck, <int[]> meldIdxs, <Trump_t[]> meldCards)
+{
+	error(); // TODO
+}
+
+function <void> @@_ExecuteAgari(<Deck_t> deck, <Trump_t[]> ronCards, <stirng> winner)
+{
+	error(); // TODO
 }
