@@ -41,7 +41,7 @@ function* <generatorForTask> GameMain()
 			}
 			else if (@@_DEALER_DAMAGE_MAX <= @@_DealerDamage)
 			{
-				yield* @@_GohoubiMain();
+				yield* GohoubiMain();
 
 				break;
 			}
@@ -564,14 +564,21 @@ var<double> @@_DBW_TopWCard_Rot = 0.0;
 
 function <void> @@_DrawBattleWall()
 {
+	var<string> ddMeter = "";
+
+	for (var<int> i = 0; i < @@_DEALER_DAMAGE_MAX; i++)
+	{
+		ddMeter += i < @@_DealerDamage ? "Å°" : "Å†";
+	}
+
 	SetColor("#00000080");
 	PrintRect_LTRB(10, 10, Screen_W - 10, 160);
 
 	SetColor("#ffffff");
 	SetFSize(50);
 	SetPrint(30, 70, 70);
-	PrintLine("CREDIT: " + 10);
-	PrintLine("HP: " + "Å°Å†Å†Å†Å†Å†Å†");
+	PrintLine("CREDIT: " + @@_Credit + " / BET:" + @@_Bet);
+	PrintLine("HP: " + ddMeter);
 
 	var<int> remSec = ToFix(GetAddGameCreditRemFrame() / 60.0) + 1;
 
@@ -791,9 +798,50 @@ mainLoop:
 	balloon: ÉoÉãÅ[ÉìâÊëú
 	winner: "P" or "D"
 */
-function* <generatorForTask> @@_E_MeldEffect(<Picture_t> balloon, <string> winner)
+function* <generatorForTask> @@_E_MeldEffect(<Picture_t> picture, <string> winner)
 {
-	// TODO
+	var<double> x;
+	var<double> y;
+	var<double> destX;
+	var<double> destY;
+	var<double> a = 1.0;
+
+	if (winner == "P")
+	{
+		x     = Screen_W / 2;
+		y     = Screen_H - 300;
+		destX = Screen_W / 2;
+		destY = Screen_H - 600;
+	}
+	else if (winner == "D")
+	{
+		x     = Screen_W / 2;
+		y     = 300;
+		destX = Screen_W / 2;
+		destY = 600;
+	}
+	else
+	{
+		error();
+	}
+
+	AddEffect(function* <generatorForTask> ()
+	{
+		while (0.01 < a)
+		{
+			x = Approach(x, destX, 0.93);
+			y = Approach(y, destY, 0.93);
+
+			if (GetDistanceLessThan(x - destX, y - destY, 5.0))
+			{
+				a = Approach(a, 0.0, 0.93);
+			}
+
+			Draw(picture, x, y, a, 0.0, 1.0);
+
+			yield 1;
+		}
+	}());
 }
 
 /*

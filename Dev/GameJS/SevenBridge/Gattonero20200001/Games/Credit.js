@@ -6,7 +6,7 @@
 var<int> @@_CREDIT_ADD = 100;
 
 // クレジット追加周期
-var<int> @@_PERIDO_FRAME = 600 * 60;
+var<int> @@_PERIDO_FRAME = 180 * 60;
 
 // クレジット追加まで
 var<int> @@_RemFrame = @@_PERIDO_FRAME;
