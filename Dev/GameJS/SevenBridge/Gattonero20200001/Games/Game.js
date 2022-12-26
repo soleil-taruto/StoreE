@@ -172,8 +172,8 @@ var<double> WCards_Y = 1210;
 
 function* <generatorForTask> @@_BattleMain()
 {
-	DealerDeck = CreateDeck( 170,  650);
-	PlayerDeck = CreateDeck(1430, 1000);
+	DealerDeck = CreateDeck( 170,  590);
+	PlayerDeck = CreateDeck(1430, 1010);
 
 	RCards = [];
 	WCards = [];

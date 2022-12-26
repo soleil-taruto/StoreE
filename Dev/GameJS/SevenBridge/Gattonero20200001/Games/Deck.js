@@ -67,7 +67,7 @@ function <void> SetDeckCardsAutoPos(<Deck_t> deck, <boolean> ˆêu‚Å, <boolean> ‰
 		{
 			var<Trump_t> card = deck.Cards[c];
 
-			var<double> x = l + (c / (deck.Cards.length - 1)) * w;
+			var<double> x = l + (c / Math.max(1, deck.Cards.length - 1)) * w;
 			var<double> y = t;
 
 			if (ˆêu‚Å)
@@ -97,7 +97,7 @@ function <void> SetDeckCardsAutoPos(<Deck_t> deck, <boolean> ˆêu‚Å, <boolean> ‰
 	}
 
 	{
-		var<double> X_STEP = 20.0;
+		var<double> X_STEP = 50.0;
 
 		var<double> x = deck.MeldsDraw_L + GetPicture_W(P_TrumpFrame) / 2 + 10;
 		var<double> y = deck.MeldsDraw_T + GetPicture_H(P_TrumpFrame) / 2;

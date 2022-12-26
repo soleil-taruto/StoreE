@@ -267,7 +267,7 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(30) : CreateDeck // ä÷
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(47) : GetDeckCards // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(52) : GetDeckMelds // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(57) : SetDeckCardsAutoPos // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(102) : SortDeck // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Deck.js(139) : SortDeck // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Effect.js(13) : Effect_Dummy // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Effect.js(23) : AddEffect_Explode // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Game.js(14) : AddGameCredit // ä÷êî
