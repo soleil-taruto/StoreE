@@ -343,6 +343,8 @@ battleLoop:
 
 			var<int> wasteCardIndex = -1;
 
+			@@_SetMessage("DROP YOUR CARD");
+
 			for (; ; )
 			{
 				if (GetMouseDown() == -1)
@@ -366,9 +368,12 @@ battleLoop:
 
 				ExecuteAllActor();
 				ExecuteAllTask(GameTasks);
+
 				yield 1;
 			}
 			FreezeInput();
+
+			@@_SetMessage("");
 
 			{
 				var<Trump_t> card = DesertElement(PlayerDeck.Cards, wasteCardIndex);
@@ -908,4 +913,38 @@ function* <generatorForTask> @@_CheckRenYama()
 
 		yield* @@_WaitToTouch("捨てたカードを山に戻しました！");
 	}
+}
+
+var<boolean> @@_SM_Started = false;
+var<string> @@_SM_Message = "";
+
+function* <generatorForTask> @@_SM_Task()
+{
+	var<double> h = 0.0;
+
+	for (; ; )
+	{
+		h = Approach(h, @@_SM_Message == "" ? 0.0 : 100.0, 0.85);
+
+		if (1.0 < h)
+		{
+			SetColor("#000000c0");
+			PrintRect(0, (Screen_H - h) / 2, Screen_W, h);
+			SetColor("#ffffff");
+			SetFSize(60);
+			SetPrint((Screen_W - GetPrintLineWidth(@@_SM_Message)) / 2, Screen_H / 2 + 20, 0);
+			PrintLine(@@_SM_Message);
+		}
+		yield 1;
+	}
+}
+
+function <void> @@_SetMessage(<string> message)
+{
+	if (!@@_SM_Started)
+	{
+		AddTask(GameTasks, @@_SM_Task());
+		@@_SM_Started = true;
+	}
+	@@_SM_Message = message;
 }
