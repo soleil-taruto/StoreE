@@ -74,6 +74,8 @@ namespace Charlotte
 			I4Color color;
 			int fontSize = 360;
 
+			MakePictures.BACK_COLOR = new I4Color(0, 0, 0, 160);
+
 			color = new I4Color(255, 255, 0, 255);
 			MakePictures.MakeButton(scale, w, h, color, fontSize, "YouWin:YOU WIN", 780);
 			color = new I4Color(0, 160, 255, 255);

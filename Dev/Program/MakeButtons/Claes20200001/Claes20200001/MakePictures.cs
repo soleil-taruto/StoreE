@@ -11,6 +11,11 @@ namespace Charlotte
 {
 	public static class MakePictures
 	{
+		public static int FRAME = 60;
+
+		public static I4Color BACK_COLOR = new I4Color(255, 255, 255, 0);
+		public static I4Color TEXT_COLOR = new I4Color(255, 255, 255, 255);
+
 		/// <summary>
 		/// 例のボタンを作成する。
 		/// </summary>
@@ -22,11 +27,6 @@ namespace Charlotte
 		/// <param name="text_x">テキストの描画時の左側位置, 0～</param>
 		public static void MakeButton(int scale, int w, int h, I4Color frameColor, int fontSize, string text, int text_x)
 		{
-			int FRAME = 60;
-
-			I4Color BACK_COLOR = new I4Color(255, 255, 255, 0);
-			I4Color TEXT_COLOR = new I4Color(255, 255, 255, 255);
-
 			Canvas canvas = new Canvas(w, h);
 
 			canvas.Fill(BACK_COLOR);
