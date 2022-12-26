@@ -71,6 +71,15 @@ function* <generatorForTask> @@_Draw(<Trump_t> actor)
 	}
 }
 
+function <void> SetTrumpPos_Direct(<Trump_t> actor, <double> x, <double> y)
+{
+	actor.X = x;
+	actor.Y = y;
+
+	actor.Dest_X = x;
+	actor.Dest_Y = y;
+}
+
 function <void> SetTrumpPos(<Trump_t> actor, <double> x, <double> y)
 {
 	actor.Dest_X = x;
@@ -80,6 +89,11 @@ function <void> SetTrumpPos(<Trump_t> actor, <double> x, <double> y)
 function <boolean> IsTrumpReversed(<Trump_t> actor)
 {
 	return actor.Reversed;
+}
+
+function <void> SetTrumpReversed_Direct(<Trump_t> actor, <boolean> reversed)
+{
+	actor.Reversed = reversed;
 }
 
 function <void> SetTrumpReversed(<Trump_t> actor, <boolean> reversed)

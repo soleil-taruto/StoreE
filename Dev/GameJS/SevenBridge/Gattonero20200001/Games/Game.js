@@ -283,9 +283,10 @@ battleLoop:
 			{
 				if (doTsumoFlag)
 				{
+					yield* @@_CheckRenYama();
 					yield* @@_WaitToTouch("Tap to TSUMO");
 
-					var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
+					var<Trump_t> card = RCards.pop();
 
 					PlayerDeck.Cards.push(card);
 					AddActor(card);
@@ -377,6 +378,7 @@ battleLoop:
 				@@_DBW_TopWCard_Rot = GetRand2() * 33.0;
 
 				KillActor(card);
+				SetTrumpPos_Direct(card, WCards_X, WCards_Y);
 				WCards.push(card);
 
 				SortDeck(PlayerDeck);
@@ -410,7 +412,7 @@ battleLoop:
 
 				if (ronFlag) // ? ロン可能
 				{
-					if (GetRand1() < 0.6) // 確率的に
+					// 常に
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Ron, "D"));
 						yield* @@_E_ExecuteAgari(DealerDeck, [ WCards.pop() ], "D");
@@ -419,7 +421,7 @@ battleLoop:
 				}
 				if (idxsChow != null) // ? チー可能
 				{
-					if (GetRand1() < 0.6) // 確率的に
+					if (GetRand1() < 0.7) // 確率的に
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Chow, "D"));
 						@@_ExecuteMeld(DealerDeck, idxsChow, [ WCards.pop() ]);
@@ -429,7 +431,7 @@ battleLoop:
 				}
 				if (idxsPong != null) // ? ポン可能
 				{
-					if (GetRand1() < 0.6) // 確率的に
+					if (GetRand1() < 0.7) // 確率的に
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Pong, "D"));
 						@@_ExecuteMeld(DealerDeck, idxsPong, [ WCards.pop() ]);
@@ -444,7 +446,9 @@ battleLoop:
 			{
 				if (doTsumoFlag)
 				{
-					var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
+					yield* @@_CheckRenYama();
+
+					var<Trump_t> card = RCards.pop();
 
 					DealerDeck.Cards.push(card);
 					AddActor(card);
@@ -468,17 +472,35 @@ battleLoop:
 				var<int[]> idxsKong    = GetKongIndexes( DealerDeck);
 				var<boolean> agariFlag = IsCanAgari(     DealerDeck);
 
-				if (idxsKong != null) // ? カン可能
-				{
-					AddEffect(@@_E_MeldEffect(P_Balloon_Kong, "D"));
-					@@_ExecuteMeld(DealerDeck, idxsKong, []);
-					continue tsumoLoop;
-				}
+				// 注意：ツモ(アガリ)優先
+
 				if (agariFlag) // ? ツモ(アガリ)可能
 				{
-					AddEffect(@@_E_MeldEffect(P_Balloon_Agari, "D"));
-					yield* @@_E_ExecuteAgari(DealerDeck, [], "D");
-					break battleLoop;
+					// 常に
+					{
+						AddEffect(@@_E_MeldEffect(P_Balloon_Agari, "D"));
+						yield* @@_E_ExecuteAgari(DealerDeck, [], "D");
+						break battleLoop;
+					}
+				}
+				if (idxsKong != null) // ? カン可能
+				{
+					if (GetRand1() < 0.7) // 確率的に
+					{
+						AddEffect(@@_E_MeldEffect(P_Balloon_Kong, "D"));
+						@@_ExecuteMeld(DealerDeck, idxsKong, []);
+
+						for (var<Scene_t> scene of CreateScene(30)) // ディーラー：カン直後のツモ待ち
+						{
+							@@_DrawBackground();
+							@@_DrawBattleWall();
+
+							ExecuteAllActor();
+							ExecuteAllTask(GameTasks);
+							yield 1;
+						}
+						continue tsumoLoop;
+					}
 				}
 
 				break; // 固定-break
@@ -494,6 +516,7 @@ battleLoop:
 				@@_DBW_TopWCard_Rot = GetRand2() * 33.0;
 
 				KillActor(card);
+				SetTrumpPos_Direct(card, WCards_X, WCards_Y);
 				WCards.push(card);
 				SetTrumpReversed(card, false); // 表にする！
 
@@ -867,4 +890,22 @@ function* <generatorForTask> @@_E_ShowResult(<Picture_t> picture)
 		yield 1;
 	}
 	FreezeInput();
+}
+
+function* <generatorForTask> @@_CheckRenYama()
+{
+	if (RCards.length == 0)
+	{
+		RCards = WCards;
+		WCards = [];
+
+		for (var<Trump_t> card of RCards)
+		{
+			SetTrumpPos_Direct(card, RCards_X, RCards_Y);
+			SetTrumpReversed_Direct(card, true);
+		}
+		Shuffle(RCards);
+
+		yield* @@_WaitToTouch("捨てたカードを山に戻しました！");
+	}
 }
