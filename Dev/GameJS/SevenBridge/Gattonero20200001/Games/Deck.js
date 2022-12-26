@@ -96,12 +96,49 @@ function <void> SetDeckCardsAutoPos(<Deck_t> deck, <boolean> àÍèuÇ≈, <boolean> â
 		}
 	}
 
-	// TODO: Meld
+	{
+		var<double> X_STEP = 20.0;
+
+		var<double> x = deck.MeldsDraw_L + GetPicture_W(P_TrumpFrame) / 2 + 10;
+		var<double> y = deck.MeldsDraw_T + GetPicture_H(P_TrumpFrame) / 2;
+
+		for (var<Meld_t> meld of deck.Melds)
+		{
+			for (var<Trump_t> card of meld.Cards)
+			{
+				if (àÍèuÇ≈)
+				{
+					SetTrumpPos(card, x, y);
+
+					if (âÒì]Ç∑ÇÈ)
+					{
+						SetTrumpAutoStRot(card);
+					}
+				}
+				else
+				{
+					AddDelay(GameTasks, delayFrame, () =>
+					{
+						SetTrumpPos(card, x, y);
+
+						if (âÒì]Ç∑ÇÈ)
+						{
+							SetTrumpAutoStRot(card);
+						}
+					});
+
+					delayFrame += 5;
+				}
+				x += X_STEP;
+			}
+			x += X_STEP;
+		}
+	}
 }
 
 function <void> SortDeck(<Deck_t> deck)
 {
-	deck.Cards.sort((a, b) =>
+	var<Func Trump_t Trump_t int> comp = (a, b) =>
 	{
 		var<int> ret = a.Number - b.Number;
 
@@ -114,5 +151,12 @@ function <void> SortDeck(<Deck_t> deck)
 			return ret;
 
 		error(); // never
-	});
+	};
+
+	deck.Cards.sort(comp);
+
+	for (var<Meld_t> meld of deck.Melds)
+	{
+		meld.Cards.sort(comp);
+	}
 }

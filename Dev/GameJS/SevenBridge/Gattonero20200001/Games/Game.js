@@ -774,7 +774,32 @@ function* <generatorForTask> @@_E_MeldEffect(<Picture_t> balloon, <string> winne
 */
 function <void> @@_ExecuteMeld(<Deck_t> deck, <int[]> meldIdxs, <Trump_t[]> meldCards)
 {
-	error(); // TODO
+	var<Trump_t[]> cards = [];
+
+	for (var<int> meldIdx of meldIdxs)
+	{
+		cards.push(deck.Cards[meldIdx]);
+
+		deck.Cards[meldIdx] = null;
+	}
+	RemoveFalse(deck.Cards);
+
+	for (var<Trump_t> meldCard of meldCards)
+	{
+		cards.push(meldCard);
+
+		AddActor(meldCard);
+	}
+	for (var<Trump_t> card of cards)
+	{
+		SetTrumpReversed(card, false);
+	}
+	var<Meld_t> meld = CreateMeld(cards);
+
+	deck.Melds.push(meld);
+
+	SortDeck(deck);
+	SetDeckCardsAutoPos(deck, true, false);
 }
 
 /*
@@ -786,5 +811,13 @@ function <void> @@_ExecuteMeld(<Deck_t> deck, <int[]> meldIdxs, <Trump_t[]> meld
 */
 function <void> @@_ExecuteAgari(<Deck_t> deck, <Trump_t[]> ronCards, <stirng> winner)
 {
-	error(); // TODO
+	for (var<Trump_t> card of DealerDeck.Cards) // ディーラーのカード・オープン
+	{
+		SetTrumpReversed(card, false);
+	}
+
+	AddElements(deck.Cards, ronCards);
+
+	SortDeck(deck);
+	SetDeckCardsAutoPos(deck, true, false);
 }
