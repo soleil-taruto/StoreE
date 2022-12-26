@@ -272,7 +272,7 @@ battleLoop:
 					if (selItem == ITEM_RON) // ? ロン選択
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Ron, "P"));
-						@@_ExecuteAgari(PlayerDeck, [ WCards.pop() ], "P");
+						yield* @@_E_ExecuteAgari(PlayerDeck, [ WCards.pop() ], "P");
 						break battleLoop;
 					}
 				}
@@ -331,7 +331,7 @@ battleLoop:
 						if (selItem == ITEM_AGARI) // ? ツモ(アガリ)選択
 						{
 							AddEffect(@@_E_MeldEffect(P_Balloon_Agari, "P"));
-							@@_ExecuteAgari(PlayerDeck, [], "P");
+							yield* @@_E_ExecuteAgari(PlayerDeck, [], "P");
 							break battleLoop;
 						}
 					}
@@ -413,7 +413,7 @@ battleLoop:
 					if (GetRand1() < 0.6) // 確率的に
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Ron, "D"));
-						@@_ExecuteAgari(DealerDeck, [ WCards.pop() ], "D");
+						yield* @@_E_ExecuteAgari(DealerDeck, [ WCards.pop() ], "D");
 						break battleLoop;
 					}
 				}
@@ -442,16 +442,18 @@ battleLoop:
 		tsumoLoop:
 			for (; ; )
 			{
+				if (doTsumoFlag)
 				{
 					var<Trump_t> card = RCards.pop(); // HACK: 山にカードが無くなった場合を想定していない。
 
 					DealerDeck.Cards.push(card);
 					AddActor(card);
 
-//					SetTrumpReversed(card, false); // 表にしない。
+					SetTrumpReversed(card, true); // 裏のまま！
 					SetTrumpAutoStRot(card);
 					SetDeckCardsAutoPos(DealerDeck, true, false);
 				}
+				doTsumoFlag = true; // restore
 
 				for (var<Scene_t> scene of CreateScene(60)) // ディーラー考えてるフリ
 				{
@@ -472,10 +474,10 @@ battleLoop:
 					@@_ExecuteMeld(DealerDeck, idxsKong, []);
 					continue tsumoLoop;
 				}
-				if (agariFlag != null) // ? ツモ(アガリ)可能
+				if (agariFlag) // ? ツモ(アガリ)可能
 				{
 					AddEffect(@@_E_MeldEffect(P_Balloon_Agari, "D"));
-					@@_ExecuteAgari(DealerDeck, [], "D");
+					yield* @@_E_ExecuteAgari(DealerDeck, [], "D");
 					break battleLoop;
 				}
 
@@ -493,6 +495,7 @@ battleLoop:
 
 				KillActor(card);
 				WCards.push(card);
+				SetTrumpReversed(card, false); // 表にする！
 
 				SortDeck(DealerDeck);
 				SetDeckCardsAutoPos(DealerDeck, true, false);
@@ -809,15 +812,59 @@ function <void> @@_ExecuteMeld(<Deck_t> deck, <int[]> meldIdxs, <Trump_t[]> meld
 	ronCards: ロンする場合の外部のカード・リスト
 	winner: "P" or "D"
 */
-function <void> @@_ExecuteAgari(<Deck_t> deck, <Trump_t[]> ronCards, <stirng> winner)
+function* <generatorForTask> @@_E_ExecuteAgari(<Deck_t> deck, <Trump_t[]> ronCards, <stirng> winner)
 {
 	for (var<Trump_t> card of DealerDeck.Cards) // ディーラーのカード・オープン
 	{
 		SetTrumpReversed(card, false);
 	}
-
+	for (var<Trump_t> card of ronCards)
+	{
+		AddActor(card);
+	}
 	AddElements(deck.Cards, ronCards);
 
 	SortDeck(deck);
 	SetDeckCardsAutoPos(deck, true, false);
+
+	if (winner == "P")
+	{
+		@@_DealerDamage++;
+
+		yield* @@_E_ShowResult(P_YouWin);
+	}
+	else if (winner == "D")
+	{
+		@@_DealerDamage--;
+
+		yield* @@_E_ShowResult(P_YouLose);
+	}
+	else
+	{
+		error();
+	}
+}
+
+function* <generatorForTask> @@_E_ShowResult(<Picture_t> picture)
+{
+	FreezeInput();
+
+	for (; ; )
+	{
+		if (GetMouseDown() == -1)
+		{
+			break;
+		}
+
+		@@_DrawBackground();
+		@@_DrawBattleWall();
+
+		ExecuteAllActor();
+		ExecuteAllTask(GameTasks);
+
+		Draw(picture, Screen_W / 2, Screen_H / 2, 1.0, 0.0, 1.0);
+
+		yield 1;
+	}
+	FreezeInput();
 }
