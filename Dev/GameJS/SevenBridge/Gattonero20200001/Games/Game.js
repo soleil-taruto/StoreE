@@ -448,7 +448,7 @@ battleLoop:
 					DealerDeck.Cards.push(card);
 					AddActor(card);
 
-	//				SetTrumpReversed(card, false); // 表にしない。
+//					SetTrumpReversed(card, false); // 表にしない。
 					SetTrumpAutoStRot(card);
 					SetDeckCardsAutoPos(DealerDeck, true, false);
 				}
@@ -510,6 +510,7 @@ battleLoop:
 		}
 		// End_ディーラーのターン
 	}
+	// End_battleLoop
 
 	DealerDeck = null;
 	PlayerDeck = null;
@@ -753,16 +754,36 @@ mainLoop:
 	setReturn(items[selIndex]);
 }
 
+/*
+	メルド・和了のエフェクト
+
+	balloon: バルーン画像
+	winner: "P" or "D"
+*/
 function* <generatorForTask> @@_E_MeldEffect(<Picture_t> balloon, <string> winner)
 {
 	// TODO
 }
 
+/*
+	メルドする。(ポン・チー・カン)
+
+	deck: 対象デッキ
+	meldIdxs:  メルドするカードの内、手持ちのカードのインデックス・リスト
+	meldCards: メルドするカードの内、外部のカード・リスト
+*/
 function <void> @@_ExecuteMeld(<Deck_t> deck, <int[]> meldIdxs, <Trump_t[]> meldCards)
 {
 	error(); // TODO
 }
 
+/*
+	和了する。(ロン・ツモ)
+
+	deck: 対象デッキ
+	ronCards: ロンする場合の外部のカード・リスト
+	winner: "P" or "D"
+*/
 function <void> @@_ExecuteAgari(<Deck_t> deck, <Trump_t[]> ronCards, <stirng> winner)
 {
 	error(); // TODO
