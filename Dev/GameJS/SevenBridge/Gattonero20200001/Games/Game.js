@@ -360,6 +360,8 @@ battleLoop:
 			for (; ; )
 			{
 				if (GetMouseDown() == -1)
+				if (!IsOutOfScreen(CreateD2Point(GetMouseX(), GetMouseY()), 0.0))
+				if (Screen_H - GetPicture_H(P_TrumpFrame) < GetMouseY())
 				{
 					var<double> x = GetMouseX();
 					var<int> i;
