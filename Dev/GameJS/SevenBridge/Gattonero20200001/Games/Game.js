@@ -112,8 +112,8 @@ function* <generatorForTask> @@_BetMain()
 			{
 				var<int> inc = Math.min(INC_SPAN, @@_Credit);
 
-				@@_Credit -= INC_SPAN;
-				@@_Bet += INC_SPAN;
+				@@_Credit -= inc;
+				@@_Bet += inc;
 			}
 			if (HoveredPicture == P_ButtonBetDown)
 			{
@@ -139,11 +139,11 @@ function* <generatorForTask> @@_BetMain()
 		SetFSize(120);
 		SetPrint(100, 500, 300);
 		PrintLine("CREDIT: " + @@_Credit);
-		PrintLine("BET: " + @@_Bet);
+		PrintLine("BET: "    + @@_Bet);
 
-		Draw(P_ButtonBetUp, 200, 1500, 1.0, 0.0, 1.0);
-		Draw(P_ButtonBetDown, 600, 1500, 1.0, 0.0, 1.0);
-		Draw(P_ButtonStart, 1000, 1500, 1.0, 0.0, 1.0);
+		Draw(P_ButtonBetUp,    200, 1500, @@_Credit == 0 ? 0.2 : 1.0, 0.0, 1.0);
+		Draw(P_ButtonBetDown,  600, 1500, @@_Bet    == 0 ? 0.2 : 1.0, 0.0, 1.0);
+		Draw(P_ButtonStart,   1000, 1500, @@_Bet    == 0 ? 0.2 : 1.0, 0.0, 1.0);
 
 		ExecuteAllActor();
 		ExecuteAllTask(GameTasks);
