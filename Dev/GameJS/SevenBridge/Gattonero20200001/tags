@@ -127,7 +127,8 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Commons\Types.js(41) : Audio // 定義
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Commons\Types.js(42) : Image // 定義
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Commons\Types.js(43) : Gamepad // 定義
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Commons\Types.js(44) : GamepadButton // 定義
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\00_Consts.js(9) : DEFAULT_VOLUME // 変数
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\00_Consts.js(9) : DEFAULT_MUSIC_VOLUME // 変数
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\00_Consts.js(15) : DEFAULT_SE_VOLUME // 変数
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Crash.js(7) : Crash_t // 定義
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Crash.js(19) : CreateCrash_Point // 関数
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\GameCommons\Crash.js(25) : CreateCrash_Circle // 関数

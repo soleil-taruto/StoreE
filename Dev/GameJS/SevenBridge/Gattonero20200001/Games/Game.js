@@ -580,7 +580,7 @@ function <void> @@_DrawBattleWall()
 
 	for (var<int> i = 0; i < @@_DEALER_DAMAGE_MAX; i++)
 	{
-		ddMeter += i < @@_DealerDamage ? "¡" : " ";
+		ddMeter += i < @@_DealerDamage ? " " : "¡";
 	}
 
 	SetColor("#00000080");
@@ -817,6 +817,7 @@ function* <generatorForTask> @@_E_MeldEffect(<Picture_t> picture, <string> winne
 	var<double> destX;
 	var<double> destY;
 	var<double> a = 1.0;
+	var<double> z = 1.0;
 
 	if (winner == "P")
 	{
@@ -849,7 +850,9 @@ function* <generatorForTask> @@_E_MeldEffect(<Picture_t> picture, <string> winne
 				a = Approach(a, 0.0, 0.93);
 			}
 
-			Draw(picture, x, y, a, 0.0, 1.0);
+			z *= 1.01;
+
+			Draw(picture, x, y, a, 0.0, z);
 
 			yield 1;
 		}
@@ -975,36 +978,25 @@ function* <generatorForTask> @@_CheckRenYama()
 	}
 }
 
-var<boolean> @@_SM_Started = false;
 var<string> @@_SM_Message = "";
+var<double> @@_SM_H = 0.0;
 
-function* <generatorForTask> @@_SM_Task()
+function <void> @@_SM_EACH()
 {
-	var<double> h = 0.0;
+	@@_SM_H = Approach(@@_SM_H, @@_SM_Message == "" ? 0.0 : 100.0, 0.85);
 
-	for (; ; )
+	if (1.0 < @@_SM_H)
 	{
-		h = Approach(h, @@_SM_Message == "" ? 0.0 : 100.0, 0.85);
-
-		if (1.0 < h)
-		{
-			SetColor("#000000c0");
-			PrintRect(0, (Screen_H - h) / 2, Screen_W, h);
-			SetColor("#ffffff");
-			SetFSize(60);
-			SetPrint((Screen_W - GetPrintLineWidth(@@_SM_Message)) / 2, Screen_H / 2 + 20, 0);
-			PrintLine(@@_SM_Message);
-		}
-		yield 1;
+		SetColor("#000000c0");
+		PrintRect(0, (Screen_H - @@_SM_H) / 2, Screen_W, @@_SM_H);
+		SetColor("#ffffff");
+		SetFSize(60);
+		SetPrint((Screen_W - GetPrintLineWidth(@@_SM_Message)) / 2, Screen_H / 2 + 20, 0);
+		PrintLine(@@_SM_Message);
 	}
 }
 
 function <void> @@_SetMessage(<string> message)
 {
-	if (!@@_SM_Started)
-	{
-		AddTask(GameTasks, @@_SM_Task());
-		@@_SM_Started = true;
-	}
 	@@_SM_Message = message;
 }
