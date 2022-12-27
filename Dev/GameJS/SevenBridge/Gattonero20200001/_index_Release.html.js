@@ -35,6 +35,18 @@ window.onload = function()
 
 <br/>
 
+効果音：<br/>
+　小森平<br/>
+　https://taira-komori.jpn.org/<br/>
+
+<br/>
+
+音楽：<br/>
+　魔王魂<br/>
+　https://maou.audio/<br/>
+
+<br/>
+
 注意：<br/>
 セブンブリッジのルールに準拠していない部分があります。<br/>
 

@@ -33,18 +33,24 @@ function* <generatorForTask> GameMain()
 
 		for (; ; )
 		{
+LOGPOS();
 			yield* @@_BattleMain();
+LOGPOS();
 
 			if (@@_DealerDamage < 0)
 			{
+LOGPOS();
 				break;
 			}
 			else if (@@_DEALER_DAMAGE_MAX <= @@_DealerDamage)
 			{
+LOGPOS();
 				yield* GohoubiMain();
+LOGPOS();
 
 				break;
 			}
+LOGPOS();
 		}
 	}
 	FreezeInput();
@@ -97,6 +103,8 @@ function <void> @@_DrawBackground()
 
 function* <generatorForTask> @@_BetMain()
 {
+	Play(M_Title);
+
 	FreezeInput();
 
 	for (; ; )
@@ -174,6 +182,8 @@ var<double> WCards_Y = 1210;
 
 function* <generatorForTask> @@_BattleMain()
 {
+	Play(M_Battle);
+
 	DealerDeck = CreateDeck( 170,  590);
 	PlayerDeck = CreateDeck(1430, 1010);
 

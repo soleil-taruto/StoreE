@@ -15,11 +15,14 @@ function* <generatorForTask> GohoubiMain()
 
 		ClearScreen();
 
-		SetColor("#ffffff");
+		SetColor("#ff00ff");
 		SetFSize(60);
-		SetPrint(100, 100, 0);
+		SetPrint(100, 100, 100);
 
-		PrintLine("GohoubiMain仮_画面をタップして下さい...");
+		PrintLine("GohoubiMain仮");
+		PrintLine("画面をタップして下さい...");
+
+		yield 1;
 	}
 	FreezeInput();
 }
