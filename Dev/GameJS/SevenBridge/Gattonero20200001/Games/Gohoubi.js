@@ -19,7 +19,8 @@ function* <generatorForTask> GohoubiMain()
 		SetFSize(60);
 		SetPrint(100, 100, 100);
 
-		PrintLine("GohoubiMain仮");
+		PrintLine("クリア画面");
+		PrintLine("(試作版につき未実装)");
 		PrintLine("画面をタップして下さい...");
 
 		yield 1;

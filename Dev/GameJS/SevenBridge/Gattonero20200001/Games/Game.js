@@ -221,6 +221,8 @@ function* <generatorForTask> @@_BattleMain()
 	SetDeckCardsAutoPos(PlayerDeck, true, false);
 	AddDelay(GameTasks, 30, () => SetDeckCardsAutoPos(DealerDeck, true, false));
 
+while (10 < RCards.length) RCards.pop(); // test test test test test
+
 battleLoop:
 	for (; ; )
 	{

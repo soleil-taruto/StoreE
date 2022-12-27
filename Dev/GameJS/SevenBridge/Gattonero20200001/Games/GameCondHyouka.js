@@ -12,11 +12,10 @@ function <int> GetWasteIndex(<Deck_t> deck)
 	var<double> bestPoint = -IMAX;
 	var<int> bestRet = -1;
 
-	for (var<int> i = 0; i < deck.Cards.length; i++)
+//	for (var<int> i = 0; i < deck.Cards.length; i++)
+	for (var<int> i = deck.Cards.length - 1; 0 <= i; i--) // なるべくツモったカードを切らせたい。
 	{
 		var<double> point = @@_GetHyoukaPoint_CR(deck.Cards, [ i ]);
-
-		console.log(i, point); // test test test test test
 
 		if (bestPoint < point)
 		{
