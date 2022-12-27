@@ -147,6 +147,8 @@ function* <generatorForTask> @@_BetMain()
 		yield 1;
 	}
 	FreezeInput();
+
+	SE(S_Start);
 }
 
 var<int> @@_DEALER_DAMAGE_MAX = 7;
@@ -258,6 +260,7 @@ battleLoop:
 					if (selItem == ITEM_CHOW) // ? チー選択
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Chow, "P"));
+						SE(S_Chow);
 						@@_ExecuteMeld(PlayerDeck, idxsChow, [ WCards.pop() ]);
 						doTsumoFlag = false;
 						break beforeTsumoPhase;
@@ -265,6 +268,7 @@ battleLoop:
 					if (selItem == ITEM_PONG) // ? ポン選択
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Pong, "P"));
+						SE(S_Pong);
 						@@_ExecuteMeld(PlayerDeck, idxsPong, [ WCards.pop() ]);
 						doTsumoFlag = false;
 						break beforeTsumoPhase;
@@ -272,6 +276,7 @@ battleLoop:
 					if (selItem == ITEM_RON) // ? ロン選択
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Ron, "P"));
+						SE(S_YouWin);
 						yield* @@_E_ExecuteAgari(PlayerDeck, [ WCards.pop() ], "P");
 						break battleLoop;
 					}
@@ -326,12 +331,14 @@ battleLoop:
 						if (selItem == ITEM_KONG) // ? カン選択
 						{
 							AddEffect(@@_E_MeldEffect(P_Balloon_Kong, "P"));
+							SE(S_Kong);
 							@@_ExecuteMeld(PlayerDeck, idxsKong, []);
 							continue tsumoLoop;
 						}
 						if (selItem == ITEM_AGARI) // ? ツモ(アガリ)選択
 						{
 							AddEffect(@@_E_MeldEffect(P_Balloon_Agari, "P"));
+							SE(S_YouWin);
 							yield* @@_E_ExecuteAgari(PlayerDeck, [], "P");
 							break battleLoop;
 						}
@@ -420,6 +427,7 @@ battleLoop:
 					// 常に
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Ron, "D"));
+						SE(S_YouLose);
 						yield* @@_E_ExecuteAgari(DealerDeck, [ WCards.pop() ], "D");
 						break battleLoop;
 					}
@@ -429,6 +437,7 @@ battleLoop:
 					if (GetRand1() < 0.7) // 確率的に
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Chow, "D"));
+						SE(S_Chow);
 						@@_ExecuteMeld(DealerDeck, idxsChow, [ WCards.pop() ]);
 						doTsumoFlag = false;
 						break beforeTsumoPhase;
@@ -439,6 +448,7 @@ battleLoop:
 					if (GetRand1() < 0.7) // 確率的に
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Pong, "D"));
+						SE(S_Pong);
 						@@_ExecuteMeld(DealerDeck, idxsPong, [ WCards.pop() ]);
 						doTsumoFlag = false;
 						break beforeTsumoPhase;
@@ -484,6 +494,7 @@ battleLoop:
 					// 常に
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Agari, "D"));
+						SE(S_YouLose);
 						yield* @@_E_ExecuteAgari(DealerDeck, [], "D");
 						break battleLoop;
 					}
@@ -493,6 +504,7 @@ battleLoop:
 					if (GetRand1() < 0.7) // 確率的に
 					{
 						AddEffect(@@_E_MeldEffect(P_Balloon_Kong, "D"));
+						SE(S_Kong);
 						@@_ExecuteMeld(DealerDeck, idxsKong, []);
 
 						for (var<Scene_t> scene of CreateScene(30)) // ディーラー：カン直後のツモ待ち
