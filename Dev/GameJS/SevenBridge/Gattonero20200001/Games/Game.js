@@ -30,27 +30,22 @@ function* <generatorForTask> GameMain()
 		yield* @@_BetMain();
 
 		@@_BattleNow = true;
+		@@_DealerDamage = 0;
 
 		for (; ; )
 		{
-LOGPOS();
 			yield* @@_BattleMain();
-LOGPOS();
 
 			if (@@_DealerDamage < 0)
 			{
-LOGPOS();
 				break;
 			}
 			else if (@@_DEALER_DAMAGE_MAX <= @@_DealerDamage)
 			{
-LOGPOS();
 				yield* GohoubiMain();
-LOGPOS();
 
 				break;
 			}
-LOGPOS();
 		}
 	}
 	FreezeInput();
@@ -599,8 +594,8 @@ function <void> @@_DrawBattleWall()
 	SetColor("#ffffff");
 	SetFSize(50);
 	SetPrint(30, 70, 70);
-	PrintLine("CREDIT: " + @@_Credit + " / BET:" + @@_Bet);
-	PrintLine("HP: " + ddMeter);
+	PrintLine("CREDIT: " + @@_Credit + " / BET: " + @@_Bet);
+	PrintLine("HP: " + ddMeter + " (" + @@_DealerDamage + ")");
 
 	var<int> remSec = ToFix(GetAddGameCreditRemFrame() / 60.0) + 1;
 
