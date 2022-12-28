@@ -310,9 +310,9 @@ C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(74) : Se
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(83) : SetTrumpPos // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(89) : IsTrumpReversed // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(94) : SetTrumpReversed_Direct // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(99) : SetTrumpReversed // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(142) : SetTrumpAutoStRot // ä÷êî
-C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(147) : SetTrumpStRot // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(100) : SetTrumpReversed // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(143) : SetTrumpAutoStRot // ä÷êî
+C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(148) : SetTrumpStRot // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\Actor_Trump.js(5) : ActorKind_Trump // ïœêî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(7) : AddActor // ä÷êî
 C:\Dev\GameJS\SevenBridge\Gattonero20200001\Games\Actors\ActorCommon.js(19) : KillActor // ä÷êî
