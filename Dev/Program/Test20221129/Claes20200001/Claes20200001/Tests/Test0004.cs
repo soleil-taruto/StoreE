@@ -30,15 +30,21 @@ namespace Charlotte.Tests
 					img = img.Expand(DEST_W, DEST_H);
 					img = img.PutMargin(MARGIN_LTRB, MARGIN_LTRB, MARGIN_LTRB, MARGIN_LTRB, new I4Color(0, 0, 0, 0));
 
-					img.Save(SCommon.NextOutputPath() + ".png");
-
-					img.FilterAllDot((dot, x, y) => new I4Color(dot.G, dot.B, dot.R, dot.A));
-					img.Save(SCommon.NextOutputPath() + ".png");
-
-					img.FilterAllDot((dot, x, y) => new I4Color(dot.G, dot.B, dot.R, dot.A));
-					img.Save(SCommon.NextOutputPath() + ".png");
+					ShiftColorOutput(img, (dot, x, y) => new I4Color(dot.R, dot.G, dot.B, dot.A));
+					ShiftColorOutput(img, (dot, x, y) => new I4Color(dot.R, dot.B, dot.G, dot.A));
+					ShiftColorOutput(img, (dot, x, y) => new I4Color(dot.G, dot.R, dot.B, dot.A));
+					ShiftColorOutput(img, (dot, x, y) => new I4Color(dot.G, dot.B, dot.R, dot.A));
+					ShiftColorOutput(img, (dot, x, y) => new I4Color(dot.B, dot.R, dot.G, dot.A));
+					ShiftColorOutput(img, (dot, x, y) => new I4Color(dot.B, dot.G, dot.R, dot.A));
 				}
 			}
+		}
+
+		private void ShiftColorOutput(Canvas img, Func<I4Color, int, int, I4Color> filter)
+		{
+			img = img.GetCloneImage();
+			img.FilterAllDot(filter);
+			img.Save(SCommon.NextOutputPath() + ".png");
 		}
 	}
 }

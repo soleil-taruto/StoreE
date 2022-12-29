@@ -504,6 +504,11 @@ namespace Charlotte.Utilities
 			}
 		}
 
+		public Canvas GetCloneImage()
+		{
+			return this.GetSubImage(new I4Rect(0, 0, this.W, this.H));
+		}
+
 		public Canvas GetSubImage(I4Rect rect)
 		{
 			ProcMain.WriteLog("Canvas_GSI_rect: " + string.Join(", ", rect.L, rect.T, rect.W, rect.H));
