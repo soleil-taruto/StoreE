@@ -19,7 +19,7 @@ function* <generatorForTask> Test02()
 
 	console.log(arr);
 
-	arr = Select(arr, v => ParseInt(v));
+	arr = Select(arr, v => ParseInteger(v));
 
 	console.log(arr);
 

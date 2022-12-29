@@ -114,7 +114,7 @@ function <int> StrToInt(<string> str)
 	return value * sign;
 }
 
-function <int> ParseInt(<string> str)
+function <int> ParseInteger(<string> str)
 {
 	return StrToInt(str);
 }
