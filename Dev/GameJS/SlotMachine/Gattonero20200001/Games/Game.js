@@ -24,7 +24,7 @@ function* <generatorForTask> GameMain()
 	for (; ; )
 	{
 		@@_BetMain();
-		@@_RoateMain();
+		@@_RotateMain();
 		@@_ResultMain();
 
 		yield 1;
@@ -45,10 +45,10 @@ function* <generatorForTask> @@_BetMain()
 {
 }
 
-function* <generatorForTask> @@_BetMain()
+function* <generatorForTask> @@_RotateMain()
 {
 }
 
-function* <generatorForTask> @@_BetMain()
+function* <generatorForTask> @@_ResultMain()
 {
 }

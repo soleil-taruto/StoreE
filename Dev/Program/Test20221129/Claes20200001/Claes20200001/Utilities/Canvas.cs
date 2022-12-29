@@ -503,5 +503,60 @@ namespace Charlotte.Utilities
 				}
 			}
 		}
+
+		public Canvas GetSubImage(I4Rect rect)
+		{
+			ProcMain.WriteLog("Canvas_GSI_rect: " + string.Join(", ", rect.L, rect.T, rect.W, rect.H));
+
+			Canvas dest = new Canvas(rect.W, rect.H);
+
+			for (int x = 0; x < rect.W; x++)
+			{
+				for (int y = 0; y < rect.H; y++)
+				{
+					dest[x, y] = this[rect.L + x, rect.T + y];
+				}
+			}
+			return dest;
+		}
+
+		public I4Rect GetRect(Func<I4Color, int, int, bool> match)
+		{
+			int l = SCommon.IMAX;
+			int t = SCommon.IMAX;
+			int r = -1; // -1 == 未検出
+			int b = -1;
+
+			for (int x = 0; x < this.W; x++)
+			{
+				for (int y = 0; y < this.H; y++)
+				{
+					if (match(this[x, y], x, y))
+					{
+						l = Math.Min(l, x);
+						t = Math.Min(t, y);
+						r = Math.Max(r, x);
+						b = Math.Max(b, y);
+					}
+				}
+			}
+
+			// ? マッチ無し
+			if (r == -1)
+				//return new I4Rect(0, 0, 0, 0);
+				return new I4Rect(0, 0, 1, 1);
+
+			return I4Rect.LTRB(l, t, r + 1, b + 1);
+		}
+
+		public Canvas PutMargin(int margin_l, int margin_t, int margin_r, int margin_b, I4Color marginColor)
+		{
+			Canvas dest = new Canvas(margin_l + this.W + margin_r, margin_t + this.H + margin_b);
+
+			dest.Fill(marginColor);
+			dest.DrawImage(this, margin_l, margin_t, false);
+
+			return dest;
+		}
 	}
 }
