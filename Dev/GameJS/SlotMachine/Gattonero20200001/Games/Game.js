@@ -23,7 +23,7 @@ function* <generatorForTask> GameMain()
 
 	for (; ; )
 	{
-		@@_BetMain();
+		@@_EntranceMain();
 		@@_RotateMain();
 		@@_ResultMain();
 
@@ -33,15 +33,26 @@ function* <generatorForTask> GameMain()
 	error(); // ‚±‚ÌŠÖ”‚ÍI—¹‚µ‚Ä‚Í‚È‚ç‚È‚¢B
 }
 
+function* <generatorForTask> @@_EntranceMain()
+{
+	FreezeInput();
+
+	for (; ; )
+	{
+
+
+
+		yield 1;
+	}
+
+	FreezeInput();
+}
+
 function <void> @@_DrawWall()
 {
 }
 
 function <void> @@_DrawFront()
-{
-}
-
-function* <generatorForTask> @@_BetMain()
 {
 }
 
