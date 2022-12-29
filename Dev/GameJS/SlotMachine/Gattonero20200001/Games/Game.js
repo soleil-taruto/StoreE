@@ -23,9 +23,32 @@ function* <generatorForTask> GameMain()
 
 	for (; ; )
 	{
-		error(); // TODO
+		@@_BetMain();
+		@@_RoateMain();
+		@@_ResultMain();
+
+		yield 1;
 	}
-	FreezeInput();
-	ClearAllActor();
-	ClearAllTask(GameTasks);
+
+	error(); // Ç±ÇÃä÷êîÇÕèIóπÇµÇƒÇÕÇ»ÇÁÇ»Ç¢ÅB
+}
+
+function <void> @@_DrawWall()
+{
+}
+
+function <void> @@_DrawFront()
+{
+}
+
+function* <generatorForTask> @@_BetMain()
+{
+}
+
+function* <generatorForTask> @@_BetMain()
+{
+}
+
+function* <generatorForTask> @@_BetMain()
+{
 }
