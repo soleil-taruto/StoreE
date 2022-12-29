@@ -31,7 +31,20 @@ window.onload = function()
 
 <br/>
 
-<strong>セブンブリッジ・テスト実装</strong><br/>
+<strong>スロットマシン・テスト実装</strong><br/>
+
+制作中<br/>
+制作中<br/>
+制作中<br/>
+----<br/>
+----<br/>
+----<br/>
+
+
+
+
+
+<!--
 
 <br/>
 
@@ -54,6 +67,8 @@ window.onload = function()
 
 テスト用機能：<br/>
 none<br/>
+
+-->
 
 <br/>
 <br/>
