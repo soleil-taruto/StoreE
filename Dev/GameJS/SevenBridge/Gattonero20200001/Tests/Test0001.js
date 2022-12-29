@@ -27,3 +27,8 @@ function* <generatorForTask> Test02()
 
 	console.log(arr);
 }
+
+function* <generatorForTask> Test03()
+{
+	yield* GohoubiMain();
+}
