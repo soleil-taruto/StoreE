@@ -7,6 +7,7 @@ namespace Charlotte
 {
 	public static class Consts
 	{
-		// none
+		public static string CATALOG_FILE_FIRST_LINE = "[C3]";
+		public static string DIFFERENCE_FILE_FIRST_LINE = "[CCD]";
 	}
 }

@@ -19,51 +19,6 @@ namespace Charlotte
 			ProcMain.CUIMain(new Program().Main2);
 		}
 
-		// 以下様式統一のため用途別に好きな方を使ってね -- ★要削除
-
-#if true // 主にデバッガで実行するテスト用プログラム -- ★不要なら要削除
-		private void Main2(ArgsReader ar)
-		{
-			if (ProcMain.DEBUG)
-			{
-				Main3();
-			}
-			else
-			{
-				Main4();
-			}
-			SCommon.OpenOutputDirIfCreated();
-		}
-
-		private void Main3()
-		{
-			Main4();
-			SCommon.Pause();
-		}
-
-		private void Main4()
-		{
-			try
-			{
-				Main5();
-			}
-			catch (Exception ex)
-			{
-				ProcMain.WriteLog(ex);
-			}
-		}
-
-		private void Main5()
-		{
-			// -- choose one --
-
-			new Test0001().Test01();
-			//new Test0002().Test01();
-			//new Test0003().Test01();
-
-			// --
-		}
-#else // 主に実行ファイルにして使う/コマンド引数有り -- ★不要なら要削除
 		private void Main2(ArgsReader ar)
 		{
 			if (ProcMain.DEBUG)
@@ -110,8 +65,85 @@ namespace Charlotte
 
 		private void Main5(ArgsReader ar)
 		{
+			if (ar.ArgIs("/A"))
+			{
+				string outputDir = ar.NextArg();
+				string catalogFile = ar.NextArg();
+
+				ar.End();
+
+				MakeCatalogFile(outputDir, catalogFile);
+			}
+			else if (ar.ArgIs("/B"))
+			{
+				string inputDir = ar.NextArg();
+				string catalogFile = ar.NextArg();
+				string differenceDir = ar.NextArg();
+
+				ar.End();
+
+				MakeDifferenceDir(inputDir, catalogFile, differenceDir);
+			}
+			else if (ar.ArgIs("/C"))
+			{
+				string differenceDir = ar.NextArg();
+				string outputDir = ar.NextArg();
+
+				ar.End();
+
+				ApplyDifferenceData(differenceDir, outputDir);
+			}
+			else
+			{
+				throw new Exception("不明なコマンド引数");
+			}
+		}
+
+		private void MakeCatalogFile(string outputDir, string catalogFile)
+		{
+			outputDir = SCommon.MakeFullPath(outputDir);
+			catalogFile = SCommon.MakeFullPath(catalogFile);
+
+			if (!Directory.Exists(outputDir))
+				throw new Exception("no outputDir");
+
+			// catalogFile -- 出力先
+
+			// 引数チェックここまで
+
 			// TODO
 		}
-#endif
+
+		private void MakeDifferenceDir(string inputDir, string catalogFile, string differenceDir)
+		{
+			inputDir = SCommon.MakeFullPath(inputDir);
+			catalogFile = SCommon.MakeFullPath(catalogFile);
+			differenceDir = SCommon.MakeFullPath(differenceDir);
+
+			if (!Directory.Exists(inputDir))
+				throw new Exception("no inputDir");
+
+			if (!File.Exists(catalogFile))
+				throw new Exception("no catalogFile");
+
+			// differenceDir -- 出力先
+
+			// 引数チェックここまで
+
+			// TODO
+		}
+
+		private void ApplyDifferenceData(string differenceDir, string outputDir)
+		{
+			if (!Directory.Exists(differenceDir))
+				throw new Exception("no differenceDir");
+
+			if (!Directory.Exists(outputDir))
+				throw new Exception("no outputDir");
+
+			// 引数チェックここまで
+
+			// TODO
+		}
 	}
 }
