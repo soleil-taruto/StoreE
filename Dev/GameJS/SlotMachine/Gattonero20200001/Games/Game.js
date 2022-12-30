@@ -23,24 +23,25 @@ function* <generatorForTask> GameMain()
 
 	for (; ; )
 	{
-		@@_EntranceMain();
-		@@_RotateMain();
-		@@_ResultMain();
-
-		yield 1;
+		yield* @@_TitleMain();
+		yield* @@_RotateMain();
+		yield* @@_ResultMain();
 	}
 
 	error(); // Ç±ÇÃä÷êîÇÕèIóπÇµÇƒÇÕÇ»ÇÁÇ»Ç¢ÅB
 }
 
-function* <generatorForTask> @@_EntranceMain()
+function* <generatorForTask> @@_TitleMain()
 {
 	FreezeInput();
 
 	for (; ; )
 	{
+		ClearScreen();
 
-
+		// TODO
+		// TODO
+		// TODO
 
 		yield 1;
 	}
@@ -50,16 +51,20 @@ function* <generatorForTask> @@_EntranceMain()
 
 function <void> @@_DrawWall()
 {
+	// TODO
 }
 
 function <void> @@_DrawFront()
 {
+	// TODO
 }
 
 function* <generatorForTask> @@_RotateMain()
 {
+	error(); // TODO
 }
 
 function* <generatorForTask> @@_ResultMain()
 {
+	error(); // TODO
 }
