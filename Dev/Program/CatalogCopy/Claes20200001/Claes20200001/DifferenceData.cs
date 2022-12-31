@@ -73,8 +73,8 @@ namespace Charlotte
 
 				SCommon.Merge(rCatalog.Dirs, wCatalog.Dirs, SCommon.Comp, only1, both1, both2, only2);
 
-				difference.LostDirs = only1;
-				difference.AddedDirs = only2;
+				difference.LostDirs = only2;
+				difference.AddedDirs = only1;
 			}
 
 			// ファイル
@@ -86,8 +86,8 @@ namespace Charlotte
 
 				SCommon.Merge(rCatalog.Files, wCatalog.Files, (a, b) => SCommon.Comp(a.StrPath, b.StrPath), only1, both1, both2, only2);
 
-				difference.LostFiles = only1.Select(v => v.StrPath).ToList();
-				difference.AddedFiles = only2.Select(v => FileData.Create(v, inputDir)).ToList();
+				difference.LostFiles = only2.Select(v => v.StrPath).ToList();
+				difference.AddedFiles = only1.Select(v => FileData.Create(v, inputDir)).ToList();
 				difference.UpdatedFiles = new List<FileData>();
 
 				for (int index = 0; index < both1.Count; index++)
@@ -164,6 +164,7 @@ namespace Charlotte
 				dest.Add("U");
 				P_Write(dest, file, differenceDir);
 			}
+			dest.Add("E");
 
 			File.WriteAllLines(Path.Combine(differenceDir, "0"), dest, Encoding.UTF8);
 		}
@@ -204,7 +205,7 @@ namespace Charlotte
 
 			// ----
 
-			string[] lines = File.ReadAllLines(differenceDir, Encoding.UTF8);
+			string[] lines = File.ReadAllLines(Path.Combine(differenceDir, "0"), Encoding.UTF8);
 			int r = 0;
 
 			DifferenceData difference = new DifferenceData()
@@ -334,7 +335,7 @@ namespace Charlotte
 			{
 				SCommon.DeletePath(dir);
 			}
-			foreach (string dir in this.LostDirs.Select(v => Path.Combine(outputDir, v)))
+			foreach (string dir in this.AddedDirs.Select(v => Path.Combine(outputDir, v)))
 			{
 				SCommon.CreateDir(dir);
 			}
@@ -342,31 +343,22 @@ namespace Charlotte
 			{
 				SCommon.DeletePath(file);
 			}
-			foreach (FileData file in this.AddedFiles)
+			foreach (FileData file in this.AddedFiles.Concat(this.UpdatedFiles))
 			{
 				string rFile = file.EntityFilePath;
 				string wFile = Path.Combine(outputDir, file.StrPath);
+				long wFileTimeStamp = file.LastWriteTimeStamp;
 
-				ProcMain.WriteLog("ADD-FILE");
+				ProcMain.WriteLog("ADD-OR-UPDATE");
 				ProcMain.WriteLog("< " + rFile);
 				ProcMain.WriteLog("> " + wFile);
-
-				File.Copy(rFile, wFile);
-
-				ProcMain.WriteLog("done");
-			}
-			foreach (FileData file in this.UpdatedFiles)
-			{
-				string rFile = file.EntityFilePath;
-				string wFile = Path.Combine(outputDir, file.StrPath);
-
-				ProcMain.WriteLog("UPDATE-FILE");
-				ProcMain.WriteLog("< " + rFile);
-				ProcMain.WriteLog("> " + wFile);
+				ProcMain.WriteLog("* " + wFileTimeStamp);
 
 				SCommon.DeletePath(wFile);
 
 				File.Copy(rFile, wFile);
+
+				new FileInfo(wFile).LastWriteTime = SCommon.SimpleDateTime.FromTimeStamp(wFileTimeStamp).ToDateTime();
 
 				ProcMain.WriteLog("done");
 			}

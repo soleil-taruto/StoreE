@@ -36,7 +36,9 @@ namespace Charlotte
 		{
 			// -- choose one --
 
-			Main4(new ArgsReader(new string[] { }));
+			Main4(new ArgsReader(new string[] { "/A", @"C:\temp\Output", @"C:\temp\Catalog.cata" }));
+			//Main4(new ArgsReader(new string[] { "/B", @"C:\temp\Input", @"C:\temp\Catalog.cata", @"C:\temp\Difference.diff" }));
+			//Main4(new ArgsReader(new string[] { "/C", @"C:\temp\Difference.diff", @"C:\temp\Output" }));
 			//new Test0001().Test01();
 			//new Test0002().Test01();
 			//new Test0003().Test01();
