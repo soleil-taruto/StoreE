@@ -91,7 +91,7 @@ namespace Charlotte
 
 				ar.End();
 
-				ApplyDifferenceData(differenceDir, outputDir);
+				PatchingDifferenceData(differenceDir, outputDir);
 			}
 			else
 			{
@@ -111,7 +111,9 @@ namespace Charlotte
 
 			// 引数チェックここまで
 
-			// TODO
+			CatalogData catalog = CatalogData.CreateByDir(outputDir);
+
+			catalog.SaveToFile(catalogFile);
 		}
 
 		private void MakeDifferenceDir(string inputDir, string catalogFile, string differenceDir)
@@ -130,10 +132,15 @@ namespace Charlotte
 
 			// 引数チェックここまで
 
-			// TODO
+			CatalogData rCatalog = CatalogData.CreateByDir(inputDir);
+			CatalogData wCatalog = CatalogData.LoadFromFile(catalogFile);
+
+			DifferenceData difference = DifferenceData.Create(rCatalog, wCatalog, inputDir);
+
+			difference.SaveToDiffDir(differenceDir);
 		}
 
-		private void ApplyDifferenceData(string differenceDir, string outputDir)
+		private void PatchingDifferenceData(string differenceDir, string outputDir)
 		{
 			if (!Directory.Exists(differenceDir))
 				throw new Exception("no differenceDir");
@@ -143,7 +150,9 @@ namespace Charlotte
 
 			// 引数チェックここまで
 
-			// TODO
+			DifferenceData difference = DifferenceData.LoadFromDiffDir(differenceDir);
+
+			difference.Patching(outputDir);
 		}
 	}
 }
