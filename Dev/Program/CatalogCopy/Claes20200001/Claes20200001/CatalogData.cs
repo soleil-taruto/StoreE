@@ -150,12 +150,18 @@ namespace Charlotte
 					if (string.IsNullOrEmpty(file.StrPath))
 						throw new Exception("Bad file.StrPath");
 
-					if (file.Size < 0)
+					if (file.Size < 0L)
 						throw new Exception("Bad file.Size");
 
 					if (!Common.IsFairTimeStamp(file.LastWriteTimeStamp))
 						throw new Exception("Bad file.LastWriteTimeStamp");
 				}
+			}
+
+			// 補正
+			{
+				catalog.Dirs.Sort(SCommon.Comp);
+				catalog.Files.Sort((a, b) => SCommon.Comp(a.StrPath, b.StrPath));
 			}
 
 			return catalog;

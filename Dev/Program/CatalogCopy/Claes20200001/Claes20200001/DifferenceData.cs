@@ -95,7 +95,7 @@ namespace Charlotte
 					CatalogData.FileData cfd1 = both1[index];
 					CatalogData.FileData cfd2 = both2[index];
 
-					if (P_IsDifference(cfd1, cfd2))
+					if (IsDifference(cfd1, cfd2))
 					{
 						difference.UpdatedFiles.Add(FileData.Create(cfd1, inputDir));
 					}
@@ -105,7 +105,7 @@ namespace Charlotte
 			return difference;
 		}
 
-		private static bool P_IsDifference(CatalogData.FileData a, CatalogData.FileData b)
+		private static bool IsDifference(CatalogData.FileData a, CatalogData.FileData b)
 		{
 			if (a.Size != b.Size)
 				return true;
@@ -113,7 +113,8 @@ namespace Charlotte
 			long sec1 = SCommon.TimeStampToSec.ToSec(a.LastWriteTimeStamp);
 			long sec2 = SCommon.TimeStampToSec.ToSec(b.LastWriteTimeStamp);
 
-			if (2 <= Math.Abs(sec1 - sec2))
+			//if (2 <= Math.Abs(sec1 - sec2))
+			if (sec1 != sec2)
 				return true;
 
 			return false;
@@ -152,33 +153,31 @@ namespace Charlotte
 				dest.Add(file);
 			}
 
-			P_FileCounter = 1;
+			int fileCounter = 1;
+			Func<int> fileCountIssuer = () => fileCounter++;
 
 			foreach (FileData file in this.AddedFiles)
 			{
 				dest.Add("A");
-				P_Write(dest, file, differenceDir);
+				Write(dest, file, fileCountIssuer, differenceDir);
 			}
 			foreach (FileData file in this.UpdatedFiles)
 			{
 				dest.Add("U");
-				P_Write(dest, file, differenceDir);
+				Write(dest, file, fileCountIssuer, differenceDir);
 			}
 			dest.Add("E");
 
 			File.WriteAllLines(Path.Combine(differenceDir, "0"), dest, Encoding.UTF8);
 		}
 
-		private int P_FileCounter;
-
-		private void P_Write(List<string> dest, FileData file, string differenceDir)
+		private void Write(List<string> dest, FileData file, Func<int> fileCountIssuer, string differenceDir)
 		{
-			string name = "" + (P_FileCounter++);
+			string name = "" + fileCountIssuer();
 
 			string rFile = file.EntityFilePath;
 			string wFile = Path.Combine(differenceDir, name);
 
-			ProcMain.WriteLog("COPY");
 			ProcMain.WriteLog("< " + rFile);
 			ProcMain.WriteLog("> " + wFile);
 
@@ -237,11 +236,11 @@ namespace Charlotte
 						break;
 
 					case "A":
-						P_Read(difference.AddedFiles, () => lines[r++], differenceDir);
+						Read(difference.AddedFiles, () => lines[r++], differenceDir);
 						break;
 
 					case "U":
-						P_Read(difference.UpdatedFiles, () => lines[r++], differenceDir);
+						Read(difference.UpdatedFiles, () => lines[r++], differenceDir);
 						break;
 
 					case "E":
@@ -304,10 +303,19 @@ namespace Charlotte
 				}
 			}
 
+			// 補正
+			{
+				difference.LostDirs.Sort(SCommon.Comp);
+				difference.AddedDirs.Sort(SCommon.Comp);
+				difference.LostFiles.Sort(SCommon.Comp);
+				difference.AddedFiles.Sort((a, b) => SCommon.Comp(a.StrPath, b.StrPath));
+				difference.UpdatedFiles.Sort((a, b) => SCommon.Comp(a.StrPath, b.StrPath));
+			}
+
 			return difference;
 		}
 
-		private static void P_Read(List<FileData> dest, Func<string> reader, string differenceDir)
+		private static void Read(List<FileData> dest, Func<string> reader, string differenceDir)
 		{
 			FileData file = new FileData();
 
@@ -331,16 +339,22 @@ namespace Charlotte
 
 			// ----
 
-			foreach (string dir in this.LostDirs.Select(v => Path.Combine(outputDir, v)))
+			foreach (string dir in this.LostDirs.Select(v => Path.Combine(outputDir, v)).Reverse())
 			{
+				ProcMain.WriteLog("R " + dir);
+
 				SCommon.DeletePath(dir);
 			}
 			foreach (string dir in this.AddedDirs.Select(v => Path.Combine(outputDir, v)))
 			{
+				ProcMain.WriteLog("M " + dir);
+
 				SCommon.CreateDir(dir);
 			}
 			foreach (string file in this.LostFiles.Select(v => Path.Combine(outputDir, v)))
 			{
+				ProcMain.WriteLog("D " + file);
+
 				SCommon.DeletePath(file);
 			}
 			foreach (FileData file in this.AddedFiles.Concat(this.UpdatedFiles))
@@ -349,7 +363,6 @@ namespace Charlotte
 				string wFile = Path.Combine(outputDir, file.StrPath);
 				long wFileTimeStamp = file.LastWriteTimeStamp;
 
-				ProcMain.WriteLog("ADD-OR-UPDATE");
 				ProcMain.WriteLog("< " + rFile);
 				ProcMain.WriteLog("> " + wFile);
 				ProcMain.WriteLog("* " + wFileTimeStamp);

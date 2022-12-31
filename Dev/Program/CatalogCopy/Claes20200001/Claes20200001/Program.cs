@@ -155,6 +155,9 @@ namespace Charlotte
 
 		private void PatchingDifferenceData(string differenceDir, string outputDir)
 		{
+			differenceDir = SCommon.MakeFullPath(differenceDir);
+			outputDir = SCommon.MakeFullPath(outputDir);
+
 			if (!Directory.Exists(differenceDir))
 				throw new Exception("no differenceDir");
 
