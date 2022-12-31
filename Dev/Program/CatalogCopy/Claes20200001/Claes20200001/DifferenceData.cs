@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.Commons;
 using System.IO;
+using Charlotte.Commons;
 
 namespace Charlotte
 {
@@ -177,7 +177,13 @@ namespace Charlotte
 			string rFile = file.EntityFilePath;
 			string wFile = Path.Combine(differenceDir, name);
 
+			ProcMain.WriteLog("COPY");
+			ProcMain.WriteLog("< " + rFile);
+			ProcMain.WriteLog("> " + wFile);
+
 			File.Copy(rFile, wFile);
+
+			ProcMain.WriteLog("done");
 
 			dest.Add(file.StrPath);
 			dest.Add(name);
@@ -341,16 +347,28 @@ namespace Charlotte
 				string rFile = file.EntityFilePath;
 				string wFile = Path.Combine(outputDir, file.StrPath);
 
+				ProcMain.WriteLog("ADD-FILE");
+				ProcMain.WriteLog("< " + rFile);
+				ProcMain.WriteLog("> " + wFile);
+
 				File.Copy(rFile, wFile);
+
+				ProcMain.WriteLog("done");
 			}
 			foreach (FileData file in this.UpdatedFiles)
 			{
 				string rFile = file.EntityFilePath;
 				string wFile = Path.Combine(outputDir, file.StrPath);
 
+				ProcMain.WriteLog("UPDATE-FILE");
+				ProcMain.WriteLog("< " + rFile);
+				ProcMain.WriteLog("> " + wFile);
+
 				SCommon.DeletePath(wFile);
 
 				File.Copy(rFile, wFile);
+
+				ProcMain.WriteLog("done");
 			}
 		}
 	}
