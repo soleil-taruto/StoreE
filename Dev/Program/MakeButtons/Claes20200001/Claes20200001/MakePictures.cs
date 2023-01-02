@@ -14,6 +14,7 @@ namespace Charlotte
 		public static int FRAME = 60;
 
 		public static I4Color BACK_COLOR = new I4Color(255, 255, 255, 0);
+		public static I4Color TEXT_BACK_COLOR = new I4Color(255, 255, 255, 0);
 		public static I4Color TEXT_COLOR = new I4Color(255, 255, 255, 255);
 
 		/// <summary>
@@ -33,7 +34,7 @@ namespace Charlotte
 			canvas.FillCircle(frameColor, new I2Point(0 + h / 2, h / 2), h / 2);
 			canvas.FillCircle(frameColor, new I2Point(w - h / 2, h / 2), h / 2);
 			canvas.FillRect(frameColor, new I4Rect(h / 2, FRAME * 0, w - h, h - FRAME * 0));
-			canvas.FillRect(BACK_COLOR, new I4Rect(h / 2, FRAME * 1, w - h, h - FRAME * 2));
+			canvas.FillRect(TEXT_BACK_COLOR, new I4Rect(h / 2, FRAME * 1, w - h, h - FRAME * 2));
 
 			{
 				Func<I4Color, int, int, I4Color> filter = (dot, x, y) =>
