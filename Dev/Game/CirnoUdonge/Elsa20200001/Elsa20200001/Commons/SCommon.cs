@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.IO;
 using System.IO.Compression;
-using System.Threading;
 using System.Diagnostics;
 using System.Security.Cryptography;
 
@@ -624,6 +624,47 @@ namespace Charlotte.Commons
 			public static T[] AddRange<T>(T[] arr, T[] arrForAdd)
 			{
 				return InsertRange(arr, arr.Length, arrForAdd);
+			}
+		}
+
+		public static class Lists
+		{
+			public static List<T> GetRange<T>(List<T> list, int index, int count)
+			{
+				return list.
+					GetRange // KeepComment:@^_ConfuserForElsa // NoRename:@^_ConfuserForElsa
+					(index, count);
+			}
+
+			public static List<T> GetTrail<T>(List<T> list, int index)
+			{
+				return GetRange(list, index, list.Count - index);
+			}
+
+			public static void RemoveRange<T>(List<T> list, int index, int count)
+			{
+				list.
+					RemoveRange // KeepComment:@^_ConfuserForElsa // NoRename:@^_ConfuserForElsa
+					(index, count);
+			}
+
+			public static void RemoveTrail<T>(List<T> list, int index)
+			{
+				RemoveRange(list, index, list.Count - index);
+			}
+
+			public static void InsertRange<T>(List<T> list, int index, IEnumerable<T> listForInsert)
+			{
+				list.
+					InsertRange // KeepComment:@^_ConfuserForElsa // NoRename:@^_ConfuserForElsa
+					(index, listForInsert);
+			}
+
+			public static void AddRange<T>(List<T> list, IEnumerable<T> listForAdd)
+			{
+				list.
+					AddRange // KeepComment:@^_ConfuserForElsa // NoRename:@^_ConfuserForElsa
+					(listForAdd);
 			}
 		}
 
