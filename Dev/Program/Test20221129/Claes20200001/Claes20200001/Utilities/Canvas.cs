@@ -408,21 +408,6 @@ namespace Charlotte.Utilities
 			}
 		}
 
-		/// <summary>
-		/// 全てのドットについてフィルターを通す。
-		/// </summary>
-		/// <param name="filter">フィルター</param>
-		public void FilterAllDot(Func<I4Color, int, int, I4Color> filter)
-		{
-			for (int x = 0; x < this.W; x++)
-			{
-				for (int y = 0; y < this.H; y++)
-				{
-					this[x, y] = filter(this[x, y], x, y);
-				}
-			}
-		}
-
 		// ====
 		// 定番機能ここまで
 		// ====
@@ -504,15 +489,24 @@ namespace Charlotte.Utilities
 			}
 		}
 
-		public Canvas GetCloneImage()
+		public void FilterRect(Func<I4Color, int, int, I4Color> filter, I4Rect rect)
 		{
-			return this.GetSubImage(new I4Rect(0, 0, this.W, this.H));
+			for (int x = rect.L; x < rect.R; x++)
+			{
+				for (int y = rect.T; y < rect.B; y++)
+				{
+					this[x, y] = filter(this[x, y], x, y);
+				}
+			}
+		}
+
+		public void FilterAllDot(Func<I4Color, int, int, I4Color> filter)
+		{
+			this.FilterRect(filter, new I4Rect(0, 0, this.W, this.H));
 		}
 
 		public Canvas GetSubImage(I4Rect rect)
 		{
-			ProcMain.WriteLog("Canvas_GSI_rect: " + string.Join(", ", rect.L, rect.T, rect.W, rect.H));
-
 			Canvas dest = new Canvas(rect.W, rect.H);
 
 			for (int x = 0; x < rect.W; x++)
@@ -523,6 +517,11 @@ namespace Charlotte.Utilities
 				}
 			}
 			return dest;
+		}
+
+		public Canvas GetClone()
+		{
+			return this.GetSubImage(new I4Rect(0, 0, this.W, this.H));
 		}
 
 		public I4Rect GetRect(Func<I4Color, int, int, bool> match)

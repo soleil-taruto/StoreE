@@ -48,7 +48,7 @@ namespace Charlotte.Tests
 
 		private void ShiftColorOutput(Canvas img, Func<I4Color, int, int, I4Color> filter)
 		{
-			img = img.GetCloneImage();
+			img = img.GetClone();
 			img.FilterAllDot(filter);
 			img.Save(SCommon.NextOutputPath() + ".png");
 		}

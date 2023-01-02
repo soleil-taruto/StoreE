@@ -10,14 +10,9 @@ namespace Charlotte.Tests
 	{
 		public void Test01()
 		{
-			int m = 0;
-
-			for (int c = 0; c < 256; c++)
-			{
-				m ^= c;
-
-				Console.WriteLine(c + " ==> " + m);
-			}
+			// TODO
+			// TODO
+			// TODO
 		}
 	}
 }

@@ -36,7 +36,7 @@ namespace Charlotte
 			canvas.FillRect(BACK_COLOR, new I4Rect(h / 2, FRAME * 1, w - h, h - FRAME * 2));
 
 			{
-				Func<I4Color, I4Color> filter = dot =>
+				Func<I4Color, int, int, I4Color> filter = (dot, x, y) =>
 				{
 					dot.R /= 2;
 					dot.G /= 2;
