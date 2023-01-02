@@ -14,8 +14,12 @@ Picture\BetDown.png
 	-> File 2022/12/29 (木) 09:05:51 / 2022/10/02 (日) 14:30:29 / 3,098
 Picture\BetUp.png
 	-> File 2022/12/29 (木) 09:05:51 / 2022/10/02 (日) 14:30:28 / 3,186
+Picture\Game
+	-> Directory
 Picture\GameStartButton.png
 	-> File 2022/12/29 (木) 09:05:51 / 2022/10/02 (日) 05:41:53 / 24,483
+Picture\Game\DrumMask.png
+	-> File 2023/01/02 (月) 20:42:35 / 2023/01/02 (月) 20:42:35 / 1,663
 Picture\IMG_20160000_001374.jpg
 	-> File 2022/12/29 (木) 09:05:51 / 2020/08/25 (火) 16:56:31 / 243,199
 Picture\Start.png
