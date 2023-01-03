@@ -19,11 +19,6 @@ var<Picture_t> P_WhiteCircle = @@_Load(RESOURCE_General__WhiteCircle_png);
 // ★ここまで固定 -- 持ち回り_共通 -- サンプルとしてキープ
 
 var<Picture_t> P_GameStartButton = @@_Load(RESOURCE_Picture__GameStartButton_png);
-var<Picture_t> P_ExplodePiece = @@_Load(RESOURCE_Picture__光る星20_png);
-
-var<Picture_t> P_ButtonBetUp    = @@_Load(RESOURCE_Picture__BetUp_png);
-var<Picture_t> P_ButtonBetDown  = @@_Load(RESOURCE_Picture__BetDown_png);
-var<Picture_t> P_ButtonStart    = @@_Load(RESOURCE_Picture__Start_png);
 
 var<Picture_t> P_Background = @@_Load(RESOURCE_Picture__IMG_20160000_001374_jpg);
 

@@ -33,19 +33,6 @@ window.onload = function()
 
 <strong>スロットマシン・テスト実装</strong><br/>
 
-制作中<br/>
-制作中<br/>
-制作中<br/>
-----<br/>
-----<br/>
-----<br/>
-
-
-
-
-
-<!--
-
 <br/>
 
 効果音：<br/>
@@ -61,14 +48,12 @@ window.onload = function()
 <br/>
 
 注意：<br/>
-セブンブリッジのルールに準拠していない部分があります。<br/>
+none<br/>
 
 <br/>
 
 テスト用機能：<br/>
 none<br/>
-
--->
 
 <br/>
 <br/>

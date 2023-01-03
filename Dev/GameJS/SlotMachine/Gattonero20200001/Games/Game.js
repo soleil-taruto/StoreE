@@ -37,7 +37,13 @@ function* <generatorForTask> @@_TitleMain()
 
 	for (; ; )
 	{
-		ClearScreen();
+		SetColor("#008080");
+		PrintRect(0, 0, Screen_W, Screen_H);
+
+		SetColor("#ffffff");
+		SetFSize(100);
+		SetPrint(100, 200, 0);
+		PrintLine("êßçÏíÜ...");
 
 		// TODO
 		// TODO
@@ -47,16 +53,6 @@ function* <generatorForTask> @@_TitleMain()
 	}
 
 	FreezeInput();
-}
-
-function <void> @@_DrawWall()
-{
-	// TODO
-}
-
-function <void> @@_DrawFront()
-{
-	// TODO
 }
 
 function* <generatorForTask> @@_RotateMain()
